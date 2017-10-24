@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MATCH CONSTRAINT Dimension used for ConstraintLayouts -->
+    <dimen name="match_constraint_0dp">0dp</dimen>
+
+    <!-- Material Dimensions for Dialogs -->
+    <dimen name="material_dialog_padding">24dp</dimen>
+    <dimen name="material_dialog_title_body_padding">20dp</dimen>
+
+    <!-- For the NumberPicker used in both Pagination & Settings -->
+    <dimen name="number_picker_min_width">68dp</dimen>
+
+    <!-- ================================ -->
+    <!-- FOR SEARCH KEYWORD FILTER DIALOG -->
+    <!-- ================================ -->
+    <!-- For the List view in Search Keyword Filters -->
+    <dimen name="keyword_filters_list_view_padding_top">8dp</dimen>
+    <dimen name="keyword_filters_list_view_padding_bottom">8dp</dimen>
+    <dimen name="keyword_filters_list_view_div_height">2dp</dimen>
+    <!-- For the List item Cards in Search Keyword Filters -->
+    <dimen name="keyword_filter_content_padding">4dp</dimen>
+    <dimen name="keyword_filter_cards_margin_top">4dp</dimen>
+    <dimen name="keyword_filter_cards_margin_left">16dp</dimen>
+    <dimen name="keyword_filter_cards_margin_right">16dp</dimen>
+
+    <!-- ======================== -->
+    <!-- FOR THE CARDS IN THE APP -->
+    <!-- ======================== -->
+    <dimen name="base_card_view_content_padding">2dp</dimen>
+    <dimen name="book_tile_card_view_elevation">4dp</dimen>
+
+    <!-- ============================================== -->
+    <!-- FOR THE RATINGS SHOWN FOR EACH BOOK IN THE APP -->
+    <!-- ============================================== -->
+    <dimen name="rating_content_margin_top">4dp</dimen>
+    <dimen name="rating_open_brace_margin_left">2dp</dimen>
+    <dimen name="rating_open_brace_text_size">13sp</dimen>
+    <dimen name="rating_count_text_size">13sp</dimen>
+    <dimen name="rating_close_brace_margin_left">2dp</dimen>
+    <dimen name="rating_close_brace_text_size">13sp</dimen>
+
+    <!-- ============================ -->
+    <!-- FOR THE BOOK DETAIL ACTIVITY -->
+    <!-- ============================ -->
+    <dimen name="detail_root_pad_left">16dp</dimen>
+    <dimen name="detail_root_pad_right">16dp</dimen>
+    <dimen name="detail_title_author_card_margin_top">4dp</dimen>
+    <dimen name="detail_title_author_card_content_margin">6dp</dimen>
+    <dimen name="detail_title_text_size">20sp</dimen>
+    <dimen name="detail_border_margin_top_4dp">4dp</dimen>
+    <dimen name="detail_border_margin_top_6dp">6dp</dimen>
+    <dimen name="detail_content_margin_top">4dp</dimen>
+    <dimen name="detail_sub_content_margin_top">2dp</dimen>
+    <dimen name="detail_scroll_section_margin_top">6dp</dimen>
+    <dimen name="detail_scroll_section_margin_bottom">2dp</dimen>
+    <dimen name="detail_book_info_card_margin_top">2dp</dimen>
+    <dimen name="detail_book_info_card_content_margin">6dp</dimen>
+    <dimen name="detail_subtitle_text_size">14sp</dimen>
+    <dimen name="detail_sub_content_text_size">16sp</dimen>
+    <dimen name="detail_minor_content_text_size">15sp</dimen>
+    <dimen name="detail_description_text_pad_left">4dp</dimen>
+    <dimen name="detail_description_text_pad_right">4dp</dimen>
+    <dimen name="detail_sample_preview_buttons_height">52dp</dimen>
+    <dimen name="detail_sample_preview_buttons_outer_margin">8dp</dimen>
+    <dimen name="detail_sample_preview_buttons_inner_margin">10dp</dimen>
+    <dimen name="detail_buttons_text_size">15sp</dimen>
+    <dimen name="detail_buy_button_padding">6dp</dimen>
+
+    <!-- ========================= -->
+    <!-- FOR THE LIST & GRID VIEWS -->
+    <!-- ========================= -->
+    <dimen name="grid_item_book_card_info_margin_top">4dp</dimen>
+    <dimen name="grid_item_book_card_info_content_margin">6dp</dimen>
+    <dimen name="grid_item_content_row_margin_top">4dp</dimen>
+    <dimen name="grid_item_author_text_size">14sp</dimen>
+    <dimen name="book_tile_price_text_margin_top">4dp</dimen>
+    <dimen name="book_tile_price_text_size">13sp</dimen>
+    <dimen name="book_tile_retail_price_margin_left">4dp</dimen>
+    <dimen name="book_tile_retail_price_gone_margin_left">0dp</dimen>
+    <dimen name="grid_item_image_margin_top">4dp</dimen>
+    <dimen name="grid_item_title_text_size">17sp</dimen>
+    <dimen name="list_item_image_margin_left">6dp</dimen>
+    <dimen name="list_item_image_margin_top">5dp</dimen>
+    <dimen name="list_item_image_margin_bottom">5dp</dimen>
+    <dimen name="list_item_book_card_info_margin">4dp</dimen>
+    <dimen name="list_item_book_card_info_content_margin">6dp</dimen>
+    <dimen name="list_item_title_text_size">17sp</dimen>
+    <dimen name="list_item_author_text_margin_top">4dp</dimen>
+    <dimen name="list_item_author_text_size">15sp</dimen>
+    <dimen name="list_item_drawable_padding">4dp</dimen>
+    <dimen name="list_item_publ_text_size">15sp</dimen>
+    <dimen name="list_item_publ_date_text_size">14sp</dimen>
+    <dimen name="list_item_pages_text_margin_top">4dp</dimen>
+    <dimen name="list_item_pages_text_size">14sp</dimen>
+    <dimen name="list_item_categories_text_margin_top">4dp</dimen>
+    <dimen name="list_item_categories_text_size">14sp</dimen>
+    <dimen name="grid_item_margin_left">8dp</dimen>
+    <dimen name="grid_item_margin_right">8dp</dimen>
+    <dimen name="list_item_margin_left">2dp</dimen>
+    <dimen name="list_item_margin_right">2dp</dimen>
+    <!-- Offset dimensions used for the book shelf decorations -->
+    <dimen name="list_item_bottom_decoration_offset">16dp</dimen>
+    <dimen name="grid_item_bottom_decoration_offset">7dp</dimen>
+
+    <!-- ====================================== -->
+    <!-- FOR THE NUMBER PICKER USED IN SETTINGS -->
+    <!-- ====================================== -->
+    <dimen name="pref_number_picker_margin_top">20dp</dimen>
+    <dimen name="pref_number_picker_margin_bottom">20dp</dimen>
+
+    <!-- ========================== -->
+    <!-- FOR THE PAGINATION BUTTONS -->
+    <!-- ========================== -->
+    <dimen name="pagination_button_size">48dp</dimen>
+    <dimen name="pagination_button_margin_left">6dp</dimen>
+    <dimen name="pagination_button_margin_right">6dp</dimen>
+    <dimen name="pagination_button_margin_bottom">6dp</dimen>
+
+    <!-- ======================================== -->
+    <!-- FOR THE NUMBER PICKER USED IN PAGINATION -->
+    <!-- ======================================== -->
+    <dimen name="page_number_picker_margin_top">17dp</dimen>
+    <dimen name="page_number_picker_title_text_padding_bottom">12dp</dimen>
+    <dimen name="page_number_picker_button_text_size">15sp</dimen>
+    <dimen name="page_number_picker_buttons_margin_top">32dp</dimen>
+    <dimen name="page_number_picker_cancel_btn_margin_right">4dp</dimen>
+    <dimen name="page_number_picker_buttons_margin_bottom">8dp</dimen>
+    <dimen name="page_number_picker_buttons_content_padding">8dp</dimen>
+    <dimen name="page_number_picker_buttons_min_width">64dp</dimen>
+    <dimen name="page_number_picker_buttons_height">36dp</dimen>
+    <dimen name="page_number_picker_set_btn_margin_left">4dp</dimen>
+    <dimen name="page_number_picker_set_btn_margin_right">8dp</dimen>
+
+    <!-- ==================================== -->
+    <!-- FOR THE TABS IN BOOK SEARCH ACTIVITY -->
+    <!-- ==================================== -->
+    <dimen name="tab_image_icon_margin_right">4dp</dimen>
+    <dimen name="tab_image_icon_gone_margin_right">0dp</dimen>
+    <dimen name="tab_text_size">16sp</dimen>
+
+    <!-- ==================== -->
+    <!-- FOR THE WELCOME PAGE -->
+    <!-- ==================== -->
+    <dimen name="welcome_page_content_margin">16dp</dimen>
+    <dimen name="welcome_card_margin_left">16dp</dimen>
+    <dimen name="welcome_card_margin_right">16dp</dimen>
+    <dimen name="welcome_card_content_margin">6dp</dimen>
+    <dimen name="branding_image_width">115dp</dimen>
+    <dimen name="branding_image_height">24dp</dimen>
+    <dimen name="welcome_page_title_text_size">28sp</dimen>
+    <dimen name="welcome_page_content_text_size">20sp</dimen>
+
+    <!-- ====================== -->
+    <!-- FOR THE NO RESULT PAGE -->
+    <!-- ====================== -->
+    <dimen name="no_result_page_content_margin">16dp</dimen>
+    <dimen name="no_result_card_margin_left">16dp</dimen>
+    <dimen name="no_result_card_margin_right">16dp</dimen>
+    <dimen name="no_result_card_content_margin">8dp</dimen>
+    <dimen name="no_result_content_title_text_size">68sp</dimen>
+    <dimen name="no_result_content_text_size">21sp</dimen>
+
+    <!-- ============================ -->
+    <!-- FOR THE NETWORK ERROR DIALOG -->
+    <!-- ============================ -->
+    <dimen name="network_error_button_text_size">15sp</dimen>
+    <dimen name="network_error_buttons_margin_top">32dp</dimen>
+    <dimen name="network_error_buttons_margin_bottom">8dp</dimen>
+    <dimen name="network_error_buttons_content_padding">8dp</dimen>
+    <dimen name="network_error_buttons_min_width">64dp</dimen>
+    <dimen name="network_error_buttons_height">36dp</dimen>
+    <dimen name="network_error_title_text_drawable_padding">6dp</dimen>
+    <dimen name="network_alert_image_square_size">40dp</dimen>
+    <dimen name="network_alert_image_margin_top">12dp</dimen>
+    <dimen name="network_error_title_text_padding_bottom">12dp</dimen>
+    <dimen name="network_error_scroll_text_margin_top">12dp</dimen>
+    <dimen name="network_error_cancel_btn_margin_right">4dp</dimen>
+    <dimen name="network_error_settings_btn_margin_right">8dp</dimen>
+    <dimen name="network_error_settings_btn_margin_left">4dp</dimen>
+    <dimen name="network_error_text_size">15sp</dimen>
+
+    <!-- ========================= -->
+    <!-- FOR PROGRESS BAR DRAWABLE -->
+    <!-- ========================= -->
+    <dimen name="progress_bar_stroke_width">10dp</dimen>
+    <dimen name="progress_bar_dash_gap">16dp</dimen>
+    <dimen name="progress_bar_dash_width">64dp</dimen>
+    <dimen name="progress_bar_height">11dp</dimen>
+
+    <!-- =========================== -->
+    <!-- FOR THE BOOK IMAGE ACTIVITY -->
+    <!-- =========================== -->
+    <dimen name="book_image_scroll_padding">16dp</dimen>
+
+    <!-- ====================== -->
+    <!-- FOR THE ABOUT ACTIVITY -->
+    <!-- ====================== -->
+    <dimen name="abt_info_card_margin">16dp</dimen>
+    <dimen name="abt_info_card_content_margin">12dp</dimen>
+    <dimen name="abt_info_content_internal_margin">6dp</dimen>
+    <dimen name="abt_title_text_size">24sp</dimen>
+    <dimen name="abt_info_content_text_size">18sp</dimen>
+    <dimen name="abt_google_branding_image_width">150dp</dimen>
+    <dimen name="abt_google_branding_image_height">48dp</dimen>
+    <dimen name="abt_google_branding_image_margin_top">4dp</dimen>
+    <dimen name="abt_buttons_size">56dp</dimen>
+    <dimen name="abt_book_base_image_margin_bottom">16dp</dimen>
+
+</resources>

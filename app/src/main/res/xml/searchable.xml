@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--Configuration for the Search Interface-->
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/search_hint_text"
+    android:label="@string/app_name"
+    android:searchSuggestAuthority="com.example.kaushiknsanji.bookslibrary.providers.RecentBookSearchProvider"
+    android:searchSuggestSelection=" ?"
+    android:searchSuggestThreshold="3"
+    android:voiceLanguageModel="web_search"
+    android:voicePromptText="@string/search_hint_text"
+    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer" />

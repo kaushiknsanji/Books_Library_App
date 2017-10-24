@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.kaushiknsanji.bookslibrary.BookSearchActivity">
+
+    <item
+        android:id="@+id/search_action_id"
+        android:icon="@drawable/ic_search_white"
+        android:orderInCategory="1"
+        android:title="@string/search_title_str"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/keyword_filter_action_id"
+        android:orderInCategory="2"
+        android:title="@string/search_keyword_filter_title_str"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/clear_recent_search_action_id"
+        android:orderInCategory="3"
+        android:title="@string/clear_search_history_title_str"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/search_settings_action_id"
+        android:orderInCategory="4"
+        android:title="@string/search_settings_title_str"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/about_action_id"
+        android:orderInCategory="5"
+        android:title="@string/about_title_str"
+        app:showAsAction="never" />
+
+</menu>

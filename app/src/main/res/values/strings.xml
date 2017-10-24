@@ -1,0 +1,262 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Name of the App -->
+    <string name="app_name">Books Library</string>
+
+    <!-- ========================================== -->
+    <!-- STRINGS USED IN THE BOOK SEARCH ACTIVITY   -->
+    <!-- ========================================== -->
+
+    <!--Title used for Search Menu-->
+    <string name="search_title_str">Search Books</string>
+
+    <!--Title shown for the List Tab in TabLayout [CHAR LIMIT=5]-->
+    <string name="list_tab_title">List</string>
+
+    <!--Title shown for the Grid Tab in TabLayout [CHAR LIMIT=5]-->
+    <string name="grid_tab_title">Grid</string>
+
+    <!--Title of Search Settings Menu and its Activity-->
+    <string name="search_settings_title_str">Search Settings</string>
+
+    <!--Title of Search Keyword Filter Menu-->
+    <string name="search_keyword_filter_title_str">Search Keyword Filters</string>
+
+    <!--Title for Clear Search History Menu-->
+    <string name="clear_search_history_title_str">Clear Search History</string>
+
+    <!--Used as a hint text for the Search View [CHAR LIMIT=25]-->
+    <string name="search_hint_text">Books or Authors</string>
+
+    <!--Used as the App Title when a Book is searched-->
+    <string name="searched_book_title" translatable="false">
+        <!--Output will be like 'Find: Harry Potter'-->
+        Find: <xliff:g example="Harry Potter" id="query_as_title">%1$s</xliff:g>
+    </string>
+
+    <!--Usage error message displayed when the user clicks the "Search Keyword Filters" menu item
+    when the Search is not active-->
+    <string name="keyword_filter_search_usage_error">Needs to be used while Searching</string>
+
+    <!--The Message shown in the Dialog for the "Search Keyword Filters" menu item -->
+    <string name="search_keyword_filters_dialog_msg_text">Search Keyword filters to refine your search</string>
+
+    <!-- =========================== -->
+    <!-- STRINGS USED FOR PAGINATION -->
+    <!-- =========================== -->
+
+    <!-- Text shown on the Pagination Number Picker Dialog's Negative Action Button [CHAR LIMIT=8]-->
+    <string name="page_number_picker_cancel_button_text">Cancel</string>
+
+    <!-- Text shown on the Pagination Number Picker Dialog's Positive Action Button [CHAR LIMIT=8]-->
+    <string name="page_number_picker_set_button_text">Set</string>
+
+    <!-- Title Text shown on the Pagination Number Picker Dialog [CHAR LIMIT=15]-->
+    <string name="page_number_picker_title_text">Jump to Page</string>
+
+    <!-- Message displayed when first page is being shown on click of button 'R.id.page_first_button_id' -->
+    <string name="navigate_page_first_msg">Loading the First page…</string>
+
+    <!-- Message displayed when last page is being shown on click of button 'R.id.page_last_button_id' -->
+    <string name="navigate_page_last_msg">Loading the Last page…</string>
+
+    <!-- Message displayed when a page is being shown on click of buttons 'R.id.page_previous_button_id' & 'R.id.page_next_button_id' -->
+    <string name="navigate_page_x_msg">Loading Page <xliff:g example="1" id="page_number">%1$d</xliff:g>…</string>
+
+    <!-- Message displayed when a particular selected page is being shown on click of button 'R.id.page_more_button_id' -->
+    <string name="navigate_page_sel_msg">Loading Selected Page <xliff:g example="1" id="page_number">%1$d</xliff:g>…</string>
+
+    <!-- Message displayed when the destination page has no data to be shown and hence restores the previously loaded page -->
+    <string name="restoring_page_msg">
+        Restoring Page <xliff:g example="1" id="page_number">%1$d</xliff:g> as the requested Page <xliff:g example="2" id="page_number">%2$d</xliff:g> has no data
+    </string>
+
+    <!-- =================== -->
+    <!-- PREFERENCES STRINGS -->
+    <!-- =================== -->
+
+    <!--Title shown for the Filter Results Preference Category-->
+    <string name="pref_filter_results_category_title">Filter Results</string>
+
+    <!--Title shown for the Sort Results Preference Category-->
+    <string name="pref_sort_results_category_title">Sort Results</string>
+
+    <!--Title shown for the Pagination Preference Category-->
+    <string name="pref_pagination_category_title">Pagination</string>
+
+    <!--Title shown for the Defaults Preference Category-->
+    <string name="pref_defaults_category_title">Defaults</string>
+
+    <!--Key used for the Publication Type preference setting-->
+    <string name="pref_publication_type_key" translatable="false">printType</string>
+
+    <!--Title shown for the Publication Type preference setting-->
+    <string name="pref_publication_type_title">Publication Type</string>
+
+    <!--Default value for the Publication Type preference setting-->
+    <string name="pref_publication_type_default" translatable="false">all</string>
+
+    <!--Dialog title used for the Publication Type preference setting-->
+    <string name="pref_publication_type_dialog_title">Select an option to display the results accordingly</string>
+
+    <!--Key used for the Content Type preference setting-->
+    <string name="pref_content_type_key" translatable="false">filter</string>
+
+    <!--Title used for the Content Type preference setting-->
+    <string name="pref_content_type_title">Content Type</string>
+
+    <!--Default value for the Content Type preference setting-->
+    <string name="pref_content_type_default" translatable="false">none</string>
+
+    <!--Dialog title used for the Content Type preference setting-->
+    <string name="pref_content_type_dialog_title">Select an option to restrict the results accordingly</string>
+
+    <!--Key used for the Sort By preference setting-->
+    <string name="pref_sort_by_key" translatable="false">orderBy</string>
+
+    <!--Title shown for the Sort By preference setting-->
+    <string name="pref_sort_by_title">Sort By</string>
+
+    <!--Default value for the Sort By preference setting-->
+    <string name="pref_sort_by_default" translatable="false">relevance</string>
+
+    <!--Dialog title used for the Sort By preference setting-->
+    <string name="pref_sort_by_dialog_title">Select on how you wish the results to be sorted</string>
+
+    <!--Key used for the "Page To Display" preference setting-->
+    <string name="pref_page_to_display_key" translatable="false">startIndex</string>
+
+    <!--Key used for the Maximum value of the "Page To Display" preference setting-->
+    <string name="pref_page_to_display_max_value_key" translatable="false">endIndex</string>
+
+    <!--Title shown for the "Page To Display" preference setting-->
+    <string name="pref_page_to_display_title">Page to Display</string>
+
+    <!--Key used for the "Results per page" preference setting-->
+    <string name="pref_results_per_page_key" translatable="false">maxResults</string>
+
+    <!--Title shown for the "Results per page" preference setting-->
+    <string name="pref_results_per_page_title">Results per page</string>
+
+    <!--Key used for the "Reset Settings" preference setting-->
+    <string name="pref_reset_settings_key" translatable="false">reset</string>
+
+    <!--Title shown for the "Reset Settings" preference setting-->
+    <string name="pref_reset_settings_title">Reset Settings</string>
+
+    <!--Dialog message shown for the "Reset Settings" preference setting-->
+    <string name="pref_reset_settings_dialog_msg">Reset all to defaults?</string>
+
+    <!--Default value for the "Reset Settings" preference setting-->
+    <string name="pref_reset_settings_default" translatable="false">false</string>
+
+    <!--Key used for the storing the last successfully displayed page index for restoring on failure-->
+    <string name="pref_last_displayed_page_key" translatable="false">lastViewedIndex</string>
+
+    <!-- ========================================== -->
+    <!-- STRINGS USED IN THE BOOK LIST & GRID VIEWS -->
+    <!-- ========================================== -->
+
+    <!-- Characters used for displaying the rating count on a Book item -->
+    <string name="rating_open_brace_text" translatable="false">(</string>
+    <string name="rating_close_brace_text" translatable="false">)</string>
+
+    <!--Message shown in the field where the number of pages is to be displayed-->
+    <string name="pages_book_type">
+        <!--Output will be like '100 Pages Magazine'-->
+        <xliff:g example="100" id="page_count">%1$d</xliff:g> Pages <xliff:g example="Magazine" id="book_type">%2$s</xliff:g>
+    </string>
+
+    <!--Default message shown when no categories are found for the book-->
+    <string name="no_categories_found_default_text">Unknown Category</string>
+
+    <!--Default message shown when no authors are found for the book-->
+    <string name="no_authors_found_default_text">Anonymous</string>
+
+    <!--Default message shown when the book is not saleable in the user's locale-->
+    <string name="not_for_sale_price_text">NOT FOR SALE</string>
+
+    <!--Default message shown when the Published Date of the book is not available-->
+    <string name="no_published_date_default_text">Unknown Date</string>
+
+    <!--Default message shown when no publisher is found for the book-->
+    <string name="no_publisher_found_default_text">Unknown Publisher</string>
+
+    <!-- ======================================== -->
+    <!-- STRINGS USED IN THE BOOK DETAIL ACTIVITY -->
+    <!-- ======================================== -->
+
+    <!--Title of Book Detail Activity-->
+    <string name="book_detail_title_str">Book Details</string>
+
+    <!--Used for displaying the authors in the Book's Detail Page -->
+    <string name="by_author_text" translatable="false">
+        <!--Output will be like 'by Shakespeare'-->
+        by <xliff:g example="by Shakespeare" id="by_author">%1$s</xliff:g>
+    </string>
+
+    <!--Default message shown when no description is found for the book-->
+    <string name="no_description_found_default_text">No Description available</string>
+
+    <!-- Subtitle Text shown for the Publisher section in the Book Details page [CHAR LIMIT=20]-->
+    <string name="detail_publisher_section_subtitle">Published by</string>
+
+    <!-- Subtitle Text shown for the Categories section in the Book Details page [CHAR LIMIT=20]-->
+    <string name="detail_category_section_subtitle">Under Categories</string>
+
+    <!-- Subtitle Text shown for the Description section in the Book Details page [CHAR LIMIT=20]-->
+    <string name="detail_description_section_subtitle">Description</string>
+
+    <!-- Subtitle Text shown for the Sample Previews section in the Book Details page [CHAR LIMIT=20]-->
+    <string name="detail_samples_section_subtitle">Sample Previews</string>
+
+    <!-- Text shown on the Web Preview Button in the Book Details page [CHAR LIMIT=6]-->
+    <string name="web_preview_button_text">Web</string>
+
+    <!-- Text shown on the Info Button in the Book Details page [CHAR LIMIT=8]-->
+    <string name="detail_info_button_text">Info</string>
+
+    <!-- Message displayed when the user clicks on the default book image that has no image to be shown -->
+    <string name="no_book_image_msg">Do not have any Image of this Book to display</string>
+
+    <!-- ================================ -->
+    <!-- STRINGS USED IN THE WELCOME PAGE -->
+    <!-- ================================ -->
+    <string name="welcome_page_textline_1">Welcome to the Books Library App!</string>
+    <string name="welcome_page_textline_2">Fill this space with the books of your choice by searching them.</string>
+    <string name="welcome_page_textline_3">Use the search icon [ic_search_primary] to begin the search.</string>
+
+    <!-- ================================== -->
+    <!-- STRINGS USED IN THE NO RESULT PAGE -->
+    <!-- ================================== -->
+    <string name="no_result_content_title_text">0H N0!</string>
+    <string name="no_result_page_textline_1">&lt;b&gt;Zero books&lt;/b&gt; were returned for the search entry &lt;b&gt;\"<xliff:g example="Shakespeare12345" id="search_entry">%1$s</xliff:g>\"&lt;/b&gt;</string>
+    <string name="no_result_page_textline_2">Re-validate your search query + search settings and then try again. If it fails again, then at the moment we do not have any book related to your search query.</string>
+    <string name="no_result_page_textline_3">Apologies for the inconvenience caused. Do visit us sometime later, to check for the book currently unavailable.</string>
+
+    <!-- ======================================== -->
+    <!-- STRINGS USED IN THE NETWORK ERROR DIALOG -->
+    <!-- ======================================== -->
+    <string name="network_error_title_text">Network Error</string>
+    <string name="network_error_text_msg">Seems like there is an issue with the network connectivity.\n\nCheck whether the Airplane mode is Active, [ic_airplanemode_active_primary] may be seen in the above status bar. Turn this OFF if it is seen.\n\nValidate the Network settings and visit us back once done.</string>
+    <string name="network_error_cancel_button_text">Cancel</string>
+    <string name="network_error_settings_button_text">Check Settings</string>
+
+    <!-- ======================================= -->
+    <!-- STRINGS USED IN THE BOOK IMAGE ACTIVITY -->
+    <!-- ======================================= -->
+    <!--Title of Book Image Activity-->
+    <string name="book_image_title_str">Book Image</string>
+
+    <!-- ================================== -->
+    <!-- STRINGS USED IN THE ABOUT ACTIVITY -->
+    <!-- ================================== -->
+    <string name="about_title_str">About</string>
+    <string name="abt_content_textline_1">Books Library App</string>
+    <string name="abt_content_textline_2">App designed and developed by &lt;b&gt;Kaushik N Sanji&lt;/b&gt; as part of the project coursework done for the &lt;b&gt;Android Basics Nanodegree&lt;/b&gt; course offered by &lt;b&gt;Udacity&lt;/b&gt;. All the decorative awesomeness were grabbed from somewhere in the Internet.</string>
+    <string name="abt_content_textline_3">App is basically designed as a client to the Google Books. It only can execute book search and display the results returned, with all the awesomeness.</string>
+    <string name="google_books_api_link" translatable="false">https://developers.google.com/books</string>
+    <string name="udacity_course_link" translatable="false">https://in.udacity.com/course/android-basics-nanodegree-by-google--nd803-infn2</string>
+    <string name="github_profile_link" translatable="false">https://github.com/kaushiknsanji</string>
+    <string name="linkedin_profile_link" translatable="false">https://www.linkedin.com/in/kaushiknsanji</string>
+
+</resources>

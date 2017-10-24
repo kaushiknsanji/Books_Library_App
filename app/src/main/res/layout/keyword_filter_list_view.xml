@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="@dimen/material_dialog_title_body_padding"
+        android:paddingLeft="@dimen/material_dialog_padding"
+        android:paddingRight="@dimen/material_dialog_padding"
+        android:paddingTop="@dimen/material_dialog_padding"
+        android:text="@string/search_keyword_filters_dialog_msg_text"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/keyword_filters_list_view_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialogs_background"
+        android:divider="@null"
+        android:dividerHeight="@dimen/keyword_filters_list_view_div_height"
+        android:drawSelectorOnTop="true"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/keyword_filters_list_view_padding_bottom"
+        android:paddingLeft="@dimen/material_dialog_padding"
+        android:paddingRight="@dimen/material_dialog_padding"
+        android:paddingTop="@dimen/keyword_filters_list_view_padding_top"
+        android:scrollingCache="true"
+        tools:listitem="@layout/keyword_filter_list_item" />
+
+</LinearLayout>

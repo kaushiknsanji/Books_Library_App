@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wood_sheet_tile"
+    android:fillViewport="true"
+    tools:context="com.example.kaushiknsanji.bookslibrary.AboutActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/abt_info_card_id"
+            style="@style/BookTileCardViewStyle"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/abt_info_card_margin"
+            android:layout_marginLeft="@dimen/abt_info_card_margin"
+            android:layout_marginRight="@dimen/abt_info_card_margin"
+            android:layout_marginStart="@dimen/abt_info_card_margin"
+            android:layout_marginTop="@dimen/abt_info_card_margin"
+            app:layout_constraintBottom_toTopOf="@+id/abt_book_base_image_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/abt_info_content_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/abt_info_card_content_margin">
+
+                <ImageView
+                    android:id="@+id/abt_app_icon_image_id"
+                    style="@style/ConstraintTopCenterHorizontalStyle"
+                    android:layout_width="@dimen/match_constraint_0dp"
+                    android:layout_height="@dimen/match_constraint_0dp"
+                    app:layout_constraintDimensionRatio="4:2"
+                    app:srcCompat="@drawable/ic_bookshelf_cloud" />
+
+                <TextView
+                    android:id="@+id/abt_title_text_id"
+                    style="@style/AboutTitleTextStyle"
+                    android:text="@string/abt_content_textline_1"
+                    app:layout_constraintTop_toBottomOf="@id/abt_app_icon_image_id" />
+
+                <ImageView
+                    android:id="@+id/abt_border1_image_id"
+                    style="@style/DetailImageBorderStyle1"
+                    app:layout_constraintBottom_toTopOf="@+id/abt_text_1_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_title_text_id"
+                    app:layout_constraintVertical_chainStyle="spread_inside" />
+
+                <TextView
+                    android:id="@+id/abt_text_1_id"
+                    style="@style/AboutContentTextStyle"
+                    app:layout_constraintBottom_toTopOf="@+id/abt_text_2_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_border1_image_id"
+                    tools:text="@string/abt_content_textline_2" />
+
+                <TextView
+                    android:id="@+id/abt_text_2_id"
+                    style="@style/AboutContentTextStyle"
+                    android:text="@string/abt_content_textline_3"
+                    app:layout_constraintBottom_toTopOf="@+id/abt_google_branding_image_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_text_1_id" />
+
+                <ImageButton
+                    android:id="@+id/abt_google_branding_image_id"
+                    style="@style/ConstraintCenterHorizontalStyle"
+                    android:layout_width="@dimen/abt_google_branding_image_width"
+                    android:layout_height="@dimen/abt_google_branding_image_height"
+                    android:layout_marginTop="@dimen/abt_google_branding_image_margin_top"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintBottom_toTopOf="@+id/abt_border2_image_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_text_2_id"
+                    app:srcCompat="@drawable/powered_by_google_on_white" />
+
+                <ImageView
+                    android:id="@+id/abt_border2_image_id"
+                    style="@style/DetailImageBorderStyle2"
+                    app:layout_constraintBottom_toTopOf="@+id/abt_github_image_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_google_branding_image_id" />
+
+                <ImageView
+                    android:id="@+id/abt_udacity_image_id"
+                    style="@style/AboutClickableImageViewStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/abt_github_image_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/abt_github_image_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/abt_border2_image_id"
+                    app:srcCompat="@drawable/ic_udacity" />
+
+                <ImageView
+                    android:id="@+id/abt_github_image_id"
+                    style="@style/AboutClickableImageViewStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/abt_linkedin_image_id"
+                    app:layout_constraintLeft_toRightOf="@id/abt_udacity_image_id"
+                    app:layout_constraintRight_toLeftOf="@+id/abt_linkedin_image_id"
+                    app:layout_constraintStart_toEndOf="@id/abt_udacity_image_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_border2_image_id"
+                    app:srcCompat="@drawable/ic_github" />
+
+                <ImageView
+                    android:id="@+id/abt_linkedin_image_id"
+                    style="@style/AboutClickableImageViewStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/abt_github_image_id"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/abt_github_image_id"
+                    app:layout_constraintTop_toBottomOf="@id/abt_border2_image_id"
+                    app:srcCompat="@drawable/ic_linkedin" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <ImageView
+            android:id="@+id/abt_book_base_image_id"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="@dimen/match_constraint_0dp"
+            android:layout_marginBottom="@dimen/abt_book_base_image_margin_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="4:1"
+            app:layout_constraintEnd_toEndOf="@id/abt_info_card_id"
+            app:layout_constraintLeft_toLeftOf="@id/abt_info_card_id"
+            app:layout_constraintRight_toRightOf="@id/abt_info_card_id"
+            app:layout_constraintStart_toStartOf="@id/abt_info_card_id"
+            app:layout_constraintTop_toBottomOf="@id/abt_info_card_id"
+            app:srcCompat="@drawable/book_shelf_with_base" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

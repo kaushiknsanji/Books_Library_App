@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Minimum value of the NumberPicker used for the "Page To Display" preference setting-->
+    <integer name="pref_page_to_display_min_value">1</integer>
+    <!--Default value for the NumberPicker used for the "Page To Display" preference setting-->
+    <integer name="pref_page_to_display_default_value">@integer/pref_page_to_display_min_value
+    </integer>
+
+    <!--Minimum value of the NumberPicker used for the "Results per page" preference setting-->
+    <integer name="pref_results_per_page_min_value">10</integer>
+    <!--Maximum value of the NumberPicker used for the "Results per page" preference setting-->
+    <integer name="pref_results_per_page_max_value">40</integer>
+    <!--Default value for the NumberPicker used for the "Results per page" preference setting-->
+    <integer name="pref_results_per_page_default_value">@integer/pref_results_per_page_min_value
+    </integer>
+
+</resources>

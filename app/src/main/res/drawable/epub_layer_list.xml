@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:left="15dp"
+        android:right="50dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_epub_white" />
+    </item>
+    <item
+        android:drawable="@drawable/ic_file_download_white"
+        android:left="64dp"
+        android:right="6dp"
+        android:top="3dp" />
+</layer-list>

@@ -1,0 +1,505 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="alertDialogTheme">@style/AppTheme.AlertDialog</item>
+        <!-- Remove shadow below Action bar for Android versions lower to 5.0 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- Remove shadow below Action bar for Android versions 5.0 and beyond -->
+        <item name="actionBarStyle">@style/AppBarStyle</item>
+    </style>
+
+    <!-- ================================== -->
+    <!-- STYLES USED FOR CONSTRAINT LAYOUTS -->
+    <!-- ================================== -->
+
+    <!-- Style to align the View component under ConstraintLayout in center_horizontal format -->
+    <style name="ConstraintCenterHorizontalStyle">
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <!-- Style to align the View component under ConstraintLayout to the Top in center_horizontal format -->
+    <style name="ConstraintTopCenterHorizontalStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <!-- Style to align the View component under ConstraintLayout to the Bottom in center_horizontal format -->
+    <style name="ConstraintBottomCenterHorizontalStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <!-- Style to align the View component under ConstraintLayout to the complete Center of its Parent -->
+    <style name="ConstraintCenterInParentStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <!-- ======================================= -->
+    <!-- STYLES USED IN THE BOOK SEARCH ACTIVITY -->
+    <!-- ======================================= -->
+
+    <!-- AlertDialog theme. -->
+    <style name="AppTheme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- App Bar Style -->
+    <style name="AppBarStyle" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- Remove shadow below the Action Bar -->
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- Style for the Tabs -->
+    <style name="TabStyle" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabBackground">@color/colorPrimary</item>
+        <!-- Spread the tabs to fill the entire screen width : START -->
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabMode">fixed</item>
+        <!-- Spread the tabs to fill the entire screen width : END -->
+        <item name="elevation">4dp</item>
+    </style>
+
+    <!-- Style for the Pagination Buttons -->
+    <style name="PaginationButtonStyle">
+        <item name="android:layout_width">@dimen/pagination_button_size</item>
+        <item name="android:layout_height">@dimen/pagination_button_size</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+        <item name="android:layout_marginLeft">@dimen/pagination_button_margin_left</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/pagination_button_margin_left
+        </item>
+        <item name="android:layout_marginRight">@dimen/pagination_button_margin_right</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/pagination_button_margin_right
+        </item>
+        <item name="android:layout_marginBottom">@dimen/pagination_button_margin_bottom</item>
+    </style>
+
+    <!-- Style for the Buttons in the Pagination Number Picker Dialog 'R.layout.page_number_picker_dialog' -->
+    <style name="PaginationNumberPickerButtonsStyle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/page_number_picker_button_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/page_number_picker_buttons_height</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginTop">@dimen/page_number_picker_buttons_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/page_number_picker_buttons_margin_bottom
+        </item>
+        <item name="android:paddingLeft">@dimen/page_number_picker_buttons_content_padding</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/page_number_picker_buttons_content_padding
+        </item>
+        <item name="android:paddingRight">@dimen/page_number_picker_buttons_content_padding</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/page_number_picker_buttons_content_padding
+        </item>
+        <item name="android:minWidth">@dimen/page_number_picker_buttons_min_width</item>
+    </style>
+
+    <!-- ================================== -->
+    <!-- STYLES USED FOR BOOK'S DETAIL VIEW -->
+    <!-- ================================== -->
+
+    <!-- Style for the subtitles in the Book Details page -->
+    <style name="DetailSubtitleTextStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/detail_content_margin_top</item>
+        <item name="android:textSize">@dimen/detail_subtitle_text_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- Parent Style for the image borders in the Book Details page -->
+    <style name="DetailImageBordersStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/detail_border_margin_top_4dp</item>
+    </style>
+
+    <!-- Child style of 'detail_image_borders' for border_1 image in the Book Details page -->
+    <style name="DetailImageBorderStyle1" parent="DetailImageBordersStyle">
+        <item name="srcCompat">@drawable/border_1</item>
+    </style>
+
+    <!-- Child style of 'detail_image_borders' for border_2 image in the Book Details page -->
+    <style name="DetailImageBorderStyle2" parent="DetailImageBordersStyle">
+        <item name="srcCompat">@drawable/border_2</item>
+    </style>
+
+    <!-- Parent Style for the Content Text in the Book Details page -->
+    <style name="BaseDetailContentTextStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Child Style for the Author Content in the Book Details page -->
+    <style name="DetailAuthorTextStyle" parent="BaseDetailContentTextStyle">
+        <item name="android:textSize">@dimen/detail_sub_content_text_size</item>
+        <item name="android:layout_marginTop">@dimen/detail_content_margin_top</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- Child Style for the Pages Content in the Book Details page -->
+    <style name="DetailPagesTextStyle" parent="BaseDetailContentTextStyle">
+        <item name="android:textSize">@dimen/detail_minor_content_text_size</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <!-- Child Style for the Sub Contents in the Book Details page -->
+    <style name="DetailSubContentTextStyle" parent="BaseDetailContentTextStyle">
+        <item name="android:layout_marginTop">@dimen/detail_sub_content_margin_top</item>
+        <item name="android:textSize">@dimen/detail_sub_content_text_size</item>
+    </style>
+
+    <!-- Child Style for the Sub Contents with Text Center Aligned in the Book Details page -->
+    <style name="DetailSubContentTextCenterAlignedStyle" parent="DetailSubContentTextStyle">
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+    </style>
+
+    <!-- Child Style for the Description Text Content in the Book Details page -->
+    <style name="DetailDescriptionContentTextStyle" parent="DetailSubContentTextStyle">
+        <item name="android:paddingLeft">@dimen/detail_description_text_pad_left</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_description_text_pad_left
+        </item>
+        <item name="android:paddingRight">@dimen/detail_description_text_pad_right</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_description_text_pad_right
+        </item>
+    </style>
+
+    <!-- Child Style for 'Not for Sale' Text in the Book Details page -->
+    <style name="DetailNotForSaleTextStyle" parent="DetailSubContentTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/detailNotForSaleTextColor</item>
+        <item name="android:text">@string/not_for_sale_price_text</item>
+        <item name="layout_constraintLeft_toLeftOf">@null</item>
+        <item name="layout_constraintStart_toStartOf">@null</item>
+    </style>
+
+    <!-- Parent Style for the Buttons with Text only in the Book Details page -->
+    <style name="BaseDetailTextButtonsStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/detail_buttons_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Child Style for the Info Button in the Book Details page -->
+    <style name="DetailInfoButtonStyle" parent="BaseDetailTextButtonsStyle">
+        <item name="android:layout_marginTop">@dimen/detail_content_margin_top</item>
+        <item name="android:text">@string/detail_info_button_text</item>
+        <item name="android:background">@drawable/info_button_bg</item>
+        <item name="android:drawableRight">@drawable/ic_globe_white</item>
+        <item name="android:drawableEnd">@drawable/ic_globe_white</item>
+    </style>
+
+    <!-- Child Style for the Buy Button in the Book Details page -->
+    <style name="DetailBuyButtonStyle" parent="BaseDetailTextButtonsStyle">
+        <item name="android:layout_marginTop">@dimen/detail_border_margin_top_6dp</item>
+        <item name="android:background">@drawable/buy_button_bg</item>
+        <item name="android:padding">@dimen/detail_buy_button_padding</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="layout_constraintEnd_toEndOf">@null</item>
+        <item name="layout_constraintRight_toRightOf">@null</item>
+    </style>
+
+    <!-- Parent Style for the Icon Buttons in the Book Details page -->
+    <style name="BaseDetailIconButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/detail_sample_preview_buttons_height</item>
+        <item name="android:layout_marginTop">@dimen/detail_sub_content_margin_top</item>
+    </style>
+
+    <!-- Child Style for the Epub Button in the Book Details page -->
+    <style name="DetailEpubButtonStyle" parent="BaseDetailIconButtonStyle">
+        <item name="srcCompat">@drawable/epub_layer_list</item>
+        <item name="android:background">@drawable/epub_button_bg</item>
+    </style>
+
+    <!-- Child Style for the Pdf Button in the Book Details page -->
+    <style name="DetailPdfButtonStyle" parent="BaseDetailIconButtonStyle">
+        <item name="srcCompat">@drawable/pdf_layer_list</item>
+        <item name="android:background">@drawable/pdf_button_bg</item>
+    </style>
+
+    <!-- Child Style for the Web Button in the Book Details page -->
+    <style name="DetailWebButtonStyle" parent="BaseDetailIconButtonStyle">
+        <item name="android:drawableRight">@drawable/ic_book_open_variant_white</item>
+        <item name="android:drawableEnd">@drawable/ic_book_open_variant_white</item>
+        <item name="android:textSize">@dimen/detail_buttons_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/web_preview_button_text</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/web_preview_button_bg</item>
+    </style>
+
+    <!-- ============================ -->
+    <!-- STYLES USED FOR BOOKS RATING -->
+    <!-- ============================ -->
+
+    <!-- Style for the RatingBar used in the List/Grid and the Detail view -->
+    <style name="RatingBarStyle" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/rating_content_margin_top</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">0.1</item>
+    </style>
+
+    <!-- Style for the Rating Count content in the List/Grid and the Detail view -->
+    <style name="RatingCountOpenBraceStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/rating_open_brace_margin_left</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/rating_open_brace_margin_left
+        </item>
+        <item name="android:text">@string/rating_open_brace_text</item>
+        <item name="android:textSize">@dimen/rating_open_brace_text_size</item>
+    </style>
+
+    <!-- Style for the Rating Count content in the List/Grid and the Detail view -->
+    <style name="RatingCountTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableEnd">@drawable/ic_account</item>
+        <item name="android:drawableRight">@drawable/ic_account</item>
+        <item name="android:textSize">@dimen/rating_count_text_size</item>
+    </style>
+
+    <!-- Style for the Rating Count content in the List/Grid and the Detail view -->
+    <style name="RatingCountCloseBraceStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/rating_close_brace_margin_left</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/rating_close_brace_margin_left
+        </item>
+        <item name="android:text">@string/rating_close_brace_text</item>
+        <item name="android:textSize">@dimen/rating_close_brace_text_size</item>
+    </style>
+
+    <!-- ==================================== -->
+    <!-- STYLES USED FOR THE CARDS IN THE APP -->
+    <!-- ==================================== -->
+
+    <!-- Parent Style of the Cards used in this app -->
+    <style name="BaseCardViewStyle" parent="CardView">
+        <item name="contentPadding">@dimen/base_card_view_content_padding</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+    <!-- Child Style for the cards used in "Search Keyword Filters" dialog -->
+    <style name="KeywordFilterCardsStyle" parent="BaseCardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/keyword_filter_cards_margin_left
+        </item>
+        <item name="android:layout_marginLeft">@dimen/keyword_filter_cards_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/keyword_filter_cards_margin_right</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/keyword_filter_cards_margin_right
+        </item>
+        <item name="cardBackgroundColor">@color/keywordFiltersCardBackgroundColor</item>
+    </style>
+
+    <!-- Child Style for the cards used in the List/Grid and Title part of the Detail view -->
+    <style name="BookTileCardViewStyle" parent="BaseCardViewStyle">
+        <item name="cardBackgroundColor">@color/bookCardBackgroundColorYellow50</item>
+        <item name="cardElevation">@dimen/book_tile_card_view_elevation</item>
+        <item name="cardMaxElevation">@dimen/book_tile_card_view_elevation</item>
+    </style>
+
+    <!-- Child Style for the card used in the Info part of the Detail view -->
+    <style name="BookInfoCardViewStyle" parent="BaseCardViewStyle">
+        <item name="cardBackgroundColor">@color/bookCardBackgroundColorYellow50</item>
+    </style>
+
+    <!-- Child Style for the card used in the Welcome page and the No Result Page in the app -->
+    <style name="CenteredBookTileCardViewStyle" parent="BookTileCardViewStyle">
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <!-- ========================================= -->
+    <!-- STYLES USED IN THE BOOK LIST & GRID VIEWS -->
+    <!-- ========================================= -->
+
+    <!-- Parent Style for the Book Titles that appear in the List/Grid and the Detail view -->
+    <style name="BaseBookTileTitleStyle" parent="ConstraintTopCenterHorizontalStyle">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Style for the List Price Text appearing the Book Tile of List/Grid views -->
+    <style name="BookTileListPriceStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/book_tile_price_text_margin_top</item>
+        <item name="android:textSize">@dimen/book_tile_price_text_size</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Style for the Retail Price Text appearing the Book Tile of List/Grid views -->
+    <style name="BookTileRetailPriceStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/book_tile_price_text_margin_top</item>
+        <item name="android:textSize">@dimen/book_tile_price_text_size</item>
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/book_tile_retail_price_margin_left
+        </item>
+        <item name="android:layout_marginLeft">@dimen/book_tile_retail_price_margin_left</item>
+        <item name="layout_goneMarginLeft">@dimen/book_tile_retail_price_gone_margin_left</item>
+        <item name="layout_goneMarginStart">@dimen/book_tile_retail_price_gone_margin_left</item>
+    </style>
+
+    <!-- =============================== -->
+    <!-- STYLES USED IN THE WELCOME PAGE -->
+    <!-- =============================== -->
+
+    <!-- Base Style for the text content in the Welcome Page -->
+    <style name="BaseWelcomePageTextContentStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/welcome_card_content_margin</item>
+        <item name="android:layout_marginBottom">@dimen/welcome_card_content_margin</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Child Style for the Title text in the Welcome Page -->
+    <style name="WelcomePageTitleTextStyle" parent="BaseWelcomePageTextContentStyle">
+        <item name="android:textSize">@dimen/welcome_page_title_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Child Style for the Content text in the Welcome Page -->
+    <style name="WelcomePageContentTextStyle" parent="BaseWelcomePageTextContentStyle">
+        <item name="android:textSize">@dimen/welcome_page_content_text_size</item>
+    </style>
+
+    <!-- ================================= -->
+    <!-- STYLES USED IN THE NO RESULT PAGE -->
+    <!-- ================================= -->
+
+    <!-- Base Style for the text content in the No Result Page -->
+    <style name="BaseNoResultPageTextContentStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/no_result_card_content_margin</item>
+        <item name="android:layout_marginBottom">@dimen/no_result_card_content_margin</item>
+    </style>
+
+    <!-- Child Style for the Title text in the No Result Page -->
+    <style name="NoResultPageTitleTextStyle" parent="BaseNoResultPageTextContentStyle">
+        <item name="android:textSize">@dimen/no_result_content_title_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Child Style for the Content text in the No Result Page -->
+    <style name="NoResultPageContentTextStyle" parent="BaseNoResultPageTextContentStyle">
+        <item name="android:textSize">@dimen/no_result_content_text_size</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+    </style>
+
+    <!-- ======================================= -->
+    <!-- STYLES USED IN THE NETWORK ERROR DIALOG -->
+    <!-- ======================================= -->
+
+    <!-- Style for the Buttons in the Network Error Dialog 'R.layout.network_error_dialog' -->
+    <style name="NetworkErrorButtonsStyle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/network_error_button_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/network_error_buttons_height</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginTop">@dimen/network_error_buttons_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/network_error_buttons_margin_bottom</item>
+        <item name="android:paddingLeft">@dimen/network_error_buttons_content_padding</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/network_error_buttons_content_padding
+        </item>
+        <item name="android:paddingRight">@dimen/network_error_buttons_content_padding</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/network_error_buttons_content_padding
+        </item>
+        <item name="android:minWidth">@dimen/network_error_buttons_min_width</item>
+    </style>
+
+    <!-- Style used for the Network Alert images used in the the Network Error Dialog -->
+    <style name="NetworkAlertImagesStyle">
+        <item name="android:layout_width">@dimen/network_alert_image_square_size</item>
+        <item name="android:layout_height">@dimen/network_alert_image_square_size</item>
+        <item name="android:layout_marginTop">@dimen/network_alert_image_margin_top</item>
+    </style>
+
+    <!-- ==================================== -->
+    <!-- STYLE USED FOR PROGRESS BAR DRAWABLE -->
+    <!-- ==================================== -->
+    <style name="ProgressBarIndeterminateStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminate">true</item>
+        <item name="android:minHeight">@dimen/progress_bar_height</item>
+        <item name="android:maxHeight">@dimen/progress_bar_height</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_indeterminate</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <!-- =============================== -->
+    <!-- STYLES USED IN "ABOUT" ACTIVITY -->
+    <!-- =============================== -->
+    <!-- Parent style for the Text content in the About Activity -->
+    <style name="BaseAboutContentTextStyle" parent="ConstraintCenterHorizontalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/abt_info_content_internal_margin</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Child Style for the Title text shown in the About Activity -->
+    <style name="AboutTitleTextStyle" parent="BaseAboutContentTextStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/abt_title_text_size</item>
+    </style>
+
+    <!-- Child Style for the Content text shown in the About Activity -->
+    <style name="AboutContentTextStyle" parent="BaseAboutContentTextStyle">
+        <item name="android:textSize">@dimen/abt_info_content_text_size</item>
+    </style>
+
+    <!-- Style for the Clickable ImageViews shown in the About Activity -->
+    <style name="AboutClickableImageViewStyle">
+        <item name="android:layout_width">@dimen/abt_buttons_size</item>
+        <item name="android:layout_height">@dimen/abt_buttons_size</item>
+        <item name="android:layout_marginTop">@dimen/abt_info_content_internal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/abt_info_content_internal_margin</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+
+</resources>

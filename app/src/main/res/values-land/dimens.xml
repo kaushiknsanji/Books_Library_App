@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Used in the Book Detail Activity for landscape orientation only -->
+    <dimen name="detail_book_image_margin_top">12dp</dimen>
+    <dimen name="detail_info_content_margin_left">12dp</dimen>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- For the Background of the Progress Bar -->
+    <item android:gravity="fill_horizontal">
+        <shape android:shape="line">
+            <size android:height="@dimen/progress_bar_height" />
+            <stroke
+                android:width="@dimen/progress_bar_stroke_width"
+                android:color="@color/progressBarBackgroundColor" />
+        </shape>
+    </item>
+    <!-- For the Primary Progress of the Progress Bar -->
+    <item
+        android:gravity="fill_horizontal"
+        android:left="32dp"
+        android:right="0dp">
+        <shape android:shape="line">
+            <size android:height="@dimen/progress_bar_height" />
+            <stroke
+                android:width="@dimen/progress_bar_stroke_width"
+                android:color="@color/progressBarIndicatorColor"
+                android:dashGap="@dimen/progress_bar_dash_gap"
+                android:dashWidth="@dimen/progress_bar_dash_width" />
+        </shape>
+    </item>
+</layer-list>

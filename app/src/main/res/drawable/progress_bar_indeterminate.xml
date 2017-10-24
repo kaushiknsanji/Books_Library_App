@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step1"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step4"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step5"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step6"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step7"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step8"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step9"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step10"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/progressbar_indeterminate_step0"
+        android:duration="100" />
+</animation-list>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Data used for the KeywordFiltersAdapter, for appending the Search Keywords to the Search Query-->
+    <string-array name="keyword_filter_entries">
+        <item>title</item>
+        <item>author</item>
+        <item>publisher</item>
+        <item>subject</item>
+    </string-array>
+    <string-array name="keyword_filter_description">
+        <item>Keyword for filtering text found in Title</item>
+        <item>Keyword for filtering text found in Author</item>
+        <item>Keyword for filtering text found in Publisher</item>
+        <item>Keyword for filtering text found in Book Categories</item>
+    </string-array>
+    <string-array name="keyword_filter_values">
+        <item>+intitle:</item>
+        <item>+inauthor:</item>
+        <item>+inpublisher:</item>
+        <item>+subject:</item>
+    </string-array>
+
+    <!--Data used for the Publication Type preference setting-->
+    <string-array name="pref_publication_type_entries">
+        <item>Display Books only</item>
+        <item>Display Magazines only</item>
+        <item>Display all Books and Magazines</item>
+    </string-array>
+    <string-array name="pref_publication_type_values">
+        <item>books</item>
+        <item>magazines</item>
+        <item>all</item>
+    </string-array>
+
+    <!--Data used for the Content Type preference setting-->
+    <string-array name="pref_content_type_entries">
+        <item>Partially previewable Books only</item>
+        <item>Completely viewable Books only</item>
+        <item>Free Google eBooks only</item>
+        <item>Paid Google eBooks only</item>
+        <item>Free + Paid Google eBooks only</item>
+        <item>All Books and Magazines</item>
+    </string-array>
+    <string-array name="pref_content_type_values">
+        <item>partial</item>
+        <item>full</item>
+        <item>free-ebooks</item>
+        <item>paid-ebooks</item>
+        <item>ebooks</item>
+        <item>none</item>
+    </string-array>
+
+    <!--Data used for the Sort By preference setting-->
+    <string-array name="pref_sort_by_entries">
+        <item>Most relevant to least relevant</item>
+        <item>Most recent to least recent</item>
+    </string-array>
+    <string-array name="pref_sort_by_values">
+        <item>relevance</item>
+        <item>newest</item>
+    </string-array>
+
+</resources>

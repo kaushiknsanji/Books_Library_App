@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialogs_background">
+
+    <TextView
+        android:id="@+id/page_number_picker_title_text_id"
+        style="@style/ConstraintTopCenterHorizontalStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="@dimen/page_number_picker_title_text_padding_bottom"
+        android:paddingEnd="@dimen/material_dialog_padding"
+        android:paddingLeft="@dimen/material_dialog_padding"
+        android:paddingRight="@dimen/material_dialog_padding"
+        android:paddingStart="@dimen/material_dialog_padding"
+        android:paddingTop="@dimen/material_dialog_padding"
+        android:text="@string/page_number_picker_title_text"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <NumberPicker
+        android:id="@+id/page_number_picker_id"
+        style="@style/ConstraintCenterHorizontalStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/material_dialog_padding"
+        android:layout_marginLeft="@dimen/material_dialog_padding"
+        android:layout_marginRight="@dimen/material_dialog_padding"
+        android:layout_marginStart="@dimen/material_dialog_padding"
+        android:layout_marginTop="@dimen/page_number_picker_margin_top"
+        android:minWidth="@dimen/number_picker_min_width"
+        android:solidColor="@color/paginationNumberPickerColorYellow50"
+        app:layout_constraintTop_toBottomOf="@id/page_number_picker_title_text_id" />
+
+    <Button
+        android:id="@+id/page_number_picker_cancel_btn_id"
+        style="@style/PaginationNumberPickerButtonsStyle"
+        android:layout_marginEnd="@dimen/page_number_picker_cancel_btn_margin_right"
+        android:layout_marginRight="@dimen/page_number_picker_cancel_btn_margin_right"
+        android:text="@string/page_number_picker_cancel_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/page_number_picker_set_btn_id"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/page_number_picker_set_btn_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/page_number_picker_id" />
+
+    <Button
+        android:id="@+id/page_number_picker_set_btn_id"
+        style="@style/PaginationNumberPickerButtonsStyle"
+        android:layout_marginEnd="@dimen/page_number_picker_set_btn_margin_right"
+        android:layout_marginLeft="@dimen/page_number_picker_set_btn_margin_left"
+        android:layout_marginRight="@dimen/page_number_picker_set_btn_margin_right"
+        android:layout_marginStart="@dimen/page_number_picker_set_btn_margin_left"
+        android:text="@string/page_number_picker_set_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/page_number_picker_cancel_btn_id"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/page_number_picker_cancel_btn_id"
+        app:layout_constraintTop_toBottomOf="@id/page_number_picker_id" />
+
+</android.support.constraint.ConstraintLayout>

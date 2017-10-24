@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.PreferenceCategory android:title="@string/pref_filter_results_category_title">
+
+        <android.support.v7.preference.ListPreference
+            android:defaultValue="@string/pref_publication_type_default"
+            android:dialogTitle="@string/pref_publication_type_dialog_title"
+            android:entries="@array/pref_publication_type_entries"
+            android:entryValues="@array/pref_publication_type_values"
+            android:key="@string/pref_publication_type_key"
+            android:title="@string/pref_publication_type_title" />
+
+        <android.support.v7.preference.ListPreference
+            android:defaultValue="@string/pref_content_type_default"
+            android:dialogTitle="@string/pref_content_type_dialog_title"
+            android:entries="@array/pref_content_type_entries"
+            android:entryValues="@array/pref_content_type_values"
+            android:key="@string/pref_content_type_key"
+            android:title="@string/pref_content_type_title" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory android:title="@string/pref_sort_results_category_title">
+
+        <android.support.v7.preference.ListPreference
+            android:defaultValue="@string/pref_sort_by_default"
+            android:dialogTitle="@string/pref_sort_by_dialog_title"
+            android:entries="@array/pref_sort_by_entries"
+            android:entryValues="@array/pref_sort_by_values"
+            android:key="@string/pref_sort_by_key"
+            android:title="@string/pref_sort_by_title" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory android:title="@string/pref_pagination_category_title">
+
+        <com.example.kaushiknsanji.bookslibrary.settings.NumberPickerPreference
+            android:defaultValue="@integer/pref_page_to_display_default_value"
+            android:dialogTitle="@string/pref_page_to_display_title"
+            android:key="@string/pref_page_to_display_key"
+            android:title="@string/pref_page_to_display_title" />
+
+        <com.example.kaushiknsanji.bookslibrary.settings.NumberPickerPreference
+            android:defaultValue="@integer/pref_results_per_page_default_value"
+            android:dialogTitle="@string/pref_results_per_page_title"
+            android:key="@string/pref_results_per_page_key"
+            android:title="@string/pref_results_per_page_title" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory android:title="@string/pref_defaults_category_title">
+
+        <com.example.kaushiknsanji.bookslibrary.settings.ConfirmationPreference
+            android:defaultValue="@string/pref_reset_settings_default"
+            android:dialogMessage="@string/pref_reset_settings_dialog_msg"
+            android:key="@string/pref_reset_settings_key"
+            android:title="@string/pref_reset_settings_title" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

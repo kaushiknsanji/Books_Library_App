@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wood_sheet_tile"
+    tools:context="com.example.kaushiknsanji.bookslibrary.BookSearchActivity">
+
+    <!-- Tabs for the ViewPager -->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sliding_tabs_id"
+        style="@style/TabStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Progress Bar of type indeterminate to display the progress while loading data -->
+    <ProgressBar
+        android:id="@+id/progress_bar_id"
+        style="@style/ProgressBarIndeterminateStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sliding_tabs_id" />
+
+    <!-- ViewPager to display the data loaded by its fragments -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_id"
+        style="@style/ConstraintBottomCenterHorizontalStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar_id" />
+
+    <!-- Footer Pagination Buttons Panel displayed only when scrolled to the bottom of the results -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/pagination_panel_id"
+        style="@style/ConstraintBottomCenterHorizontalStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/page_first_button_id"
+            style="@style/PaginationButtonStyle"
+            android:src="@drawable/ic_page_first_button"
+            app:layout_constraintEnd_toStartOf="@+id/page_previous_button_id"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/page_previous_button_id"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/page_previous_button_id"
+            style="@style/PaginationButtonStyle"
+            android:src="@drawable/ic_page_previous_button"
+            app:layout_constraintEnd_toStartOf="@+id/page_more_button_id"
+            app:layout_constraintLeft_toRightOf="@id/page_first_button_id"
+            app:layout_constraintRight_toLeftOf="@+id/page_more_button_id"
+            app:layout_constraintStart_toEndOf="@id/page_first_button_id" />
+
+        <ImageButton
+            android:id="@+id/page_more_button_id"
+            style="@style/PaginationButtonStyle"
+            android:src="@drawable/ic_page_more_button"
+            app:layout_constraintEnd_toStartOf="@+id/page_next_button_id"
+            app:layout_constraintLeft_toRightOf="@id/page_previous_button_id"
+            app:layout_constraintRight_toLeftOf="@+id/page_next_button_id"
+            app:layout_constraintStart_toEndOf="@id/page_previous_button_id" />
+
+        <ImageButton
+            android:id="@+id/page_next_button_id"
+            style="@style/PaginationButtonStyle"
+            android:src="@drawable/ic_page_next_button"
+            app:layout_constraintEnd_toStartOf="@+id/page_last_button_id"
+            app:layout_constraintLeft_toRightOf="@id/page_more_button_id"
+            app:layout_constraintRight_toLeftOf="@+id/page_last_button_id"
+            app:layout_constraintStart_toEndOf="@id/page_more_button_id" />
+
+        <ImageButton
+            android:id="@+id/page_last_button_id"
+            style="@style/PaginationButtonStyle"
+            android:src="@drawable/ic_page_last_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/page_next_button_id"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/page_next_button_id" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <!-- Displayed every time when the app is launched -->
+    <ScrollView
+        android:id="@+id/welcome_page_id"
+        style="@style/ConstraintCenterInParentStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        android:fillViewport="true"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/welcome_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/welcome_page_content_margin" />
+
+    </ScrollView>
+
+    <!-- Displayed when there is no result for the search executed -->
+    <ScrollView
+        android:id="@+id/no_result_page_id"
+        style="@style/ConstraintCenterInParentStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        android:fillViewport="true"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/no_result_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/no_result_page_content_margin" />
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

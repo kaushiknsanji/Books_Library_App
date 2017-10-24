@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.kaushiknsanji.bookslibrary">
+
+    <!-- Permission for access to Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Permission to check the Network State -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main Activity as well as the activity that allows to search Books -->
+        <activity
+            android:name=".BookSearchActivity"
+            android:launchMode="singleTop">
+
+            <!-- Launch Mode is SingleTop as this is also a Searchable Activity -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Defining the Searchable Configuration of the Searchable Activity -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <!-- Activity for the Search related settings -->
+        <activity
+            android:name=".settings.SearchSettingsActivity"
+            android:label="@string/search_settings_title_str"
+            android:parentActivityName=".BookSearchActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Parent Activity meta-data for android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BookSearchActivity" />
+        </activity>
+
+        <!-- Activity that provides info on the Book selected in the Main Activity -->
+        <activity
+            android:name=".BookDetailActivity"
+            android:label="@string/book_detail_title_str"
+            android:launchMode="singleTop"
+            android:parentActivityName=".BookSearchActivity">
+
+            <!-- Launch Mode is SingleTop to retain the Intent data sent by its Parent -->
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Parent Activity meta-data for android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BookSearchActivity" />
+        </activity>
+
+        <!-- Activity that displays a full picture of the Book from the activity
+        opened for viewing Book details -->
+        <activity
+            android:name=".BookImageActivity"
+            android:label="@string/book_image_title_str"
+            android:parentActivityName=".BookDetailActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Parent Activity meta-data for android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BookDetailActivity" />
+        </activity>
+
+        <!-- Activity that displays info related to the App and its developer -->
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about_title_str"
+            android:parentActivityName=".BookSearchActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Parent Activity meta-data for android 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BookSearchActivity" />
+        </activity>
+
+        <!-- Provider for the Recent Search Suggestions -->
+        <provider
+            android:name=".providers.RecentBookSearchProvider"
+            android:authorities="com.example.kaushiknsanji.bookslibrary.providers.RecentBookSearchProvider"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

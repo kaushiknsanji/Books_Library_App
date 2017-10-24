@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#795548</color>
+    <color name="colorPrimaryDark">#5d4037</color>
+    <color name="colorAccent">#ffab40</color>
+    <color name="defaultTabIconColorBrown50">#efebe9</color>
+    <color name="bookCardBackgroundColorYellow50">#fffde7</color>
+    <color name="keywordFiltersCardBackgroundColor">#ffdd71</color>
+    <color name="detailNotForSaleTextColor">#fc4a1a</color>
+    <color name="detailDiscountedTextColor">#ffa6cd</color>
+    <color name="paginationButtonColorAmberA200">#ffd740</color>
+    <color name="paginationNumberPickerColorYellow50">#fffde7</color>
+    <color name="paginationButtonIconDisabledColorGrey">#808080</color>
+    <color name="paginationButtonDisabledColorGrey400">#bdbdbd</color>
+
+    <!-- Colors used for Progress Bar Drawable -->
+    <color name="progressBarBackgroundColor">#18ffff</color>
+    <color name="progressBarIndicatorColor">#00897b</color>
+
+</resources>

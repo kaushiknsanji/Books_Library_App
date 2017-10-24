@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/list_item_margin_right"
+    android:layout_marginLeft="@dimen/list_item_margin_left"
+    android:layout_marginRight="@dimen/list_item_margin_right"
+    android:layout_marginStart="@dimen/list_item_margin_left"
+    android:background="?android:selectableItemBackground">
+
+    <com.example.kaushiknsanji.bookslibrary.customviews.MatrixBottomCenteredImageView
+        android:id="@+id/list_item_image_id"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        android:layout_marginBottom="@dimen/list_item_image_margin_bottom"
+        android:layout_marginLeft="@dimen/list_item_image_margin_left"
+        android:layout_marginStart="@dimen/list_item_image_margin_left"
+        android:layout_marginTop="@dimen/list_item_image_margin_top"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_book_card_info_id"
+        app:layout_constraintEnd_toStartOf="@+id/list_item_book_card_info_id"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/list_item_book_card_info_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/list_item_book_card_info_id"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_book" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/list_item_book_card_info_id"
+        style="@style/BookTileCardViewStyle"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_item_book_card_info_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintLeft_toRightOf="@id/list_item_image_id"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/list_item_image_id"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/list_item_book_card_info_content_margin">
+
+            <TextView
+                android:id="@+id/list_item_title_text_id"
+                style="@style/BaseBookTileTitleStyle"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/list_item_title_text_size"
+                tools:text="Grief is the Thing with Feathers" />
+
+            <RatingBar
+                android:id="@+id/list_item_ratingbar_id"
+                style="@style/RatingBarStyle"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_open_brace_text_id"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_open_brace_text_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_item_title_text_id"
+                tools:rating="4.0" />
+
+            <TextView
+                android:id="@+id/list_item_open_brace_text_id"
+                style="@style/RatingCountOpenBraceStyle"
+                app:layout_constraintBottom_toBottomOf="@id/list_item_ratingbar_id"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_rating_count_text_id"
+                app:layout_constraintLeft_toRightOf="@id/list_item_ratingbar_id"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_rating_count_text_id"
+                app:layout_constraintStart_toEndOf="@id/list_item_ratingbar_id"
+                app:layout_constraintTop_toTopOf="@id/list_item_ratingbar_id" />
+
+            <TextView
+                android:id="@+id/list_item_rating_count_text_id"
+                style="@style/RatingCountTextStyle"
+                app:layout_constraintBottom_toBottomOf="@id/list_item_open_brace_text_id"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_close_brace_text_id"
+                app:layout_constraintLeft_toRightOf="@id/list_item_open_brace_text_id"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_close_brace_text_id"
+                app:layout_constraintStart_toEndOf="@id/list_item_open_brace_text_id"
+                app:layout_constraintTop_toTopOf="@id/list_item_open_brace_text_id"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/list_item_close_brace_text_id"
+                style="@style/RatingCountCloseBraceStyle"
+                app:layout_constraintBottom_toBottomOf="@id/list_item_open_brace_text_id"
+                app:layout_constraintLeft_toRightOf="@id/list_item_rating_count_text_id"
+                app:layout_constraintStart_toEndOf="@id/list_item_rating_count_text_id"
+                app:layout_constraintTop_toTopOf="@id/list_item_open_brace_text_id" />
+
+            <TextView
+                android:id="@+id/list_item_author_text_id"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_author_text_margin_top"
+                android:drawableLeft="@drawable/ic_authors"
+                android:drawablePadding="@dimen/list_item_drawable_padding"
+                android:drawableStart="@drawable/ic_authors"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/list_item_author_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_author_publ_div_id"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_author_publ_div_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_item_ratingbar_id"
+                tools:text="Max Porter Porter" />
+
+            <ImageView
+                android:id="@+id/list_item_author_publ_div_id"
+                style="@style/ConstraintCenterHorizontalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/match_constraint_0dp"
+                app:layout_constraintBottom_toBottomOf="@id/list_item_author_text_id"
+                app:layout_constraintTop_toTopOf="@id/list_item_author_text_id"
+                app:srcCompat="@drawable/ic_lines_vertical_div" />
+
+            <TextView
+                android:id="@+id/list_item_publ_text_id"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_publisher"
+                android:drawablePadding="@dimen/list_item_drawable_padding"
+                android:drawableStart="@drawable/ic_publisher"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/list_item_publ_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/list_item_author_publ_div_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/list_item_author_publ_div_id"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/list_item_author_publ_div_id"
+                app:layout_constraintTop_toTopOf="@id/list_item_author_publ_div_id"
+                tools:text="Faber &amp; Faber" />
+
+            <TextView
+                android:id="@+id/list_item_publ_date_text_id"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="@dimen/list_item_drawable_padding"
+                android:drawableStart="@drawable/ic_calendar"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/list_item_publ_date_text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/list_item_date_pages_div_id"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_date_pages_div_id"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_date_pages_div_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/list_item_date_pages_div_id"
+                tools:text="Sept 15, 2015" />
+
+            <ImageView
+                android:id="@+id/list_item_date_pages_div_id"
+                style="@style/ConstraintCenterHorizontalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/match_constraint_0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/list_item_pages_text_id"
+                app:layout_constraintTop_toTopOf="@+id/list_item_pages_text_id"
+                app:srcCompat="@drawable/ic_lines_vertical_div" />
+
+            <TextView
+                android:id="@+id/list_item_pages_text_id"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_pages_text_margin_top"
+                android:drawableLeft="@drawable/ic_book_pages"
+                android:drawablePadding="@dimen/list_item_drawable_padding"
+                android:drawableStart="@drawable/ic_book_pages"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/list_item_pages_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/list_item_date_pages_div_id"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/list_item_date_pages_div_id"
+                app:layout_constraintTop_toBottomOf="@id/list_item_author_publ_div_id"
+                tools:text="96 Pages Magazine" />
+
+            <TextView
+                android:id="@+id/list_item_categories_text_id"
+                style="@style/ConstraintCenterHorizontalStyle"
+                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_categories_text_margin_top"
+                android:drawableLeft="@drawable/ic_library"
+                android:drawablePadding="@dimen/list_item_drawable_padding"
+                android:drawableStart="@drawable/ic_library"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/list_item_categories_text_size"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@id/list_item_date_pages_div_id"
+                tools:text="Fiction" />
+
+            <TextView
+                android:id="@+id/list_item_list_price_text_id"
+                style="@style/BookTileListPriceStyle"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_retail_price_text_id"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/list_item_retail_price_text_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_item_categories_text_id"
+                tools:text="Rs. 399" />
+
+            <TextView
+                android:id="@+id/list_item_retail_price_text_id"
+                style="@style/BookTileRetailPriceStyle"
+                app:layout_constraintLeft_toRightOf="@id/list_item_list_price_text_id"
+                app:layout_constraintStart_toEndOf="@id/list_item_list_price_text_id"
+                app:layout_constraintTop_toBottomOf="@id/list_item_categories_text_id"
+                tools:text="Rs. 279.3" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

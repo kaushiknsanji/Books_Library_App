@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wood_sheet_tile"
+    android:paddingEnd="@dimen/detail_root_pad_right"
+    android:paddingLeft="@dimen/detail_root_pad_left"
+    android:paddingRight="@dimen/detail_root_pad_right"
+    android:paddingStart="@dimen/detail_root_pad_left"
+    tools:context="com.example.kaushiknsanji.bookslibrary.BookDetailActivity">
+
+    <com.example.kaushiknsanji.bookslibrary.customviews.MatrixBottomCenteredImageView
+        android:id="@+id/detail_book_image_id"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        android:layout_marginTop="@dimen/detail_book_image_margin_top"
+        app:layout_constraintBottom_toTopOf="@+id/detail_book_base_image_id"
+        app:layout_constraintDimensionRatio="0.75"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_book" />
+
+    <ImageView
+        android:id="@+id/detail_book_base_image_id"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,4:1"
+        app:layout_constraintEnd_toEndOf="@id/detail_book_image_id"
+        app:layout_constraintLeft_toLeftOf="@id/detail_book_image_id"
+        app:layout_constraintRight_toRightOf="@id/detail_book_image_id"
+        app:layout_constraintStart_toStartOf="@id/detail_book_image_id"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:srcCompat="@drawable/book_shelf_with_base" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/detail_info_content_id"
+        android:layout_width="@dimen/match_constraint_0dp"
+        android:layout_height="@dimen/match_constraint_0dp"
+        android:layout_marginLeft="@dimen/detail_info_content_margin_left"
+        android:layout_marginStart="@dimen/detail_info_content_margin_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/detail_book_image_id"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detail_book_image_id"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/detail_title_author_card_id"
+            style="@style/BookTileCardViewStyle"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detail_title_author_card_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_title_author_card_content_margin">
+
+                <TextView
+                    android:id="@+id/detail_title_text_id"
+                    style="@style/BaseBookTileTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/detail_title_text_size"
+                    tools:text="Grief is the Thing with Feathers" />
+
+                <ImageView
+                    android:id="@+id/detail_title_author_border_id"
+                    style="@style/DetailImageBorderStyle1"
+                    app:layout_constraintTop_toBottomOf="@id/detail_title_text_id" />
+
+                <TextView
+                    android:id="@+id/detail_author_text_id"
+                    style="@style/DetailAuthorTextStyle"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@id/detail_title_author_border_id"
+                    tools:text="by Max Porter" />
+
+                <RatingBar
+                    android:id="@+id/detail_ratingbar_id"
+                    style="@style/RatingBarStyle"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_open_brace_text_id"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/detail_open_brace_text_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_author_text_id"
+                    tools:rating="4.0" />
+
+                <TextView
+                    android:id="@+id/detail_open_brace_text_id"
+                    style="@style/RatingCountOpenBraceStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_ratingbar_id"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_rating_count_text_id"
+                    app:layout_constraintLeft_toRightOf="@id/detail_ratingbar_id"
+                    app:layout_constraintRight_toLeftOf="@+id/detail_rating_count_text_id"
+                    app:layout_constraintStart_toEndOf="@id/detail_ratingbar_id"
+                    app:layout_constraintTop_toTopOf="@id/detail_ratingbar_id" />
+
+                <TextView
+                    android:id="@+id/detail_rating_count_text_id"
+                    style="@style/RatingCountTextStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_open_brace_text_id"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_close_brace_text_id"
+                    app:layout_constraintLeft_toRightOf="@id/detail_open_brace_text_id"
+                    app:layout_constraintRight_toLeftOf="@+id/detail_close_brace_text_id"
+                    app:layout_constraintStart_toEndOf="@id/detail_open_brace_text_id"
+                    app:layout_constraintTop_toTopOf="@id/detail_open_brace_text_id"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/detail_close_brace_text_id"
+                    style="@style/RatingCountCloseBraceStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/detail_rating_count_text_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/detail_rating_count_text_id"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_rating_count_text_id"
+                    app:layout_constraintTop_toTopOf="@id/detail_rating_count_text_id" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <ScrollView
+            android:id="@+id/detail_scroll_section_id"
+            style="@style/ConstraintBottomCenterHorizontalStyle"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="@dimen/match_constraint_0dp"
+            android:layout_marginBottom="@dimen/detail_scroll_section_margin_bottom"
+            android:layout_marginTop="@dimen/detail_scroll_section_margin_top"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/detail_title_author_card_id">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/detail_book_info_card_id"
+                    style="@style/BookInfoCardViewStyle"
+                    android:layout_width="@dimen/match_constraint_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_book_info_card_margin_top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/detail_book_info_card_content_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/detail_book_info_card_content_margin">
+
+                        <TextView
+                            android:id="@+id/detail_pages_text_id"
+                            style="@style/DetailPagesTextStyle"
+                            tools:text="96 Pages Book" />
+
+                        <ImageView
+                            android:id="@+id/detail_pages_text_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            app:layout_constraintTop_toBottomOf="@id/detail_pages_text_id" />
+
+                        <TextView
+                            android:id="@+id/detail_publisher_section_text_id"
+                            style="@style/DetailSubtitleTextStyle"
+                            android:text="@string/detail_publisher_section_subtitle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_pages_text_border_id" />
+
+                        <TextView
+                            android:id="@+id/detail_publisher_text_id"
+                            style="@style/DetailSubContentTextCenterAlignedStyle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_publisher_section_text_id"
+                            tools:text="Faber &amp; Faber (Sept 15, 2015)" />
+
+                        <ImageView
+                            android:id="@+id/detail_publisher_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            app:layout_constraintTop_toBottomOf="@id/detail_publisher_text_id" />
+
+                        <TextView
+                            android:id="@+id/detail_category_section_text_id"
+                            style="@style/DetailSubtitleTextStyle"
+                            android:text="@string/detail_category_section_subtitle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_publisher_border_id"
+                            app:layout_goneMarginTop="@dimen/detail_content_margin_top" />
+
+                        <TextView
+                            android:id="@+id/detail_categories_text_id"
+                            style="@style/DetailSubContentTextCenterAlignedStyle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_category_section_text_id"
+                            tools:text="Fiction" />
+
+                        <ImageView
+                            android:id="@+id/detail_categories_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            app:layout_constraintTop_toBottomOf="@id/detail_categories_text_id" />
+
+                        <TextView
+                            android:id="@+id/detail_description_section_text_id"
+                            style="@style/DetailSubtitleTextStyle"
+                            android:text="@string/detail_description_section_subtitle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_categories_border_id"
+                            app:layout_goneMarginTop="@dimen/detail_content_margin_top" />
+
+                        <TextView
+                            android:id="@+id/detail_description_text_id"
+                            style="@style/DetailDescriptionContentTextStyle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_description_section_text_id"
+                            tools:text="In a London flat, two young boys face the unbearable sadness of their mother's sudden death. Their father, a Ted Hughes scholar and scruffy romantic, imagines a future of well-meaning visitors and emptiness. In this moment of despair they are visited by Crow - antagonist, trickster, healer, babysitter. This self-described sentimental bird is attracted to the grieving family and threatens to stay until they no longer need him. As weeks turn to months and physical pain of loss gives way to memories, this little unit of three begin to heal. In this extraordinary debut - part novella, part polyphonic fable, part essay on grief, Max Porter's compassion and bravura style combine to dazzling effect. Full of unexpected humour and profound emotional truth, Grief is the Thing with Feathers marks the arrival of a thrilling new talent." />
+
+                        <ImageView
+                            android:id="@+id/detail_description_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            app:layout_constraintTop_toBottomOf="@id/detail_description_text_id" />
+
+                        <TextView
+                            android:id="@+id/detail_samples_section_text_id"
+                            style="@style/DetailSubtitleTextStyle"
+                            android:text="@string/detail_samples_section_subtitle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_description_border_id" />
+
+                        <ImageButton
+                            android:id="@+id/detail_epub_button_id"
+                            style="@style/DetailEpubButtonStyle"
+                            android:layout_marginLeft="@dimen/detail_sample_preview_buttons_outer_margin"
+                            android:layout_marginStart="@dimen/detail_sample_preview_buttons_outer_margin"
+                            app:layout_constraintEnd_toStartOf="@+id/detail_pdf_button_id"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/detail_pdf_button_id"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/detail_samples_section_text_id" />
+
+                        <ImageButton
+                            android:id="@+id/detail_pdf_button_id"
+                            style="@style/DetailPdfButtonStyle"
+                            android:layout_marginLeft="@dimen/detail_sample_preview_buttons_inner_margin"
+                            android:layout_marginStart="@dimen/detail_sample_preview_buttons_inner_margin"
+                            app:layout_constraintEnd_toStartOf="@+id/detail_web_button_id"
+                            app:layout_constraintLeft_toRightOf="@id/detail_epub_button_id"
+                            app:layout_constraintRight_toLeftOf="@+id/detail_web_button_id"
+                            app:layout_constraintStart_toEndOf="@id/detail_epub_button_id"
+                            app:layout_constraintTop_toBottomOf="@id/detail_samples_section_text_id"
+                            app:layout_goneMarginLeft="@dimen/detail_sample_preview_buttons_outer_margin"
+                            app:layout_goneMarginStart="@dimen/detail_sample_preview_buttons_outer_margin" />
+
+                        <Button
+                            android:id="@+id/detail_web_button_id"
+                            style="@style/DetailWebButtonStyle"
+                            android:layout_marginEnd="@dimen/detail_sample_preview_buttons_outer_margin"
+                            android:layout_marginLeft="@dimen/detail_sample_preview_buttons_inner_margin"
+                            android:layout_marginRight="@dimen/detail_sample_preview_buttons_outer_margin"
+                            android:layout_marginStart="@dimen/detail_sample_preview_buttons_inner_margin"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/detail_pdf_button_id"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/detail_pdf_button_id"
+                            app:layout_constraintTop_toBottomOf="@id/detail_samples_section_text_id"
+                            app:layout_goneMarginLeft="@dimen/detail_sample_preview_buttons_inner_margin"
+                            app:layout_goneMarginStart="@dimen/detail_sample_preview_buttons_inner_margin" />
+
+                        <ImageView
+                            android:id="@+id/detail_samples_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            android:layout_marginTop="@dimen/detail_border_margin_top_6dp"
+                            app:layout_constraintTop_toBottomOf="@id/detail_web_button_id" />
+
+                        <Button
+                            android:id="@+id/detail_info_button_id"
+                            style="@style/DetailInfoButtonStyle"
+                            app:layout_constraintTop_toBottomOf="@id/detail_samples_border_id"
+                            app:layout_goneMarginTop="@dimen/detail_content_margin_top" />
+
+                        <ImageView
+                            android:id="@+id/detail_info_border_id"
+                            style="@style/DetailImageBorderStyle2"
+                            app:layout_constraintTop_toBottomOf="@id/detail_info_button_id" />
+
+                        <Button
+                            android:id="@+id/detail_buy_button_id"
+                            style="@style/DetailBuyButtonStyle"
+                            app:layout_constraintEnd_toStartOf="@+id/detail_not_for_sale_text_id"
+                            app:layout_constraintRight_toLeftOf="@+id/detail_not_for_sale_text_id"
+                            app:layout_constraintTop_toBottomOf="@id/detail_info_border_id"
+                            app:layout_goneMarginTop="@dimen/detail_border_margin_top_6dp"
+                            tools:text="Buy" />
+
+                        <TextView
+                            android:id="@+id/detail_not_for_sale_text_id"
+                            style="@style/DetailNotForSaleTextStyle"
+                            android:layout_marginTop="@dimen/detail_border_margin_top_6dp"
+                            app:layout_constraintLeft_toRightOf="@id/detail_buy_button_id"
+                            app:layout_constraintStart_toEndOf="@id/detail_buy_button_id"
+                            app:layout_constraintTop_toBottomOf="@id/detail_info_border_id"
+                            app:layout_goneMarginTop="@dimen/detail_border_margin_top_6dp" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

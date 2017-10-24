@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:left="15dp"
+        android:right="50dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_pdf_white" />
+    </item>
+    <item
+        android:drawable="@drawable/ic_file_download_white"
+        android:left="55dp"
+        android:right="13dp"
+        android:top="2dp" />
+</layer-list>
