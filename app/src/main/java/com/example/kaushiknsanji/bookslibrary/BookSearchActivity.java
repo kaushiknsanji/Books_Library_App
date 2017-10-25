@@ -753,6 +753,8 @@ public class BookSearchActivity
             case R.id.clear_recent_search_action_id:
                 //Clearing the Recent suggestion history, when "Clear Search History" is clicked
                 mRecentSuggestions.clearHistory();
+                //Displaying a toast for the action done
+                Toast.makeText(this, R.string.search_suggestions_cleared_msg, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.keyword_filter_action_id:
                 //When "Search Keyword Filters" is clicked

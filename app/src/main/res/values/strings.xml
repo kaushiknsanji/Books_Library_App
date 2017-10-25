@@ -37,8 +37,11 @@
     when the Search is not active-->
     <string name="keyword_filter_search_usage_error">Needs to be used while Searching</string>
 
-    <!--The Message shown in the Dialog for the "Search Keyword Filters" menu item -->
+    <!--Message shown in the Dialog for the "Search Keyword Filters" menu item -->
     <string name="search_keyword_filters_dialog_msg_text">Search Keyword filters to refine your search</string>
+
+    <!--Message displayed when "Clear Search History" menu item is clicked -->
+    <string name="search_suggestions_cleared_msg">Recent search history cleared</string>
 
     <!-- =========================== -->
     <!-- STRINGS USED FOR PAGINATION -->
