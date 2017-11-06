@@ -53,7 +53,7 @@ Android device running with Android OS 4.0.4 (API Level 15) or above. Best exper
 <!-- Video of the App -->
 [![Video of Complete App Flow](https://i.ytimg.com/vi/deXm1yzqRmU/maxresdefault.jpg)](https://youtu.be/deXm1yzqRmU)
 
-#### The Welcome screen layout
+### The Welcome screen layout
 
 The first screen displayed when the app is launched, is the welcome page screen as shown below. 
 
@@ -62,7 +62,7 @@ The first screen displayed when the app is launched, is the welcome page screen 
 
 This [layout](/app/src/main/res/layout/welcome_page.xml) is inflated by the [BookSearchActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookSearchActivity.java) and is included in the [activity_main.xml](/app/src/main/res/layout/activity_main.xml). This is visible only for the first time when the app is launched and loaded into memory. This screen basically tells the user on how to search for a book.
 
-#### Assisted Search
+### Assisted Search
 
 The SearchView in the action menu is implemented with Assisted Search. Hence this activity also becomes the Searchable activity with the searchable configuration as defined [here](/app/src/main/res/xml/searchable.xml). As seen in the Searchable configuration, a [Recent Search Suggestions Provider](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/providers/RecentBookSearchProvider.java) is also implemented and is displayed when the user types in atleast 3 characters in the search to show the corresponding match, provided if there were any recent search with those 3 characters.
 
@@ -79,7 +79,7 @@ One can clear the recent search history by simply going to the overflow menu at 
 <!-- Image for "Clear Search History" -->
 <img src="https://user-images.githubusercontent.com/26028981/32067002-4a8bbdb0-ba9f-11e7-98f8-8423f994f0fa.png" width="40%" />
 
-#### Displaying Results
+### Displaying Results
 
 Once the search is entered by the user, the welcome screen if active is replaced with a `ViewPager` and its `Fragments` to display the results. The ViewPager will be set to show its first Tab by default, which is the LIST Tab. In this the results are displayed like in a vertical list with list of Books related to the search. The other Tab is the GRID Tab which allows the user to view the results in a Staggered Grid View (of 2 columns).
 
@@ -101,7 +101,7 @@ The `RecyclerViewFragment` registers an `OnScrollListener` to propagate the corr
 <!-- GIF for Pagination -->
 ![pagination](https://user-images.githubusercontent.com/26028981/32455240-a2d8f5d6-c347-11e7-87cc-a0c2b2b5ecfd.gif)
 
-#### The Details Page
+### The Details Page
 
 Clicking on an item in the List Tab View or the Grid Tab View, opens up the Details page [activity_book_detail.xml](/app/src/main/res/layout/activity_book_detail.xml) inflated by the activity [BookDetailActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookDetailActivity.java). This displays additional information such as 
 * The book description
@@ -111,16 +111,16 @@ Clicking on an item in the List Tab View or the Grid Tab View, opens up the Deta
 
 <!-- Image for Book Details including landscape -->
 <img src="https://user-images.githubusercontent.com/26028981/32067039-616fb482-ba9f-11e7-9afc-598898c59640.png" width="40%" />   <img src="https://user-images.githubusercontent.com/26028981/32067041-62717ef6-ba9f-11e7-8e36-6b20f02ff66f.png" width="40%" />
-<img src="https://user-images.githubusercontent.com/26028981/32067043-63b44906-ba9f-11e7-9107-78296ce868ff.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067043-63b44906-ba9f-11e7-9107-78296ce868ff.png" width="70%" />
 
-#### The Book Image Page
+### The Book Image Page
 
 If the Image of the Book is loaded in the Details page `activity_book_detail.xml`, then the user can click on the image to open a larger image of the same, which is displayed by the activity [BookImageActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookImageActivity.java)
 
 <!-- Image for Book Image Activity -->
 <img src="https://user-images.githubusercontent.com/26028981/32067050-68559410-ba9f-11e7-9250-c19f23cf3762.png" width="40%" />
 
-#### Controlling the Search Results
+### Controlling the Search Results
 
 Search Results can be controlled by varying certain parameters embedded in the search query. This is defined by the [Google Books API](https://developers.google.com/books/docs/v1/using#WorkingVolumes) which this application is based on and is acting as a client that receives the data for the search executed. 
 
@@ -152,13 +152,13 @@ The above is **NOT** provided by the **"Search Settings"** menu item, instead it
 <!-- GIF for Keywords -->
 ![keyword_filter](https://user-images.githubusercontent.com/26028981/32455259-b51a0a5a-c347-11e7-90ef-a3eda68006b8.gif)
 
-#### Loading of Data
+### Loading of Data
 
 Loading of Data for the Book Search done is carried out in a background thread using [BooksLoader](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/workers/BooksLoader.java) that extends an `AsyncTaskLoader`. Request and response is carried out via a REST call to the Google Books API. The data format used for communication is the JSON format. Talking to the REST API and parsing the response is done by the utility code [BookClientUtility](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/utils/BookClientUtility.java).
 
 _As per the Rubric, no third party library is used for communicating with the REST API._
 
-#### Loading of Images
+### Loading of Images
 
 Loading of Images for each of the items in the list/grid views, in the Details page and the Book Image page is carried out in a background thread through a viewless Fragment [ImageDownloaderFragment](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/workers/ImageDownloaderFragment.java). Functioning of this fragment is as follows -
 * It first checks whether the image to be loaded is present in the Bitmap Cache, implemented by [BitmapImageCache](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/cache/BitmapImageCache.java)
@@ -169,7 +169,7 @@ The identifier for the Fragment and its Loader is maintained to be unique to the
 
 _As per the Rubric, no third party library is used for loading images._
 
-#### Information in general, on the entire app
+### Information in general, on the entire app
 
 * After scrolling to some extent in the List Tab View or the Grid Tab View
   - If the user swipes across the tabs, then the Fragment being displayed will scroll to the item last shown in the previous tab.
@@ -188,7 +188,7 @@ _As per the Rubric, no third party library is used for loading images._
 * If the response fails with any HTTP error, then this will be consumed silently and the search will not happen. Instead, the previous search results continues to be displayed.
 * During the loading of books data, a custom [progress bar](/app/src/main/res/drawable/progress_bar_indeterminate.xml) will be displayed in the `BookSearchActivity`. This is implemented using the `animation-list / AnimationDrawable`.
 
-#### The About Page
+### The About Page
 
 This can be viewed by going into the menu item **"About"** in the overflow menu of the `BookSearchActivity`. This page describes in brief about the app, and has links to my bio and the course details hosted by Udacity. This is shown by the activity [AboutActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/AboutActivity.java) that inflates the layout [activity_about.xml](/app/src/main/res/layout/activity_about.xml).
 
