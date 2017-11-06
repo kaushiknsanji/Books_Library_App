@@ -2,7 +2,7 @@
 
 This App has been developed as part of the **Udacity Android Basics Nanodegree Course** for the Exercise Project **"Book Listing App"**. App connects to the [Google Books API](https://developers.google.com/books/) to retrieve the list of Books for the search done and then displays them in a BookShelf format.
 
-_Checkout the Latest Release [here](/outputs/.apk)_
+<!-- _Checkout the Latest Release [here](/outputs/.apk)_ -->
 
 ---
 
@@ -50,15 +50,15 @@ Android device running with Android OS 4.0.4 (API Level 15) or above. Best exper
 
 ## Design and Implementation of the App
 
-<!-- GIF of the App -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<!-- Video of the App -->
+[![Video of Complete App Flow](https://i.ytimg.com/vi/deXm1yzqRmU/maxresdefault.jpg)](https://youtu.be/deXm1yzqRmU)
 
 #### The Welcome screen layout
 
 The first screen displayed when the app is launched, is the welcome page screen as shown below. 
 
 <!-- Image for Welcome page -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32066973-292b2430-ba9f-11e7-8650-096d1d818fb0.png" width="40%" />
 
 This [layout](/app/src/main/res/layout/welcome_page.xml) is inflated by the [BookSearchActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookSearchActivity.java) and is included in the [activity_main.xml](/app/src/main/res/layout/activity_main.xml). This is visible only for the first time when the app is launched and loaded into memory. This screen basically tells the user on how to search for a book.
 
@@ -67,24 +67,24 @@ This [layout](/app/src/main/res/layout/welcome_page.xml) is inflated by the [Boo
 The SearchView in the action menu is implemented with Assisted Search. Hence this activity also becomes the Searchable activity with the searchable configuration as defined [here](/app/src/main/res/xml/searchable.xml). As seen in the Searchable configuration, a [Recent Search Suggestions Provider](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/providers/RecentBookSearchProvider.java) is also implemented and is displayed when the user types in atleast 3 characters in the search to show the corresponding match, provided if there were any recent search with those 3 characters.
 
 <!-- Image for Assisted Search -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32066984-36ffac5c-ba9f-11e7-9698-575374ee48ca.png" width="40%" />
 
 When the SearchView is expanded, user can opt to search by Voice as well. But this will not allow the user to make any modifications as the transcribed text is directly fed to the search box and executed in one shot. Any search that is done, is updated to the title as shown below.
 
 <!-- Image for Completed Search -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32066997-441ecb3e-ba9f-11e7-9fb8-33e0467eaa93.png" width="40%" />
 
 One can clear the recent search history by simply going to the overflow menu at the top and select the menu option that says **"Clear Search History"**. On success of this action, a toast will be displayed.
 
 <!-- Image for "Clear Search History" -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067002-4a8bbdb0-ba9f-11e7-98f8-8423f994f0fa.png" width="40%" />
 
 #### Displaying Results
 
 Once the search is entered by the user, the welcome screen if active is replaced with a `ViewPager` and its `Fragments` to display the results. The ViewPager will be set to show its first Tab by default, which is the LIST Tab. In this the results are displayed like in a vertical list with list of Books related to the search. The other Tab is the GRID Tab which allows the user to view the results in a Staggered Grid View (of 2 columns).
 
 <!-- Images for the List and Grid Views -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />     <img src="https://user-images.githubusercontent.com/26028981/27983093-31a29e6e-63d2-11e7-8950-278cfcc91cc4.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067013-51ad2cf0-ba9f-11e7-9d75-acec8788c4ed.png" width="40%" />     <img src="https://user-images.githubusercontent.com/26028981/32067015-52eeab34-ba9f-11e7-846f-08eb83a8a1bd.png" width="40%" />
 
 Adapter used by ViewPager is an extension of [FragmentStatePagerAdapter](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapters/DisplayPagerAdapter.java) whose Fragments for List & Grid view is given by the [RecyclerViewFragment](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapterviews/RecyclerViewFragment.java), which uses `RecyclerView` instead of `ListView` or `GridView`. 
 * For List View
@@ -99,7 +99,7 @@ Both the above adapters registers an item click listener whose interface callbac
 The `RecyclerViewFragment` registers an `OnScrollListener` to propagate the corresponding event to the `BookSearchActivity`. This is implemented by extending `RecyclerView.OnScrollListener` which is done by the class [BaseRecyclerViewScrollListener](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/observers/BaseRecyclerViewScrollListener.java). This is an abstract class which provides an event callback when the scroll reaches the last 3 items in the list, to reveal the pagination buttons for the user to navigate to different pages in the current search, as shown below. The `RecyclerViewFragment` registers a concrete implementation of this class which is [RecyclerViewScrollListener](https://github.com/kaushiknsanji/Books_Library_App/blob/0c15b06877ca29523a588b67f30431f4acfaed37/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapterviews/RecyclerViewFragment.java#L447-L466) to propagate the event to the `BookSearchActivity`, which reveals the hidden pagination panel (`R.id.pagination_panel_id`).
 	
 <!-- GIF for Pagination -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+![pagination](https://user-images.githubusercontent.com/26028981/32455240-a2d8f5d6-c347-11e7-87cc-a0c2b2b5ecfd.gif)
 
 #### The Details Page
 
@@ -110,14 +110,15 @@ Clicking on an item in the List Tab View or the Grid Tab View, opens up the Deta
 * A button that takes the user to a page for buying a book if the book is saleable in the user's region.
 
 <!-- Image for Book Details including landscape -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067039-616fb482-ba9f-11e7-9afc-598898c59640.png" width="40%" />   <img src="https://user-images.githubusercontent.com/26028981/32067041-62717ef6-ba9f-11e7-8e36-6b20f02ff66f.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067043-63b44906-ba9f-11e7-9107-78296ce868ff.png" width="40%" />
 
 #### The Book Image Page
 
 If the Image of the Book is loaded in the Details page `activity_book_detail.xml`, then the user can click on the image to open a larger image of the same, which is displayed by the activity [BookImageActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookImageActivity.java)
 
 <!-- Image for Book Image Activity -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067050-68559410-ba9f-11e7-9250-c19f23cf3762.png" width="40%" />
 
 #### Controlling the Search Results
 
@@ -132,7 +133,7 @@ Most of these parameters can be altered by using the **"Search Settings"** menu 
   - `maxResults` parameters that tells the max number of results to be shown per page.
   
 <!-- Image for Settings -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067053-6ddcc7aa-ba9f-11e7-9d56-454123d40f64.png" width="40%" />
 
 The search settings implements the `android.support.v7.preference.Preference` Preferences. As such all the values are stored in the default `SharedPreferences`. For the Pagination parameters, custom [NumberPicker](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/settings/NumberPickerPreference.java) Preference has been implemented by extending the `DialogPreference`.
 
@@ -149,7 +150,7 @@ While searching, one can also filter the results by entering keyword prefixes in
 The above is **NOT** provided by the **"Search Settings"** menu item, instead it can be accessed by another menu item that says **"Search Keyword Filters"**. This shows a dialog with a list of cards specific to each of the above mentioned prefixes, which is displayed by the `DialogFragment` [KeywordFiltersDialogFragment](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapterviews/KeywordFiltersDialogFragment.java). Selecting any of these cards, will insert the prefix into the search box. Any word/phrase typed after this, will be searched in that particular field of the results.
 
 <!-- GIF for Keywords -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+![keyword_filter](https://user-images.githubusercontent.com/26028981/32455259-b51a0a5a-c347-11e7-90ef-a3eda68006b8.gif)
 
 #### Loading of Data
 
@@ -177,12 +178,12 @@ _As per the Rubric, no third party library is used for loading images._
 * If the search entered by the user does not yield any result, then the `BookSearchActivity` will display the hidden embedded page [no_result_page.xml](/app/src/main/res/layout/no_result_page.xml).
 
 <!-- Image for No Result page -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067068-8176121c-ba9f-11e7-82b8-fe68ec9e3cfe.png" width="40%" />
 
 * If during search, that is while initiating a request to the REST API, a network connectivity issue is encountered, then a Network Error dialog is displayed for the user to take action accordingly. The dialog is implemented by the `DialogFragment` [NetworkErrorDialogFragment](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/dialogs/NetworkErrorDialogFragment.java) that inflates the layout [network_error_dialog.xml](/app/src/main/res/layout/network_error_dialog.xml).
 
 <!-- Image for Network Error dialog -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067075-850b5b94-ba9f-11e7-8ac0-278970937c24.png" width="40%" />
 
 * If the response fails with any HTTP error, then this will be consumed silently and the search will not happen. Instead, the previous search results continues to be displayed.
 * During the loading of books data, a custom [progress bar](/app/src/main/res/drawable/progress_bar_indeterminate.xml) will be displayed in the `BookSearchActivity`. This is implemented using the `animation-list / AnimationDrawable`.
@@ -192,4 +193,4 @@ _As per the Rubric, no third party library is used for loading images._
 This can be viewed by going into the menu item **"About"** in the overflow menu of the `BookSearchActivity`. This page describes in brief about the app, and has links to my bio and the course details hosted by Udacity. This is shown by the activity [AboutActivity](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/AboutActivity.java) that inflates the layout [activity_about.xml](/app/src/main/res/layout/activity_about.xml).
 
 <!-- Image for About page -->
-<img src="https://user-images.githubusercontent.com/26028981/27983052-4a1ff1fe-63d1-11e7-913b-d06c095d5001.png" width="40%" />
+<img src="https://user-images.githubusercontent.com/26028981/32067085-8f891480-ba9f-11e7-96af-49210c1fe280.png" width="40%" />
