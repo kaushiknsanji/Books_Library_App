@@ -138,8 +138,10 @@ public class NumberPickerPreference extends DialogPreference {
      */
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
+        //Checking whether the state was saved in the onSaveInstanceState
         if (state == null || !state.getClass().equals(SavedState.class)) {
-            //Returning when the state was never persisted in onSaveInstanceState
+            //Calling to the superclass when the state was never saved
+            super.onRestoreInstanceState(state);
             return;
         }
 
