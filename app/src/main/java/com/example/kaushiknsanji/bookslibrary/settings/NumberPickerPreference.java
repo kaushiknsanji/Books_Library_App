@@ -86,6 +86,7 @@ public class NumberPickerPreference extends DialogPreference {
      * @param restorePersistedValue True to restore the persisted value;
      *                              false to use the given <var>defaultValue</var>.
      * @param defaultValue          The default value for this Preference. Only use this
+     *                              if <var>restorePersistedValue</var> is false.
      */
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
