@@ -1,73 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/no_result_page_content_margin">
+    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/no_result_card_id"
-        style="@style/CenteredBookTileCardViewStyle"
-        android:layout_width="@dimen/match_constraint_0dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/no_result_card_margin_right"
-        android:layout_marginLeft="@dimen/no_result_card_margin_left"
-        android:layout_marginRight="@dimen/no_result_card_margin_right"
-        android:layout_marginStart="@dimen/no_result_card_margin_left"
-        app:layout_constraintVertical_bias="0.3">
+        android:layout_marginBottom="@dimen/no_result_page_margin_bottom"
+        android:layout_marginTop="@dimen/no_result_page_margin_top">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/no_result_card_content_margin">
+        <android.support.v7.widget.CardView
+            android:id="@+id/no_result_card_id"
+            style="@style/TopCenterBookTileCardViewStyle"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/no_result_page_margin_right"
+            android:layout_marginLeft="@dimen/no_result_page_margin_left"
+            android:layout_marginRight="@dimen/no_result_page_margin_right"
+            android:layout_marginStart="@dimen/no_result_page_margin_left"
+            app:layout_constraintBottom_toTopOf="@+id/no_result_page_book_base_image_id"
+            app:layout_constraintVertical_chainStyle="packed">
 
-            <TextView
-                android:id="@+id/no_result_content_title_text_id"
-                style="@style/NoResultPageTitleTextStyle"
-                android:gravity="center"
-                android:text="@string/no_result_content_title_text"
-                app:layout_constraintBottom_toTopOf="@+id/no_result_text_1_id"
-                app:layout_constraintTop_toTopOf="parent" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/no_result_card_content_margin">
 
-            <TextView
-                android:id="@+id/no_result_text_1_id"
-                style="@style/NoResultPageContentTextStyle"
-                android:gravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/no_result_text_2_id"
-                app:layout_constraintTop_toBottomOf="@id/no_result_content_title_text_id"
-                tools:text="@string/no_result_page_textline_1" />
+                <TextView
+                    android:id="@+id/no_result_content_title_text_id"
+                    style="@style/NoResultPageTitleTextStyle"
+                    android:gravity="center"
+                    android:text="@string/no_result_content_title_text"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/no_result_text_2_id"
-                style="@style/NoResultPageContentTextStyle"
-                android:gravity="start"
-                android:text="@string/no_result_page_textline_2"
-                app:layout_constraintBottom_toTopOf="@+id/no_result_text_3_id"
-                app:layout_constraintTop_toBottomOf="@id/no_result_text_1_id" />
+                <TextView
+                    android:id="@+id/no_result_text_1_id"
+                    style="@style/NoResultPageContentTextStyle"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/no_result_content_title_text_id"
+                    tools:text="@string/no_result_page_textline_1" />
 
-            <TextView
-                android:id="@+id/no_result_text_3_id"
-                style="@style/NoResultPageContentTextStyle"
-                android:gravity="start"
-                android:text="@string/no_result_page_textline_3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/no_result_text_2_id" />
+                <TextView
+                    android:id="@+id/no_result_text_2_id"
+                    style="@style/NoResultPageContentTextStyle"
+                    android:gravity="start"
+                    android:text="@string/no_result_page_textline_2"
+                    app:layout_constraintTop_toBottomOf="@id/no_result_text_1_id" />
 
-        </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/no_result_text_3_id"
+                    style="@style/NoResultPageContentTextStyle"
+                    android:gravity="start"
+                    android:text="@string/no_result_page_textline_3"
+                    app:layout_constraintTop_toBottomOf="@id/no_result_text_2_id" />
 
-    </android.support.v7.widget.CardView>
+            </android.support.constraint.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/no_result_page_book_base_image_id"
-        android:layout_width="@dimen/match_constraint_0dp"
-        android:layout_height="@dimen/match_constraint_0dp"
-        app:layout_constraintDimensionRatio="4:1"
-        app:layout_constraintEnd_toEndOf="@id/no_result_card_id"
-        app:layout_constraintLeft_toLeftOf="@id/no_result_card_id"
-        app:layout_constraintRight_toRightOf="@id/no_result_card_id"
-        app:layout_constraintStart_toStartOf="@id/no_result_card_id"
-        app:layout_constraintTop_toBottomOf="@id/no_result_card_id"
-        app:srcCompat="@drawable/book_shelf_with_base" />
+        </android.support.v7.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/no_result_page_book_base_image_id"
+            android:layout_width="@dimen/match_constraint_0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/no_result_card_id"
+            app:layout_constraintLeft_toLeftOf="@id/no_result_card_id"
+            app:layout_constraintRight_toRightOf="@id/no_result_card_id"
+            app:layout_constraintStart_toStartOf="@id/no_result_card_id"
+            app:layout_constraintTop_toBottomOf="@id/no_result_card_id"
+            app:srcCompat="@drawable/book_shelf_with_base" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

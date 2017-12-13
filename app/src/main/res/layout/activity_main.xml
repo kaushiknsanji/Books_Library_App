@@ -101,15 +101,14 @@
         android:id="@+id/welcome_page_id"
         style="@style/ConstraintCenterInParentStyle"
         android:layout_width="@dimen/match_constraint_0dp"
-        android:layout_height="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:visibility="gone">
 
         <include
             layout="@layout/welcome_page"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/welcome_page_content_margin" />
+            android:layout_height="wrap_content" />
 
     </ScrollView>
 
@@ -118,15 +117,14 @@
         android:id="@+id/no_result_page_id"
         style="@style/ConstraintCenterInParentStyle"
         android:layout_width="@dimen/match_constraint_0dp"
-        android:layout_height="@dimen/match_constraint_0dp"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:visibility="gone">
 
         <include
             layout="@layout/no_result_page"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/no_result_page_content_margin" />
+            android:layout_height="wrap_content" />
 
     </ScrollView>
 
