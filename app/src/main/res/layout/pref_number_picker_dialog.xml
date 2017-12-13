@@ -6,41 +6,30 @@
 
     <android.support.v4.widget.Space
         android:id="@+id/top_space_id"
+        style="@style/ConstraintTopCenterHorizontalStyle"
         android:layout_width="@dimen/match_constraint_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/pref_number_picker_margin_top"
         app:layout_constraintBottom_toTopOf="@+id/pref_number_picker_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <NumberPicker
         android:id="@+id/pref_number_picker_id"
+        style="@style/ConstraintCenterHorizontalStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="@dimen/number_picker_min_width"
         android:solidColor="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toTopOf="@+id/bottom_space_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_space_id" />
 
     <android.support.v4.widget.Space
         android:id="@+id/bottom_space_id"
+        style="@style/ConstraintBottomCenterHorizontalStyle"
         android:layout_width="@dimen/match_constraint_0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/pref_number_picker_margin_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pref_number_picker_id" />
 
 </android.support.constraint.ConstraintLayout>
