@@ -46,13 +46,15 @@
     <dimen name="detail_root_pad_right">16dp</dimen>
     <dimen name="detail_title_author_card_margin_top">4dp</dimen>
     <dimen name="detail_title_author_card_content_margin">6dp</dimen>
+    <dimen name="detail_title_author_content_side_margin">2dp</dimen>
+    <dimen name="detail_title_author_content_max_height">56dp</dimen>
     <dimen name="detail_title_text_size">20sp</dimen>
     <dimen name="detail_border_margin_top_4dp">4dp</dimen>
     <dimen name="detail_border_margin_top_6dp">6dp</dimen>
     <dimen name="detail_content_margin_top">4dp</dimen>
     <dimen name="detail_sub_content_margin_top">2dp</dimen>
     <dimen name="detail_scroll_section_margin_top">6dp</dimen>
-    <dimen name="detail_scroll_section_margin_bottom">2dp</dimen>
+    <dimen name="detail_scroll_section_margin_bottom">6dp</dimen>
     <dimen name="detail_book_info_card_margin_top">2dp</dimen>
     <dimen name="detail_book_info_card_content_margin">6dp</dimen>
     <dimen name="detail_subtitle_text_size">14sp</dimen>
@@ -65,6 +67,7 @@
     <dimen name="detail_sample_preview_buttons_inner_margin">10dp</dimen>
     <dimen name="detail_buttons_text_size">15sp</dimen>
     <dimen name="detail_buy_button_padding">6dp</dimen>
+    <dimen name="detail_expand_collapse_anchor_size">24dp</dimen>
 
     <!-- ========================= -->
     <!-- FOR THE LIST & GRID VIEWS -->
@@ -78,13 +81,12 @@
     <dimen name="book_tile_retail_price_margin_left">4dp</dimen>
     <dimen name="book_tile_retail_price_gone_margin_left">0dp</dimen>
     <dimen name="grid_item_image_margin_top">4dp</dimen>
-    <dimen name="grid_item_title_text_size">17sp</dimen>
+    <dimen name="list_grid_item_title_text_size">17sp</dimen>
     <dimen name="list_item_image_margin_left">6dp</dimen>
     <dimen name="list_item_image_margin_top">5dp</dimen>
     <dimen name="list_item_image_margin_bottom">5dp</dimen>
     <dimen name="list_item_book_card_info_margin">4dp</dimen>
     <dimen name="list_item_book_card_info_content_margin">6dp</dimen>
-    <dimen name="list_item_title_text_size">17sp</dimen>
     <dimen name="list_item_author_text_margin_top">4dp</dimen>
     <dimen name="list_item_author_text_size">15sp</dimen>
     <dimen name="list_item_drawable_padding">4dp</dimen>
@@ -141,10 +143,11 @@
     <!-- ==================== -->
     <!-- FOR THE WELCOME PAGE -->
     <!-- ==================== -->
-    <dimen name="welcome_page_content_margin">16dp</dimen>
-    <dimen name="welcome_card_margin_left">16dp</dimen>
-    <dimen name="welcome_card_margin_right">16dp</dimen>
-    <dimen name="welcome_card_content_margin">6dp</dimen>
+    <dimen name="welcome_page_margin_top">16dp</dimen>
+    <dimen name="welcome_page_margin_bottom">16dp</dimen>
+    <dimen name="welcome_page_margin_left">16dp</dimen>
+    <dimen name="welcome_page_margin_right">16dp</dimen>
+    <dimen name="welcome_card_content_margin">16dp</dimen>
     <dimen name="branding_image_width">115dp</dimen>
     <dimen name="branding_image_height">24dp</dimen>
     <dimen name="welcome_page_title_text_size">28sp</dimen>
@@ -153,10 +156,11 @@
     <!-- ====================== -->
     <!-- FOR THE NO RESULT PAGE -->
     <!-- ====================== -->
-    <dimen name="no_result_page_content_margin">16dp</dimen>
-    <dimen name="no_result_card_margin_left">16dp</dimen>
-    <dimen name="no_result_card_margin_right">16dp</dimen>
-    <dimen name="no_result_card_content_margin">8dp</dimen>
+    <dimen name="no_result_page_margin_top">24dp</dimen>
+    <dimen name="no_result_page_margin_bottom">16dp</dimen>
+    <dimen name="no_result_page_margin_left">24dp</dimen>
+    <dimen name="no_result_page_margin_right">24dp</dimen>
+    <dimen name="no_result_card_content_margin">16dp</dimen>
     <dimen name="no_result_content_title_text_size">68sp</dimen>
     <dimen name="no_result_content_text_size">21sp</dimen>
 
