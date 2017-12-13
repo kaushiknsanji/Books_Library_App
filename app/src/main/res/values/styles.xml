@@ -140,18 +140,32 @@
         <item name="srcCompat">@drawable/border_2</item>
     </style>
 
+    <!-- Parent style for the Title and Author TextViews in the Book Details page -->
+    <style name="BaseDetailTitleAuthorTextStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+    </style>
+
+    <!-- Child Style for the Title Content in the Book Details page -->
+    <style name="DetailTitleTextStyle" parent="BaseDetailTitleAuthorTextStyle">
+        <item name="android:textSize">@dimen/detail_title_text_size</item>
+        <item name="android:maxLines">@integer/detail_title_text_max_lines</item>
+    </style>
+
+    <!-- Child Style for the Author Content in the Book Details page -->
+    <style name="DetailAuthorTextStyle" parent="BaseDetailTitleAuthorTextStyle">
+        <item name="android:textSize">@dimen/detail_sub_content_text_size</item>
+        <item name="android:maxLines">@integer/detail_author_text_max_lines</item>
+    </style>
+
     <!-- Parent Style for the Content Text in the Book Details page -->
     <style name="BaseDetailContentTextStyle" parent="ConstraintCenterHorizontalStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <!-- Child Style for the Author Content in the Book Details page -->
-    <style name="DetailAuthorTextStyle" parent="BaseDetailContentTextStyle">
-        <item name="android:textSize">@dimen/detail_sub_content_text_size</item>
-        <item name="android:layout_marginTop">@dimen/detail_content_margin_top</item>
-        <item name="android:ellipsize">end</item>
     </style>
 
     <!-- Child Style for the Pages Content in the Book Details page -->
@@ -251,6 +265,35 @@
         <item name="android:background">@drawable/web_preview_button_bg</item>
     </style>
 
+    <!-- Style for the Expand/Collapse Image anchors used for the Title and Author TextViews
+    in the Book Details page -->
+    <style name="DetailExpandCollapseImageAnchorStyle">
+        <item name="android:layout_width">@dimen/detail_expand_collapse_anchor_size</item>
+        <item name="android:layout_height">@dimen/detail_expand_collapse_anchor_size</item>
+        <item name="android:visibility">gone</item>
+        <item name="srcCompat">@drawable/ic_arrow_down</item>
+    </style>
+
+    <!-- Style used for the NestedScrollView that wraps the Title/Author TextViews
+    in the Book Details page -->
+    <style name="DetailTitleAuthorScrollWrapStyle">
+        <item name="android:layout_width">@dimen/match_constraint_0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:layout_marginLeft">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginRight">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+    </style>
+
     <!-- ============================ -->
     <!-- STYLES USED FOR BOOKS RATING -->
     <!-- ============================ -->
@@ -335,10 +378,17 @@
         <item name="cardBackgroundColor">@color/bookCardBackgroundColorYellow50</item>
     </style>
 
-    <!-- Child Style for the card used in the Welcome page and the No Result Page in the app -->
-    <style name="CenteredBookTileCardViewStyle" parent="BookTileCardViewStyle">
+    <!-- Child Style for the card used in the No Result Page of the app -->
+    <style name="TopCenterBookTileCardViewStyle" parent="BookTileCardViewStyle">
         <item name="layout_constraintTop_toTopOf">parent</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+    </style>
+
+    <!-- Child Style for the card used in the Welcome page of the app -->
+    <style name="CenterHorizontalBookTileCardViewStyle" parent="BookTileCardViewStyle">
         <item name="layout_constraintLeft_toLeftOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
@@ -349,9 +399,13 @@
     <!-- STYLES USED IN THE BOOK LIST & GRID VIEWS -->
     <!-- ========================================= -->
 
-    <!-- Parent Style for the Book Titles that appear in the List/Grid and the Detail view -->
-    <style name="BaseBookTileTitleStyle" parent="ConstraintTopCenterHorizontalStyle">
+    <!-- Parent Style for the Book Titles that appear in the List/Grid -->
+    <style name="BookTileTitleStyle" parent="ConstraintTopCenterHorizontalStyle">
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/black</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">@dimen/list_grid_item_title_text_size</item>
     </style>
 
     <!-- Style for the List Price Text appearing the Book Tile of List/Grid views -->
@@ -388,7 +442,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/welcome_card_content_margin</item>
-        <item name="android:layout_marginBottom">@dimen/welcome_card_content_margin</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -412,7 +465,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/no_result_card_content_margin</item>
-        <item name="android:layout_marginBottom">@dimen/no_result_card_content_margin</item>
     </style>
 
     <!-- Child Style for the Title text in the No Result Page -->
@@ -500,6 +552,5 @@
         <item name="android:layout_marginBottom">@dimen/abt_info_content_internal_margin</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
-
 
 </resources>
