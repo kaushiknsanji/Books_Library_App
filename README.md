@@ -194,3 +194,21 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 
 <!-- Image for About page -->
 <img src="https://user-images.githubusercontent.com/26028981/32067085-8f891480-ba9f-11e7-96af-49210c1fe280.png" width="40%" />
+
+---
+
+## Bug Fixes and other important changes
+
+* Custom Preferences [NumberPickerPrefence](app/src/main/java/com/example/kaushiknsanji/bookslibrary/settings/NumberPickerPreference.java) and the [ConfirmationPreference](app/src/main/java/com/example/kaushiknsanji/bookslibrary/settings/ConfirmationPreference.java) have been modified to fix the [Settings Screen crash issue](https://github.com/kaushiknsanji/Books_Library_App/issues/3) noticed. 
+* The [No Result](app/src/main/res/layout/no_result_page.xml) page and the [Welcome](app/src/main/res/layout/welcome_page.xml) page layouts had issues related ConstraintLayouts used, noticed in some devices running on Android 5. Screen elements were either getting clipped or at times used to disappear on rotation.
+* The Title Text in the details screen was not displaying the Ellipse characters for content that exceeded its MaxLines set. This was happening due to the Spannable being used for resizing the Subtitle part of the Title when it was present. This was fixed by employing a `SpannableStringBuilder` to do the same and finalized the text on `TextView` with `BufferType` as `NORMAL`, that enables content modification, eg., ellipse can be applied later. Changes can be found in the [issue](https://github.com/kaushiknsanji/Books_Library_App/issues/6).
+* The Title and Author Text in the details screen can at times be very large for some books, which in turn renders the scrollable content (following the Author Text) inaccessible. This has been fixed as part of the [issue](https://github.com/kaushiknsanji/Books_Library_App/issues/5). The TextViews were basically embedded in a `NestedScrollView` of a fixed height (managed dynamically in the [BookDetailActivity](app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookDetailActivity.java) code). These were enabled for expand/collapse whenever the content in them exceeded their MaxLines set, yielding to ellipsis in the end. A `ViewTreeObserver` was employed to monitor for large content(that exceeded MaxLines) during the layout process that enables for expand/collapse of the TextViews. As an indicator, image anchors are placed against these TextViews when they can be expanded/collapsed. 
+
+**Following are the images for a Book having a long Title Text**
+<img src="https://user-images.githubusercontent.com/26028981/33951543-401e9a38-e055-11e7-8686-55324da2aaff.png" width="40%" />   <img src="https://user-images.githubusercontent.com/26028981/33951550-44200d06-e055-11e7-9108-b7ea293bddf6.png" width="40%" />
+
+**The same in landscape**
+<img src="https://user-images.githubusercontent.com/26028981/33951564-4bb56e1c-e055-11e7-8499-aaffe991f515.png" width="70%" />   <img src="https://user-images.githubusercontent.com/26028981/33951567-4d1fbadc-e055-11e7-8f38-8272613c1b79.png" width="70%" />
+
+**Sample image for a Book having long Title and Author Text**
+<img src="https://user-images.githubusercontent.com/26028981/33951592-65185766-e055-11e7-9ccb-2aaff1915925.png" width="40%" />
