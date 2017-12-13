@@ -48,7 +48,7 @@ public class TextAppearanceUtility {
         }
 
         //Setting the Spannable Text on TextView with the SPANNABLE Buffer type,
-        //for later modification if required
+        //for later modification on spannable if required
         textView.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
     }
 
@@ -89,26 +89,33 @@ public class TextAppearanceUtility {
     }
 
     /**
-     * Method that resizes the Text already set on a TextView by the relative factor passed
-     *
-     * @param textView     is the TextView whose Text is already set
-     * @param textToResize is the Text in TextView that needs to be resized
+     * Method that resizes the Text on a TextView by the relative factor passed
+     * and then sets the final Text on TextView, which can be altered later.
+     * @param textView is the TextView on which the final Text will be set
+     * @param textToSet is the Text to be set on TextView
+     * @param textToResize is a Sub Text in #textToSet that needs to be resized
      * @param resizeFactor is a Float that represents the relative factor by which the Text
      *                     needs to be resized
      */
-    public static void modifyTextSize(TextView textView, String textToResize, float resizeFactor) {
-        //Retrieving the Text from TextView as a Spannable Text
-        Spannable spannable = (Spannable) textView.getText();
+    public static void modifyTextSize(TextView textView, String textToSet, String textToResize, float resizeFactor) {
+        //Initializing a SpannableStringBuilder to build the text
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        //Appending the Text to be set
+        spannableStringBuilder.append(textToSet);
 
         //Resizing the Text 'textToResize' to the relative size mentioned by the factor 'resizeFactor'
-        int startIndex = TextUtils.indexOf(spannable, textToResize);
+        int startIndex = TextUtils.indexOf(spannableStringBuilder, textToResize);
         int endIndex = startIndex + textToResize.length();
-        spannable.setSpan(
+        spannableStringBuilder.setSpan(
                 new RelativeSizeSpan(resizeFactor),
                 startIndex,
                 endIndex,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         );
+
+        //Setting the Spannable Text on TextView with the NORMAL Buffer type,
+        //for later modification of Text if required
+        textView.setText(spannableStringBuilder, TextView.BufferType.NORMAL);
     }
 
     /**
@@ -169,7 +176,6 @@ public class TextAppearanceUtility {
 
         }
         while (true); //Repeats till entire Text is scanned once for the drawable identifier strings
-
     }
 
 }
