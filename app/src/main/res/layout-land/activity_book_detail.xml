@@ -67,29 +67,61 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_title_author_card_content_margin">
 
-                <TextView
-                    android:id="@+id/detail_title_text_id"
-                    style="@style/BaseBookTileTitleStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/detail_title_text_size"
-                    tools:text="Grief is the Thing with Feathers" />
+                <ImageView
+                    android:id="@+id/detail_title_text_expand_img_id"
+                    style="@style/DetailExpandCollapseImageAnchorStyle"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_title_text_scroll_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/detail_title_text_scroll_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.support.v4.widget.NestedScrollView
+                    android:id="@+id/detail_title_text_scroll_id"
+                    style="@style/DetailTitleAuthorScrollWrapStyle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/detail_title_text_expand_img_id"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_title_text_expand_img_id"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/detail_title_text_id"
+                        style="@style/DetailTitleTextStyle"
+                        tools:text="Grief is the Thing with Feathers" />
+
+                </android.support.v4.widget.NestedScrollView>
 
                 <ImageView
                     android:id="@+id/detail_title_author_border_id"
                     style="@style/DetailImageBorderStyle1"
-                    app:layout_constraintTop_toBottomOf="@id/detail_title_text_id" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_title_text_scroll_id" />
 
-                <TextView
-                    android:id="@+id/detail_author_text_id"
-                    style="@style/DetailAuthorTextStyle"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    app:layout_constraintTop_toBottomOf="@id/detail_title_author_border_id"
-                    tools:text="by Max Porter" />
+                <ImageView
+                    android:id="@+id/detail_author_text_expand_img_id"
+                    style="@style/DetailExpandCollapseImageAnchorStyle"
+                    app:layout_constraintEnd_toStartOf="@+id/detail_author_text_scroll_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/detail_author_text_scroll_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/detail_author_text_scroll_id" />
+
+                <android.support.v4.widget.NestedScrollView
+                    android:id="@+id/detail_author_text_scroll_id"
+                    style="@style/DetailTitleAuthorScrollWrapStyle"
+                    android:layout_marginTop="@dimen/detail_content_margin_top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/detail_author_text_expand_img_id"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_author_text_expand_img_id"
+                    app:layout_constraintTop_toBottomOf="@id/detail_title_author_border_id">
+
+                    <TextView
+                        android:id="@+id/detail_author_text_id"
+                        style="@style/DetailAuthorTextStyle"
+                        tools:text="by Max Porter" />
+
+                </android.support.v4.widget.NestedScrollView>
 
                 <RatingBar
                     android:id="@+id/detail_ratingbar_id"
@@ -100,7 +132,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/detail_open_brace_text_id"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/detail_author_text_id"
+                    app:layout_constraintTop_toBottomOf="@id/detail_author_text_scroll_id"
                     tools:rating="4.0" />
 
                 <TextView

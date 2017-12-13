@@ -14,4 +14,11 @@
     <integer name="pref_results_per_page_default_value">@integer/pref_results_per_page_min_value
     </integer>
 
+    <!-- Maximum number of lines to be present for the Title Text
+    in details page under collapsed view -->
+    <integer name="detail_title_text_max_lines">2</integer>
+    <!-- Maximum number of lines to be present for the Author Text
+    in details page under collapsed view -->
+    <integer name="detail_author_text_max_lines">1</integer>
+
 </resources>

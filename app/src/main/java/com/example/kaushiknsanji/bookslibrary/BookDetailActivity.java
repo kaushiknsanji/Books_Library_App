@@ -1,18 +1,25 @@
 package com.example.kaushiknsanji.bookslibrary;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,7 +41,7 @@ import java.text.ParseException;
  * @author Kaushik N Sanji
  */
 public class BookDetailActivity extends AppCompatActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
 
     //Bundle Key used for grabbing the Intent's data
     public static final String BOOK_INFO_ITEM_STR_KEY = "BookInfo.Item.Data";
@@ -68,12 +75,27 @@ public class BookDetailActivity extends AppCompatActivity
     private ImageView mSamplesBorderImageView;
     private ImageView mInfoBorderImageView;
 
+    //Storing references to the ImageViews for TextView Expand/Collapse
+    private ImageView mTitleTextExpandImageView;
+    private ImageView mAuthorTextExpandImageView;
+
+    //Storing references to the NestedScrollViews that wraps the Title/Author TextViews
+    private NestedScrollView mTitleTextScrollView;
+    private NestedScrollView mAuthorTextScrollView;
+
     //Storing the Links pointed to by the respective buttons, retrieved from the BookInfo data
     private String mEpubLink;
     private String mPdfLink;
     private String mPreviewLink;
     private String mInfoLink;
     private String mBuyLink;
+
+    //ViewTreeObserver to watch the Title TextView and Author TextView to enable Expand/Collapse
+    private ViewTreeObserver mViewTreeObserver;
+
+    //Rotate Animators for TextView Expand/Collapse Image anchor
+    private Animator rotateTo180Anim;
+    private Animator rotateTo0Anim;
 
     //Intent for the Larger Book Image to be shown in the Book Image Activity
     private Intent mBookImageIntent;
@@ -89,7 +111,11 @@ public class BookDetailActivity extends AppCompatActivity
 
         //Retrieving the View Components: START
         mTitleTextView = (TextView) findViewById(R.id.detail_title_text_id);
+        mTitleTextScrollView = (NestedScrollView) findViewById(R.id.detail_title_text_scroll_id);
+        mTitleTextExpandImageView = (ImageView) findViewById(R.id.detail_title_text_expand_img_id);
         mAuthorTextView = (TextView) findViewById(R.id.detail_author_text_id);
+        mAuthorTextScrollView = (NestedScrollView) findViewById(R.id.detail_author_text_scroll_id);
+        mAuthorTextExpandImageView = (ImageView) findViewById(R.id.detail_author_text_expand_img_id);
         mBookRatingBar = (RatingBar) findViewById(R.id.detail_ratingbar_id);
         mRatingCountTextView = (TextView) findViewById(R.id.detail_rating_count_text_id);
         mBookImageView = (ImageView) findViewById(R.id.detail_book_image_id);
@@ -111,6 +137,17 @@ public class BookDetailActivity extends AppCompatActivity
         mBuyButton = (Button) findViewById(R.id.detail_buy_button_id);
         mNotForSaleTextView = (TextView) findViewById(R.id.detail_not_for_sale_text_id);
         //Retrieving the View Components: END
+
+        //Retrieving the Parent View's TreeObserver for the Title TextView and the Author TextView
+        mViewTreeObserver = findViewById(R.id.detail_title_author_card_id).getViewTreeObserver();
+
+        //Defaulting the Visibility of Expand/Collapse ImageView anchors to "GONE"
+        mTitleTextExpandImageView.setVisibility(View.GONE);
+        mAuthorTextExpandImageView.setVisibility(View.GONE);
+
+        //Loading the Rotation Animators for TextView Expand/Collapse Image anchors
+        rotateTo0Anim = AnimatorInflater.loadAnimator(this, R.animator.rotate_180_0);
+        rotateTo180Anim = AnimatorInflater.loadAnimator(this, R.animator.rotate_0_180);
 
         //Setting the Click Listeners on the Buttons
         mEpubImageButton.setOnClickListener(this);
@@ -441,7 +478,7 @@ public class BookDetailActivity extends AppCompatActivity
         if (!TextUtils.isEmpty(subTitle)) {
             //When SubTitle is present
 
-            //Separating the title and its subtitle by a new line character
+            //Separating the title and its subtitle by a new line character: START
             int indexOfSubtitleStart = TextUtils.indexOf(title, subTitle);
             int indexOfColonForSubtitle = TextUtils.lastIndexOf(title, ':', indexOfSubtitleStart);
             if (indexOfColonForSubtitle == -1) {
@@ -449,11 +486,10 @@ public class BookDetailActivity extends AppCompatActivity
                 indexOfColonForSubtitle = TextUtils.lastIndexOf(title, '-', indexOfSubtitleStart);
             }
             title = title.substring(0, indexOfColonForSubtitle) + "\n" + subTitle;
-            //Setting the Title Text with the SPANNABLE Buffer type,
-            //for later modification
-            mTitleTextView.setText(title, TextView.BufferType.SPANNABLE);
-            //Resizing the Text for the SubTitle
-            TextAppearanceUtility.modifyTextSize(mTitleTextView, subTitle, 0.75f);
+            //Separating the title and its subtitle by a new line character: END
+
+            //Setting the Title Text with resized text for SubTitle
+            TextAppearanceUtility.modifyTextSize(mTitleTextView, title, subTitle, 0.75f);
         } else {
             //Setting the Title Text only when SubTitle is NOT present
             mTitleTextView.setText(title);
@@ -543,6 +579,173 @@ public class BookDetailActivity extends AppCompatActivity
                     Toast.makeText(this, R.string.no_book_image_msg, Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.detail_title_text_id:
+                //For the Title TextView
+                //Expand/Collapse the Title TextView when clicked
+                toggleTextViewExpansion(mTitleTextView, getResources().getInteger(R.integer.detail_title_text_max_lines),
+                        mTitleTextExpandImageView, mTitleTextScrollView);
+                break;
+            case R.id.detail_author_text_id:
+                //For the Author TextView
+                //Expand/Collapse the Author TextView when clicked
+                toggleTextViewExpansion(mAuthorTextView, getResources().getInteger(R.integer.detail_author_text_max_lines),
+                        mAuthorTextExpandImageView, mAuthorTextScrollView);
+                break;
         }
     }
+
+    /**
+     * Callback method to be invoked when the global layout state or the visibility of views
+     * within the view tree changes.
+     * This is applied for the View that contains both the Title Text and the Author Text
+     */
+    @Override
+    public void onGlobalLayout() {
+        //Enabling the Title TextView for Expansion if it exceeds Maxlines
+        addExpandableStateForEllipsizedTextViews(mTitleTextView);
+        //Enabling the Author TextView for Expansion if it exceeds Maxlines
+        addExpandableStateForEllipsizedTextViews(mAuthorTextView);
+
+        //Retrieving the Parent View's TreeObserver
+        mViewTreeObserver = findViewById(R.id.detail_title_author_card_id).getViewTreeObserver();
+
+        if (mViewTreeObserver.isAlive()) {
+            //UnRegistering the OnGlobalLayoutListener when done
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                mViewTreeObserver.removeOnGlobalLayoutListener(this);
+            } else {
+                mViewTreeObserver.removeGlobalOnLayoutListener(this);
+            }
+        }
+    }
+
+    /**
+     * Method that adds click listeners to TextViews with Text exceeding
+     * the MaxLines setting, which enables them to be expanded on click
+     *
+     * @param textView is the TextView of either the Title Text or the Author Text which
+     *                 is to be enabled for expansion
+     */
+    private void addExpandableStateForEllipsizedTextViews(TextView textView) {
+        //Retrieving the total number of Text Lines in the TexView
+        int totalLineCount = textView.getLineCount();
+
+        if (totalLineCount > 0) {
+            //When Layout is attached to the TextView and the line count is more than 0
+
+            //Retrieving the Ellipse count for the entire Text
+            int totalEllipseCount = getEllipseCountFromTextView(textView, totalLineCount);
+
+            if (totalEllipseCount > 0) {
+                //When the Text in the TextView is Ellipsized (exceeds MaxLines set),
+                //enable the Click Listener
+                switch (textView.getId()) {
+                    case R.id.detail_title_text_id:
+                        //For the Title TextView
+                        if (mTitleTextExpandImageView.getVisibility() == View.GONE) {
+                            //Displaying the expand image anchor for the lengthy Title Text
+                            mTitleTextExpandImageView.setVisibility(View.VISIBLE);
+
+                            //Registering the click listener on the Title TextView
+                            mTitleTextView.setOnClickListener(this);
+                        }
+                        break;
+                    case R.id.detail_author_text_id:
+                        if (mAuthorTextExpandImageView.getVisibility() == View.GONE) {
+                            //Displaying the expand image anchor for the lengthy Author Text
+                            mAuthorTextExpandImageView.setVisibility(View.VISIBLE);
+
+                            //Registering the click listener on the Author TextView
+                            mAuthorTextView.setOnClickListener(this);
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Method that searches for the Ellipsis in the Text of a TextView and returns its total count
+     *
+     * @param textView       is the TextView containing a Text which needs to be scanned for Ellipsis
+     * @param totalLineCount is the Total Line count of the Text in Integer
+     * @return Integer containing the total number of Ellipsis found in the Text of a TextView
+     */
+    private int getEllipseCountFromTextView(TextView textView, int totalLineCount) {
+        int totalEllipseCount = 0; //Defaulting the Total Ellipse count to 0, initially
+
+        //Retrieving the layout attached to TextView
+        Layout textViewLayout = textView.getLayout();
+
+        //Iterating over the Lines of the Text and counting the Ellipsis found
+        for (int index = 0; index < totalLineCount; index++) {
+            if (textViewLayout.getEllipsisCount(index) > 0) {
+                totalEllipseCount++;
+            }
+        }
+
+        //Returning the total Ellipsis found
+        return totalEllipseCount;
+    }
+
+    /**
+     * Method that toggles the TextView Expand/Collapse
+     * for the Title Text(R.id.detail_title_text_id) and the Author Text (R.id.detail_author_text_id)
+     *
+     * @param textView                  is the TextView of either the Title Text or the Author Text
+     * @param originalLineCount         is the Original MaxLine Count set for the TextViews
+     * @param textExpandAnchorImageView is the Expand/Collapse ImageView anchor for the TextView passed
+     * @param textScrollView            is the {@link NestedScrollView} which is the parent of the TextView passed
+     */
+    private void toggleTextViewExpansion(TextView textView, int originalLineCount, ImageView textExpandAnchorImageView, NestedScrollView textScrollView) {
+        //Retrieving the Current Line count of the Text in the TextView
+        int totalLineCount = textView.getLineCount();
+
+        //Retrieving the Ellipse count for the entire Text
+        int totalEllipseCount = getEllipseCountFromTextView(textView, totalLineCount);
+
+        //Retrieving the basic Layout Params of the NestedScrollView
+        ViewGroup.LayoutParams layoutParams = textScrollView.getLayoutParams();
+
+        if (totalEllipseCount == 0) {
+            //Resetting to original state when it was previously expanded to show all the lines
+            textView.setMaxLines(originalLineCount);
+
+            //Resetting the parent NestedScrollView height to WRAP_CONTENT
+            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+            //Rotating the Image Anchor from 180 to 0
+            rotateTo0Anim.setTarget(textExpandAnchorImageView);
+            rotateTo0Anim.start();
+
+        } else {
+            //Setting to the expanded state to show all the lines
+            textView.setMaxLines(Integer.MAX_VALUE);
+
+            //Retrieving the Max Height set for the parent NestedScrollView
+            int scrollContentMaxHeight = getResources().getDimensionPixelSize(R.dimen.detail_title_author_content_max_height);
+
+            //Limiting the Height of the parent NestedScrollView when the content Height is more than the fixed Height
+            if (textView.getMeasuredHeight() > scrollContentMaxHeight) {
+                layoutParams.height = scrollContentMaxHeight; //Limiting to the fixed Height set
+            }
+
+            //Rotating the Image Anchor from 0 to 180
+            rotateTo180Anim.setTarget(textExpandAnchorImageView);
+            rotateTo180Anim.start();
+        }
+    }
+
+    //Called by the Activity when it is prepared to be shown
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mViewTreeObserver != null && mViewTreeObserver.isAlive()) {
+            //Registering the OnGlobalLayoutListener when the ViewTreeObserver is alive
+            mViewTreeObserver.addOnGlobalLayoutListener(this);
+        }
+
+    }
+
 }
