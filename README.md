@@ -205,10 +205,13 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 * The Title and Author Text in the details screen can at times be very large for some books, which in turn renders the scrollable content (following the Author Text) inaccessible. This has been fixed as part of the [issue](https://github.com/kaushiknsanji/Books_Library_App/issues/5). The TextViews were basically embedded in a `NestedScrollView` of a fixed height (managed dynamically in the [BookDetailActivity](app/src/main/java/com/example/kaushiknsanji/bookslibrary/BookDetailActivity.java) code). These were enabled for expand/collapse whenever the content in them exceeded their MaxLines set, yielding to ellipsis in the end. A `ViewTreeObserver` was employed to monitor for large content(that exceeded MaxLines) during the layout process that enables for expand/collapse of the TextViews. As an indicator, image anchors are placed against these TextViews when they can be expanded/collapsed. 
 
 **Following are the images for a Book having a long Title Text**
+
 <img src="https://user-images.githubusercontent.com/26028981/33951543-401e9a38-e055-11e7-8686-55324da2aaff.png" width="40%" />   <img src="https://user-images.githubusercontent.com/26028981/33951550-44200d06-e055-11e7-9108-b7ea293bddf6.png" width="40%" />
 
 **The same in landscape**
+
 <img src="https://user-images.githubusercontent.com/26028981/33951564-4bb56e1c-e055-11e7-8499-aaffe991f515.png" width="70%" />   <img src="https://user-images.githubusercontent.com/26028981/33951567-4d1fbadc-e055-11e7-8f38-8272613c1b79.png" width="70%" />
 
 **Sample image for a Book having long Title and Author Text**
+
 <img src="https://user-images.githubusercontent.com/26028981/33951592-65185766-e055-11e7-9ccb-2aaff1915925.png" width="40%" />
