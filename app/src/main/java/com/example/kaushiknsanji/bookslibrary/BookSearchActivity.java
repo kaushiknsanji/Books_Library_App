@@ -239,7 +239,7 @@ public class BookSearchActivity
                 //Retrieving the TextView of the first line to set its text accordingly
                 TextView content1TextView = (TextView) mNoResultPageScrollView.findViewById(R.id.no_result_text_1_id);
                 //Generating the Html Text with Search Query entered by the user
-                Spanned htmlSpanText = null;
+                Spanned htmlSpanText;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     htmlSpanText = Html.fromHtml(getString(R.string.no_result_page_textline_1, mSearchQueryStr), Html.FROM_HTML_MODE_LEGACY);
                 } else {
@@ -502,7 +502,7 @@ public class BookSearchActivity
 
     /**
      * Method that resets the 'startIndex' (Page to Display) setting to 1, when not 1
-     * and also its related 'endIndex' value to that of 'startIndex'
+     * and also its related 'endIndex' setting value to that of 'startIndex'
      */
     private void resetPageIndex() {
         //Retrieving the preference key string of 'startIndex'

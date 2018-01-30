@@ -67,9 +67,9 @@ public class ImageDownloaderFragment extends Fragment
      *
      * @param imageView   The ImageView Component on which the Image needs to be updated
      * @param imageURLStr String containing the Image URL whose Image needs to be downloaded and updated
-     * @param id          Integer identifier used while creating this Fragment
+     * @param loaderId    Integer identifier used while creating this Fragment
      */
-    public void executeAndUpdate(ImageView imageView, String imageURLStr, int id) {
+    public void executeAndUpdate(ImageView imageView, String imageURLStr, int loaderId) {
         //Saving the parameters passed
         mImageView = imageView;
         mImageURLStr = imageURLStr;
@@ -86,7 +86,7 @@ public class ImageDownloaderFragment extends Fragment
             //Starting the download when Bitmap image is not available from Memory Cache: START
             LoaderManager loaderManager = ((FragmentActivity) mImageView.getContext()).getSupportLoaderManager();
             boolean isNewImageURLStr = false; //Boolean to check if we need to restart the loader
-            Loader<Bitmap> loader = loaderManager.getLoader(id); //Getting the loader at the id
+            Loader<Bitmap> loader = loaderManager.getLoader(loaderId); //Getting the loader at the loaderId
             if (loader != null && loader instanceof ImageDownloader) {
                 //Validating the loader and casting to ImageDownloader
                 ImageDownloader imageDownloader = (ImageDownloader) loader;
@@ -96,11 +96,11 @@ public class ImageDownloaderFragment extends Fragment
 
             if (isNewImageURLStr) {
                 //Restarting the Loader when the ImageURL is new
-                loaderManager.restartLoader(id, null, this);
+                loaderManager.restartLoader(loaderId, null, this);
             } else {
                 //Invoking the Loader AS-IS if the ImageURL is the same
-                //or if the Loader is not yet registered with the id passed
-                loaderManager.initLoader(id, null, this);
+                //or if the Loader is not yet registered with the loaderId passed
+                loaderManager.initLoader(loaderId, null, this);
             }
             //Starting the download when Bitmap image is not available from Memory Cache: END
         }
@@ -149,6 +149,5 @@ public class ImageDownloaderFragment extends Fragment
         //Resetting the ImageView to the default Book Image
         mImageView.setImageResource(R.drawable.ic_book);
     }
-
 
 }

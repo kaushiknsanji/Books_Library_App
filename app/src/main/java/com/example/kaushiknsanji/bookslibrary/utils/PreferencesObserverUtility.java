@@ -21,6 +21,7 @@ public class PreferencesObserverUtility {
      * Method that returns the List of Preference Keys
      * that are to be excluded while preparing the Search URL and also for the Preference Listener
      *
+     * @param context is the Context of the Activity/Fragment or App
      * @return List of Strings that contain the Preference Keys to be excluded
      */
     public static List<String> getPreferenceKeysToExclude(Context context) {

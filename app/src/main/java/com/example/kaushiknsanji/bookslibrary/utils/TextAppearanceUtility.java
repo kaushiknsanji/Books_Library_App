@@ -18,7 +18,7 @@ import android.widget.TextView;
  * @author Kaushik N Sanji
  */
 public class TextAppearanceUtility {
-
+    //Constant used for logs
     private static final String LOG_TAG = TextAppearanceUtility.class.getSimpleName();
 
     /**

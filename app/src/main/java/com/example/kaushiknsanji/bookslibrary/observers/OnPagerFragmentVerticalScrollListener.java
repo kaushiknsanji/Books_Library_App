@@ -10,7 +10,7 @@ package com.example.kaushiknsanji.bookslibrary.observers;
 public interface OnPagerFragmentVerticalScrollListener {
 
     /**
-     * Method invoked when the ViewPager's scroll has reached
+     * Method invoked when the ViewPager's scroll has reached/left
      * the last three items in its Fragment
      * {@link com.example.kaushiknsanji.bookslibrary.adapterviews.RecyclerViewFragment}
      *

@@ -45,7 +45,7 @@ public class BookClientPaginationUtility {
     }
 
     /**
-     * Method that recursively calculates the value of the last page index
+     * Method that calculates the approximate value of the last page index
      * for the Search URL passed
      *
      * @param urlObject      is the Search URL
@@ -96,12 +96,12 @@ public class BookClientPaginationUtility {
                     int noOfItems = itemsJsonArray.length();
 
                     if (noOfItems > 0) {
-                        //Making a recursive call to retrieve the next count of paginated items
+                        //When some items are found in the response
 
                         //Calculating the Number of pages from the total number of items found
                         //based on the max results per page setting
                         int noOfPagesLeft = (int) Math.floor((totalItemsFound - noOfItems) / itemsPerPage);
-                        //Calling recursively with next startPageIndex as current startPageIndex + noOfPagesLeft
+                        //Returning with the lastPageIndex evaluated as current startPageIndex + noOfPagesLeft
                         return (startPageIndex + noOfPagesLeft);
 
                     } else {

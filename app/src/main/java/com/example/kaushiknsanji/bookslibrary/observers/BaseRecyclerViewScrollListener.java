@@ -92,7 +92,7 @@ public abstract class BaseRecyclerViewScrollListener extends RecyclerView.OnScro
 
     /**
      * Callback Method to be implemented to receive events when the
-     * scroll has reached the last three items in the {@link RecyclerView}
+     * scroll has reached/left the last three items in the {@link RecyclerView}
      *
      * @param verticalScrollAmount is the amount of vertical scroll.
      *                             <br/>If >0 then scroll is moving towards the bottom;
