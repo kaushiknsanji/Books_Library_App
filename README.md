@@ -1,8 +1,9 @@
 # Books Library App
 
-This App has been developed as part of the **Udacity Android Basics Nanodegree Course** for the Exercise Project **"Book Listing App"**. App connects to the [Google Books API](https://developers.google.com/books/) to retrieve the list of Books for the search done and then displays them in a BookShelf format.
+![GitHub](https://img.shields.io/github/license/kaushiknsanji/Books_Library_App)  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kaushiknsanji/Books_Library_App)  ![GitHub repo size](https://img.shields.io/github/repo-size/kaushiknsanji/Books_Library_App)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/kaushiknsanji/Books_Library_App)  ![GitHub All Releases](https://img.shields.io/github/downloads/kaushiknsanji/Books_Library_App/total) ![GitHub search hit counter](https://img.shields.io/github/search/kaushiknsanji/Books_Library_App/Book%20Listing%20App) ![Minimum API level](https://img.shields.io/badge/API-15+-yellow)
 
-<!-- _Checkout the Latest Release [here](/outputs/.apk)_ -->
+This App has been developed as part of the **Udacity Android Basics Nanodegree Course** for the Exercise Project **"Book Listing App"**. App connects to the [Google Books API](https://developers.google.com/books/) to retrieve the list of Books for the search done and then displays them in a BookShelf format.
 
 ---
 
@@ -215,3 +216,29 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 **Sample image for a Book having long Title and Author Text**
 
 <img src="https://user-images.githubusercontent.com/26028981/33951592-65185766-e055-11e7-9ccb-2aaff1915925.png" width="40%" />
+
+---
+
+## Review from the Reviewer (Udacity)
+
+![Review_Book_Listing_App](https://user-images.githubusercontent.com/26028981/66827627-b7c29580-ef6c-11e9-9ff5-462488f109fa.PNG)
+
+---
+
+## License
+
+```
+Copyright 2017 Kaushik N. Sanji
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
