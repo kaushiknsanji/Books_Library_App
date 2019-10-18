@@ -47,10 +47,12 @@ public class BookImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_image);
 
         //Displaying the Up button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //Finding the ImageView
-        ImageView bookImageView = (ImageView) findViewById(R.id.book_image_id);
+        ImageView bookImageView = findViewById(R.id.book_image_id);
 
         //Loading the Image to be shown from the Intent received
         Intent bookImageIntent = getIntent();

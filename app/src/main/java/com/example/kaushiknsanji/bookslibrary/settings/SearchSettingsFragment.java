@@ -111,7 +111,7 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
                     dialogFragment = NumberPickerPreferenceDialogFragmentCompat.newInstance(
                             preferenceKey,
                             getResources().getInteger(R.integer.pref_page_to_display_min_value),
-                            PreferenceManager.getDefaultSharedPreferences(getContext())
+                            PreferenceManager.getDefaultSharedPreferences(requireContext())
                                     .getInt(getString(R.string.pref_page_to_display_max_value_key),
                                             getResources().getInteger(R.integer.pref_page_to_display_default_value))
                     );
@@ -128,7 +128,7 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
             //Displaying the NumberPicker Dialog
             if (dialogFragment != null) {
                 dialogFragment.setTargetFragment(this, 0);
-                dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                dialogFragment.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
             }
 
         } else if (preference instanceof ConfirmationPreference) {
@@ -146,7 +146,7 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
             //Displaying the Confirmation Dialog
             if (dialogFragment != null) {
                 dialogFragment.setTargetFragment(this, 0);
-                dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                dialogFragment.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
             }
 
         } else {
@@ -161,7 +161,7 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
      * @return <b>TRUE</b> when there is a Dialog active and shown; <b>FALSE</b> otherwise
      */
     private boolean anyDialogActive() {
-        return (getFragmentManager().findFragmentByTag(DIALOG_FRAGMENT_TAG) != null);
+        return (requireFragmentManager().findFragmentByTag(DIALOG_FRAGMENT_TAG) != null);
     }
 
 
@@ -206,9 +206,9 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
      */
     private void resetAllToDefaults() {
         //Retrieving the Preferences
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         //Retrieving the Preferences which are excluded from preparing the Search URL
-        List<String> keysExcludedFromSearch = PreferencesObserverUtility.getPreferenceKeysToExclude(getContext());
+        List<String> keysExcludedFromSearch = PreferencesObserverUtility.getPreferenceKeysToExclude(requireContext());
 
         //Iterating over the Preference Keys to reset them to their defaults: START
         Set<String> prefKeySet = sharedPreferences.getAll().keySet();
@@ -238,7 +238,7 @@ public class SearchSettingsFragment extends PreferenceFragmentCompat
         //Iterating over the Preference Keys to reset them to their defaults: END
 
         //Forcibly marking all preferences to their defaults using PreferenceManager
-        PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
+        PreferenceManager.setDefaultValues(requireContext(), R.xml.preferences, true);
     }
 
     /**

@@ -125,23 +125,25 @@ public class RecyclerViewFragment extends Fragment
      */
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //Inflating the RecyclerView layout ('R.layout.recycler_layout_view')
         View rootView = inflater.inflate(R.layout.recycler_layout_view, container, false);
 
         //Retrieving the RecyclerView component
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_layout_id);
+        mRecyclerView = rootView.findViewById(R.id.recycler_layout_id);
 
-        //Retrieving the Layout mode passed
-        int layoutMode = getArguments().getInt(LAYOUT_MODE_INT_KEY);
+        if (getArguments() != null) {
+            //Retrieving the Layout mode passed
+            int layoutMode = getArguments().getInt(LAYOUT_MODE_INT_KEY);
 
-        //Setting the Layout Manager, Adapter and Decoration based on the Layout Mode passed
-        if (layoutMode == LIST_MODE) {
-            //When the Layout mode passed is for Vertical List View
-            setLayoutForListView();
-        } else if (layoutMode == GRID_MODE) {
-            //When the Layout mode passed is for Vertical Grid View
-            setLayoutForGridView();
+            //Setting the Layout Manager, Adapter and Decoration based on the Layout Mode passed
+            if (layoutMode == LIST_MODE) {
+                //When the Layout mode passed is for Vertical List View
+                setLayoutForListView();
+            } else if (layoutMode == GRID_MODE) {
+                //When the Layout mode passed is for Vertical Grid View
+                setLayoutForGridView();
+            }
         }
 
         //Registering the scroll listener on RecyclerView
@@ -166,7 +168,7 @@ public class RecyclerViewFragment extends Fragment
         ArrayList<BookInfo> bookInfoList = new ArrayList<>();
 
         //Initializing the Adapter for the Grid view
-        RecyclerGridAdapter recyclerGridAdapter = new RecyclerGridAdapter(getContext(), R.layout.books_grid_item, bookInfoList);
+        RecyclerGridAdapter recyclerGridAdapter = new RecyclerGridAdapter(requireContext(), R.layout.books_grid_item, bookInfoList);
 
         //Registering the OnAdapterItemClickListener on the Adapter
         recyclerGridAdapter.setOnAdapterItemClickListener(this);
@@ -176,7 +178,7 @@ public class RecyclerViewFragment extends Fragment
 
         //Setting the Book Shelf Item Decoration for Grid View
         BookShelfItemDecoration bookShelfItemDecoration = new BookShelfItemDecoration(
-                ContextCompat.getDrawable(getContext(), R.drawable.book_shelf_no_base),
+                ContextCompat.getDrawable(requireContext(), R.drawable.book_shelf_no_base),
                 getResources().getDimensionPixelSize(R.dimen.grid_item_bottom_decoration_offset)
         );
         mRecyclerView.addItemDecoration(bookShelfItemDecoration);
@@ -197,7 +199,7 @@ public class RecyclerViewFragment extends Fragment
         ArrayList<BookInfo> bookInfoList = new ArrayList<>();
 
         //Initializing the Adapter for the List view
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(getContext(), R.layout.books_list_item, bookInfoList);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(requireContext(), R.layout.books_list_item, bookInfoList);
 
         //Registering the OnAdapterItemClickListener on the Adapter
         recyclerListAdapter.setOnAdapterItemClickListener(this);
@@ -207,7 +209,7 @@ public class RecyclerViewFragment extends Fragment
 
         //Setting the Book Shelf Item Decoration for List View
         BookShelfItemDecoration bookShelfItemDecoration = new BookShelfItemDecoration(
-                ContextCompat.getDrawable(getContext(), R.drawable.book_shelf_no_base),
+                ContextCompat.getDrawable(requireContext(), R.drawable.book_shelf_no_base),
                 getResources().getDimensionPixelSize(R.dimen.list_item_bottom_decoration_offset)
         );
         mRecyclerView.addItemDecoration(bookShelfItemDecoration);
@@ -372,7 +374,7 @@ public class RecyclerViewFragment extends Fragment
     //Defining the LayoutMode IntDef annotation with Retention only at SOURCE
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({LIST_MODE, GRID_MODE})
-    public @interface LayoutMode {
+    @interface LayoutMode {
     }
 
     /**
@@ -392,7 +394,7 @@ public class RecyclerViewFragment extends Fragment
          * @param itemDrawable    is the Drawable to be used as Item Decoration
          * @param offsetFromImage is the Offset correction for the Drawable used
          */
-        public BookShelfItemDecoration(Drawable itemDrawable, int offsetFromImage) {
+        BookShelfItemDecoration(Drawable itemDrawable, int offsetFromImage) {
             mItemDrawable = itemDrawable;
             mOffsetFromImage = offsetFromImage;
         }

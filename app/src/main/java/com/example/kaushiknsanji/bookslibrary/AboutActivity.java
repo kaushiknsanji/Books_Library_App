@@ -50,10 +50,12 @@ public class AboutActivity extends AppCompatActivity
         setContentView(R.layout.activity_about);
 
         //Displaying the Up button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //Finding the Title TextView
-        TextView titleTextView = (TextView) findViewById(R.id.abt_title_text_id);
+        TextView titleTextView = findViewById(R.id.abt_title_text_id);
         //Setting its Font
         titleTextView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/coprgtb.ttf"));
 
@@ -61,9 +63,9 @@ public class AboutActivity extends AppCompatActivity
         Typeface contentTypeface = Typeface.createFromAsset(getAssets(), "fonts/quintessential_regular.ttf");
 
         //Finding the TextView for the first line of content
-        TextView firstLineTextView = (TextView) findViewById(R.id.abt_text_1_id);
+        TextView firstLineTextView = findViewById(R.id.abt_text_1_id);
         //Generating the Html Text
-        Spanned htmlSpannedText = null;
+        Spanned htmlSpannedText;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             htmlSpannedText = Html.fromHtml(getString(R.string.abt_content_textline_2), Html.FROM_HTML_MODE_LEGACY);
         } else {
@@ -75,15 +77,15 @@ public class AboutActivity extends AppCompatActivity
         firstLineTextView.setTypeface(contentTypeface);
 
         //Finding the TextView for the second line of content
-        TextView secondLineTextView = (TextView) findViewById(R.id.abt_text_2_id);
+        TextView secondLineTextView = findViewById(R.id.abt_text_2_id);
         //Setting the Font
         secondLineTextView.setTypeface(contentTypeface);
 
         //Finding the Click Views
-        ImageButton googleBrandingButton = (ImageButton) findViewById(R.id.abt_google_branding_image_id);
-        ImageView udacityImageView = (ImageView) findViewById(R.id.abt_udacity_image_id);
-        ImageView githubImageView = (ImageView) findViewById(R.id.abt_github_image_id);
-        ImageView linkedinImageView = (ImageView) findViewById(R.id.abt_linkedin_image_id);
+        ImageButton googleBrandingButton = findViewById(R.id.abt_google_branding_image_id);
+        ImageView udacityImageView = findViewById(R.id.abt_udacity_image_id);
+        ImageView githubImageView = findViewById(R.id.abt_github_image_id);
+        ImageView linkedinImageView = findViewById(R.id.abt_linkedin_image_id);
 
         //Registering Listener on Click Views
         googleBrandingButton.setOnClickListener(this);

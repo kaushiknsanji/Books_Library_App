@@ -45,7 +45,7 @@ public class KeywordFiltersAdapter extends ArrayAdapter<KeywordFilter> {
     private final int mLayoutRes;
 
     /**
-     * Constructor
+     * Constructor of {@link KeywordFiltersAdapter}
      *
      * @param context  The current context.
      * @param resource The resource ID for a layout file used as list item ('R.layout.keyword_filter_list_item')
@@ -76,8 +76,8 @@ public class KeywordFiltersAdapter extends ArrayAdapter<KeywordFilter> {
 
             //Retrieving the View Components : START
             viewHolder = new KeywordFilterItemViewHolder();
-            viewHolder.keywordFilterNameTextView = (TextView) convertView.findViewById(R.id.keyword_filter_name_text_id);
-            viewHolder.keywordFilterDescTextView = (TextView) convertView.findViewById(R.id.keyword_filter_desc_text_id);
+            viewHolder.keywordFilterNameTextView = convertView.findViewById(R.id.keyword_filter_name_text_id);
+            viewHolder.keywordFilterDescTextView = convertView.findViewById(R.id.keyword_filter_desc_text_id);
             //Retrieving the View Components : END
 
             //Saving all the Components as a ViewHolder in the View's tag for future reuse

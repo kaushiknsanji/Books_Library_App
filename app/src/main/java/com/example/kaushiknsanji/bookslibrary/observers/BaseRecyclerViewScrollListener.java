@@ -90,7 +90,7 @@ public abstract class BaseRecyclerViewScrollListener extends RecyclerView.OnScro
                     mIsScrolledToBottomEnd = false;
                 }
 
-            } else if (dy < 0) {
+            } else {
                 //Scanning when scrolling to the top
 
                 if (lastItemPosition < (totalItems - 4) && mIsScrolledToBottomEnd) {

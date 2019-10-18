@@ -71,12 +71,12 @@ public class NetworkErrorDialogFragment extends DialogFragment
         View networkErrorLayoutView = LayoutInflater.from(getActivity()).inflate(R.layout.network_error_dialog, null);
 
         //Retrieving the dialog's message to embed an icon in the text
-        TextView networkErrorMsgTextView = (TextView) networkErrorLayoutView.findViewById(R.id.network_error_text_id);
+        TextView networkErrorMsgTextView = networkErrorLayoutView.findViewById(R.id.network_error_text_id);
         TextAppearanceUtility.replaceTextWithImage(getContext(), networkErrorMsgTextView);
 
         //Retrieving the action buttons
-        Button positiveButton = (Button) networkErrorLayoutView.findViewById(R.id.network_error_settings_btn_id);
-        Button negativeButton = (Button) networkErrorLayoutView.findViewById(R.id.network_error_cancel_btn_id);
+        Button positiveButton = networkErrorLayoutView.findViewById(R.id.network_error_settings_btn_id);
+        Button negativeButton = networkErrorLayoutView.findViewById(R.id.network_error_cancel_btn_id);
 
         //Setting the click listener on the Buttons
         positiveButton.setOnClickListener(this);
@@ -104,7 +104,7 @@ public class NetworkErrorDialogFragment extends DialogFragment
                 //Creating an Intent to launch the Network Settings
                 Intent networkIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
                 //Verifying that the Intent will resolve to an Activity
-                if (networkIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                if (networkIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
                     //Launching the Activity if resolved
                     startActivity(networkIntent);
                 }

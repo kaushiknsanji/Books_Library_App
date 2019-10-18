@@ -107,7 +107,7 @@ public class KeywordFiltersDialogFragment extends DialogFragment
         View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.keyword_filter_list_view, null);
 
         //Retrieving the List View
-        ListView listView = (ListView) rootView.findViewById(R.id.keyword_filters_list_view_id);
+        ListView listView = rootView.findViewById(R.id.keyword_filters_list_view_id);
 
         //Initializing ArrayList of KeywordFilter: START
         ArrayList<KeywordFilter> keywordFilterList = new ArrayList<>();

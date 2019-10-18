@@ -86,6 +86,7 @@ public class DisplayPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     //Registers the Fragment when the item is instantiated (for the first time) using #getItem
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         Fragment fragment = (Fragment) super.instantiateItem(container, position);
@@ -165,10 +166,10 @@ public class DisplayPagerAdapter extends FragmentStatePagerAdapter {
         View rootView = LayoutInflater.from(mContext).inflate(R.layout.icon_tab_layout_template, null);
 
         //Finding the Icon ImageView to set its icon
-        ImageView iconImageView = (ImageView) rootView.findViewById(R.id.tab_image_icon_id);
+        ImageView iconImageView = rootView.findViewById(R.id.tab_image_icon_id);
 
         //Finding the TextView to set its Title
-        TextView tabTextView = (TextView) rootView.findViewById(R.id.tab_text_id);
+        TextView tabTextView = rootView.findViewById(R.id.tab_text_id);
 
         //Setting the Icon and the Text based on the current position
         switch (position) {

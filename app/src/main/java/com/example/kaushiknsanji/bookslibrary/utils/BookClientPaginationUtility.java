@@ -116,7 +116,7 @@ public class BookClientPaginationUtility {
 
                         //Calculating the Number of pages from the total number of items found
                         //based on the max results per page setting
-                        int noOfPagesLeft = (int) Math.floor((totalItemsFound - noOfItems) / itemsPerPage);
+                        int noOfPagesLeft = (int) Math.floor((float) (totalItemsFound - noOfItems) / (float) itemsPerPage);
                         //Returning with the lastPageIndex evaluated as current startPageIndex + noOfPagesLeft
                         return (startPageIndex + noOfPagesLeft);
 

@@ -37,7 +37,9 @@ public class SearchSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
 
         //Displaying the Up button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     /**

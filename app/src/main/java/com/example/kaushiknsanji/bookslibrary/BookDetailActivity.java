@@ -123,35 +123,37 @@ public class BookDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_book_detail);
 
         //Displaying the Up button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //Retrieving the View Components: START
-        mTitleTextView = (TextView) findViewById(R.id.detail_title_text_id);
-        mTitleTextScrollView = (NestedScrollView) findViewById(R.id.detail_title_text_scroll_id);
-        mTitleTextExpandImageView = (ImageView) findViewById(R.id.detail_title_text_expand_img_id);
-        mAuthorTextView = (TextView) findViewById(R.id.detail_author_text_id);
-        mAuthorTextScrollView = (NestedScrollView) findViewById(R.id.detail_author_text_scroll_id);
-        mAuthorTextExpandImageView = (ImageView) findViewById(R.id.detail_author_text_expand_img_id);
-        mBookRatingBar = (RatingBar) findViewById(R.id.detail_ratingbar_id);
-        mRatingCountTextView = (TextView) findViewById(R.id.detail_rating_count_text_id);
-        mBookImageView = (ImageView) findViewById(R.id.detail_book_image_id);
-        mPagesTextView = (TextView) findViewById(R.id.detail_pages_text_id);
-        mPublisherSubtitleTextView = (TextView) findViewById(R.id.detail_publisher_section_text_id);
-        mPublisherTextView = (TextView) findViewById(R.id.detail_publisher_text_id);
-        mPublisherBorderImageView = (ImageView) findViewById(R.id.detail_publisher_border_id);
-        mCategorySubtitleTextView = (TextView) findViewById(R.id.detail_category_section_text_id);
-        mCategoryTextView = (TextView) findViewById(R.id.detail_categories_text_id);
-        mCategoryBorderImageView = (ImageView) findViewById(R.id.detail_categories_border_id);
-        mDescriptionTextView = (TextView) findViewById(R.id.detail_description_text_id);
-        mSamplePreviewsSubtitleTextView = (TextView) findViewById(R.id.detail_samples_section_text_id);
-        mEpubImageButton = (ImageButton) findViewById(R.id.detail_epub_button_id);
-        mPdfImageButton = (ImageButton) findViewById(R.id.detail_pdf_button_id);
-        mWebPreviewButton = (Button) findViewById(R.id.detail_web_button_id);
-        mSamplesBorderImageView = (ImageView) findViewById(R.id.detail_samples_border_id);
-        mInfoButton = (Button) findViewById(R.id.detail_info_button_id);
-        mInfoBorderImageView = (ImageView) findViewById(R.id.detail_info_border_id);
-        mBuyButton = (Button) findViewById(R.id.detail_buy_button_id);
-        mNotForSaleTextView = (TextView) findViewById(R.id.detail_not_for_sale_text_id);
+        mTitleTextView = findViewById(R.id.detail_title_text_id);
+        mTitleTextScrollView = findViewById(R.id.detail_title_text_scroll_id);
+        mTitleTextExpandImageView = findViewById(R.id.detail_title_text_expand_img_id);
+        mAuthorTextView = findViewById(R.id.detail_author_text_id);
+        mAuthorTextScrollView = findViewById(R.id.detail_author_text_scroll_id);
+        mAuthorTextExpandImageView = findViewById(R.id.detail_author_text_expand_img_id);
+        mBookRatingBar = findViewById(R.id.detail_ratingbar_id);
+        mRatingCountTextView = findViewById(R.id.detail_rating_count_text_id);
+        mBookImageView = findViewById(R.id.detail_book_image_id);
+        mPagesTextView = findViewById(R.id.detail_pages_text_id);
+        mPublisherSubtitleTextView = findViewById(R.id.detail_publisher_section_text_id);
+        mPublisherTextView = findViewById(R.id.detail_publisher_text_id);
+        mPublisherBorderImageView = findViewById(R.id.detail_publisher_border_id);
+        mCategorySubtitleTextView = findViewById(R.id.detail_category_section_text_id);
+        mCategoryTextView = findViewById(R.id.detail_categories_text_id);
+        mCategoryBorderImageView = findViewById(R.id.detail_categories_border_id);
+        mDescriptionTextView = findViewById(R.id.detail_description_text_id);
+        mSamplePreviewsSubtitleTextView = findViewById(R.id.detail_samples_section_text_id);
+        mEpubImageButton = findViewById(R.id.detail_epub_button_id);
+        mPdfImageButton = findViewById(R.id.detail_pdf_button_id);
+        mWebPreviewButton = findViewById(R.id.detail_web_button_id);
+        mSamplesBorderImageView = findViewById(R.id.detail_samples_border_id);
+        mInfoButton = findViewById(R.id.detail_info_button_id);
+        mInfoBorderImageView = findViewById(R.id.detail_info_border_id);
+        mBuyButton = findViewById(R.id.detail_buy_button_id);
+        mNotForSaleTextView = findViewById(R.id.detail_not_for_sale_text_id);
         //Retrieving the View Components: END
 
         //Retrieving the Parent View's TreeObserver for the Title TextView and the Author TextView
@@ -189,7 +191,7 @@ public class BookDetailActivity extends AppCompatActivity
     private void handleIntent(Intent intent) {
         //Retrieving the Item Data passed in the intent
         Parcelable parcelableExtra = intent.getParcelableExtra(BOOK_INFO_ITEM_STR_KEY);
-        if (parcelableExtra != null && parcelableExtra instanceof BookInfo) {
+        if (parcelableExtra instanceof BookInfo) {
             //Validating and casting to BookInfo accordingly
             BookInfo itemBookInfo = (BookInfo) parcelableExtra;
             //Updating the Layout based on the BookInfo data
@@ -399,7 +401,7 @@ public class BookDetailActivity extends AppCompatActivity
             mPublisherBorderImageView.setVisibility(View.GONE);
         } else {
             //Updating the Publisher info when either of the information is present
-            mPublisherTextView.setText(publisher + "\n(" + publishedDateStr + ")");
+            mPublisherTextView.setText(getString(R.string.detail_publisher_section_format, publisher, publishedDateStr));
         }
     }
 

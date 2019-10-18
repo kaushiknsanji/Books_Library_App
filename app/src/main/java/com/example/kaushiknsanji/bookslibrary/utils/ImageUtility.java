@@ -219,10 +219,10 @@ public class ImageUtility {
 
         //Declaring Byte Array with a buffer size to buffer the content read
         byte[] byteBuff = new byte[4096];
-        int bytesRead = 0; //Initializing and defaulting the Bytes read to 0
+        int bytesRead; //Stores the Bytes read
 
         //Declaring the Byte Array to be returned for processing
-        byte[] imageByteArray = null;
+        byte[] imageByteArray;
 
         //Writing the Bytes read to the ByteArrayOutputStream
         try {

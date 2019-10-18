@@ -88,7 +88,7 @@ public class PaginationNumberPickerDialogFragment extends DialogFragment
         super.onCreate(savedInstanceState);
 
         //Retrieving the instance of SharedPreferences
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
     }
 
     /**
@@ -112,12 +112,13 @@ public class PaginationNumberPickerDialogFragment extends DialogFragment
         View numberPickerLayoutView = LayoutInflater.from(getContext()).inflate(R.layout.page_number_picker_dialog, null);
 
         //Retrieving the NumberPicker from the inflated layout
-        NumberPicker numberPicker = (NumberPicker) numberPickerLayoutView.findViewById(R.id.page_number_picker_id);
+        NumberPicker numberPicker = numberPickerLayoutView.findViewById(R.id.page_number_picker_id);
 
         //Initializing the NumberPicker with its parameters
-        Bundle bundleArgs = getArguments();
-        numberPicker.setMinValue(bundleArgs.getInt(NUMBER_PICKER_MIN_VALUE_INT_KEY));
-        numberPicker.setMaxValue(bundleArgs.getInt(NUMBER_PICKER_MAX_VALUE_INT_KEY));
+        if (getArguments() != null) {
+            numberPicker.setMinValue(getArguments().getInt(NUMBER_PICKER_MIN_VALUE_INT_KEY));
+            numberPicker.setMaxValue(getArguments().getInt(NUMBER_PICKER_MAX_VALUE_INT_KEY));
+        }
 
         //Updating the preselected value of the NumberPicker: START
         if (savedInstanceState != null) {
@@ -135,8 +136,8 @@ public class PaginationNumberPickerDialogFragment extends DialogFragment
         numberPicker.setOnValueChangedListener(this);
 
         //Retrieving the action buttons
-        Button positiveButton = (Button) numberPickerLayoutView.findViewById(R.id.page_number_picker_set_btn_id);
-        Button negativeButton = (Button) numberPickerLayoutView.findViewById(R.id.page_number_picker_cancel_btn_id);
+        Button positiveButton = numberPickerLayoutView.findViewById(R.id.page_number_picker_set_btn_id);
+        Button negativeButton = numberPickerLayoutView.findViewById(R.id.page_number_picker_cancel_btn_id);
 
         //Setting the click listener on the buttons
         positiveButton.setOnClickListener(this);

@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.SearchRecentSuggestions;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
@@ -155,11 +156,11 @@ public class BookSearchActivity
         );
 
         //Initializing the Pagination Buttons
-        mPageFirstButton = (ImageButton) findViewById(R.id.page_first_button_id);
-        mPageLastButton = (ImageButton) findViewById(R.id.page_last_button_id);
-        mPageNextButton = (ImageButton) findViewById(R.id.page_next_button_id);
-        mPagePreviousButton = (ImageButton) findViewById(R.id.page_previous_button_id);
-        mPageMoreButton = (ImageButton) findViewById(R.id.page_more_button_id);
+        mPageFirstButton = findViewById(R.id.page_first_button_id);
+        mPageLastButton = findViewById(R.id.page_last_button_id);
+        mPageNextButton = findViewById(R.id.page_next_button_id);
+        mPagePreviousButton = findViewById(R.id.page_previous_button_id);
+        mPageMoreButton = findViewById(R.id.page_more_button_id);
 
         //Registering click listener on the Pagination buttons
         mPageFirstButton.setOnClickListener(this);
@@ -175,10 +176,10 @@ public class BookSearchActivity
         manageNoResultPage(true, -1);
 
         //Finding the Progress Bar
-        mIndeterminateProgressBar = (ProgressBar) findViewById(R.id.progress_bar_id);
+        mIndeterminateProgressBar = findViewById(R.id.progress_bar_id);
 
         //ViewPager for swiping through fragments
-        mViewPager = (ViewPager) findViewById(R.id.view_pager_id);
+        mViewPager = findViewById(R.id.view_pager_id);
 
         //Adapter for ViewPager to display the correct fragment at the active position
         DisplayPagerAdapter viewPagerAdapter = new DisplayPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
@@ -187,7 +188,7 @@ public class BookSearchActivity
         mViewPager.setAdapter(viewPagerAdapter);
 
         //Tabs to be shown for the Fragments displayed
-        mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs_id);
+        mTabLayout = findViewById(R.id.sliding_tabs_id);
 
         //Binding the TabLayout to ViewPager
         mTabLayout.setupWithViewPager(mViewPager);
@@ -234,16 +235,16 @@ public class BookSearchActivity
             //When the layout page is to be prepared
 
             //Initializing the ScrollView having the content of No Result Page
-            mNoResultPageScrollView = (ScrollView) findViewById(R.id.no_result_page_id);
+            mNoResultPageScrollView = findViewById(R.id.no_result_page_id);
 
             //Loading the font for the Title Text
-            TextView titleTextView = (TextView) mNoResultPageScrollView.findViewById(R.id.no_result_content_title_text_id);
+            TextView titleTextView = mNoResultPageScrollView.findViewById(R.id.no_result_content_title_text_id);
             titleTextView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ar_hermann_medium.ttf"));
 
             //Loading the font for the remaining Text content
-            TextView content2TextView = (TextView) mNoResultPageScrollView.findViewById(R.id.no_result_text_2_id);
+            TextView content2TextView = mNoResultPageScrollView.findViewById(R.id.no_result_text_2_id);
             content2TextView.setTypeface(contentTypeface);
-            TextView content3TextView = (TextView) mNoResultPageScrollView.findViewById(R.id.no_result_text_3_id);
+            TextView content3TextView = mNoResultPageScrollView.findViewById(R.id.no_result_text_3_id);
             content3TextView.setTypeface(contentTypeface);
 
         } else {
@@ -253,7 +254,7 @@ public class BookSearchActivity
                 //When the layout page needs to be visible
 
                 //Retrieving the TextView of the first line to set its text accordingly
-                TextView content1TextView = (TextView) mNoResultPageScrollView.findViewById(R.id.no_result_text_1_id);
+                TextView content1TextView = mNoResultPageScrollView.findViewById(R.id.no_result_text_1_id);
                 //Generating the Html Text with Search Query entered by the user
                 Spanned htmlSpanText;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -298,19 +299,19 @@ public class BookSearchActivity
             //When the layout page is to be prepared
 
             //Initializing the ScrollView having the content of Welcome Page
-            mWelcomePageScrollView = (ScrollView) findViewById(R.id.welcome_page_id);
+            mWelcomePageScrollView = findViewById(R.id.welcome_page_id);
 
             //Loading the font for the Title Text
-            TextView titleTextView = (TextView) mWelcomePageScrollView.findViewById(R.id.welcome_text_1_id);
+            TextView titleTextView = mWelcomePageScrollView.findViewById(R.id.welcome_text_1_id);
             titleTextView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/cambriab.ttf"));
 
             //Retrieving the font to be used for the Text Content
             Typeface contentTypeface = Typeface.createFromAsset(getAssets(), "fonts/maiandra_gd_regular.ttf");
 
             //Loading the font for the Text Content
-            TextView content1TextView = (TextView) mWelcomePageScrollView.findViewById(R.id.welcome_text_2_id);
+            TextView content1TextView = mWelcomePageScrollView.findViewById(R.id.welcome_text_2_id);
             content1TextView.setTypeface(contentTypeface);
-            TextView content2TextView = (TextView) mWelcomePageScrollView.findViewById(R.id.welcome_text_3_id);
+            TextView content2TextView = mWelcomePageScrollView.findViewById(R.id.welcome_text_3_id);
             content2TextView.setTypeface(contentTypeface);
 
             //Replacing the drawable identifier string in the text content with its actual drawable
@@ -458,61 +459,57 @@ public class BookSearchActivity
      */
     private void handleIntent(Intent intent) {
         //Working based on the Intent's ACTION
-        switch (intent.getAction()) {
-            case Intent.ACTION_SEARCH:
-                //Retrieving the Search Query from EXTRA
-                String currentSearchQueryStr = intent.getStringExtra(SearchManager.QUERY);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            //Retrieving the Search Query from EXTRA
+            String currentSearchQueryStr = intent.getStringExtra(SearchManager.QUERY);
 
-                //Hiding the Welcome Page if Visible
-                if (mWelcomePageScrollView.getVisibility() == View.VISIBLE) {
-                    manageWelcomePage(false, View.GONE);
-                }
+            //Hiding the Welcome Page if Visible
+            if (mWelcomePageScrollView.getVisibility() == View.VISIBLE) {
+                manageWelcomePage(false, View.GONE);
+            }
 
-                //Hiding the No Result Page if Visible
-                if (mNoResultPageScrollView.getVisibility() == View.VISIBLE) {
-                    manageNoResultPage(false, View.GONE);
-                }
+            //Hiding the No Result Page if Visible
+            if (mNoResultPageScrollView.getVisibility() == View.VISIBLE) {
+                manageNoResultPage(false, View.GONE);
+            }
 
-                //Checking if the current query is new to restart the loader
-                boolean isNewQuery = !TextUtils.isEmpty(mSearchQueryStr) && !currentSearchQueryStr.equalsIgnoreCase(mSearchQueryStr);
+            //Checking if the current query is new to restart the loader
+            boolean isNewQuery = !TextUtils.isEmpty(mSearchQueryStr) && !currentSearchQueryStr.equalsIgnoreCase(mSearchQueryStr);
 
-                //Copying the current query
-                mSearchQueryStr = currentSearchQueryStr;
+            //Copying the current query
+            mSearchQueryStr = currentSearchQueryStr;
 
-                //Adding the Search Query to the Recent Search Suggestions
-                mRecentSuggestions.saveRecentQuery(mSearchQueryStr, null);
+            //Adding the Search Query to the Recent Search Suggestions
+            mRecentSuggestions.saveRecentQuery(mSearchQueryStr, null);
 
-                //Collapse the SearchView
-                collapseSearchView();
+            //Collapse the SearchView
+            collapseSearchView();
 
-                //Set the Query searched as the Activity Title
-                setTitle(getString(R.string.searched_book_title, mSearchQueryStr));
+            //Set the Query searched as the Activity Title
+            setTitle(getString(R.string.searched_book_title, mSearchQueryStr));
 
-                //Performing the Book Search operation through a Loader
-                Toast.makeText(this, "Searching for " + mSearchQueryStr, Toast.LENGTH_SHORT).show();
+            //Performing the Book Search operation through a Loader
+            Toast.makeText(this, "Searching for " + mSearchQueryStr, Toast.LENGTH_SHORT).show();
 
-                //Displaying the Progress Bar
-                toggleProgressBarVisibility(View.VISIBLE);
+            //Displaying the Progress Bar
+            toggleProgressBarVisibility(View.VISIBLE);
 
-                if (isNewQuery) {
-                    //Resetting the Adapter Item View position to 0 (First Item data in the adapter)
-                    scrollToItemPosition(0, true);
+            if (isNewQuery) {
+                //Resetting the Adapter Item View position to 0 (First Item data in the adapter)
+                scrollToItemPosition(0, true);
 
-                    //Resetting the value of Page index related settings to 1, for the new Search Query
-                    resetPageIndex();
+                //Resetting the value of Page index related settings to 1, for the new Search Query
+                resetPageIndex();
 
-                    //Restarting Loader when it is a new Search query
-                    getSupportLoaderManager().restartLoader(BooksLoader.BOOK_SEARCH_LOADER, null, this);
+                //Restarting Loader when it is a new Search query
+                getSupportLoaderManager().restartLoader(BooksLoader.BOOK_SEARCH_LOADER, null, this);
 
-                    //Clearing the Bitmap Memory Cache for the new Search done
-                    BitmapImageCache.clearCache();
-                } else {
-                    //Triggering the load with the same Search Query
-                    getSupportLoaderManager().initLoader(BooksLoader.BOOK_SEARCH_LOADER, null, this);
-                }
-                break;
-            default:
-                break;
+                //Clearing the Bitmap Memory Cache for the new Search done
+                BitmapImageCache.clearCache();
+            } else {
+                //Triggering the load with the same Search Query
+                getSupportLoaderManager().initLoader(BooksLoader.BOOK_SEARCH_LOADER, null, this);
+            }
         }
     }
 
@@ -716,7 +713,9 @@ public class BookSearchActivity
         }
 
         //Setting the Instance of SearchableInfo on SearchView to setup Assisted Search
-        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        if (searchManager != null) {
+            mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }
 
         if (mIsSearchViewExpanded) {
             //Restoring the Action View state and the Search Content if any
@@ -900,10 +899,12 @@ public class BookSearchActivity
 
         //Retrieving the Custom View of Tab
         View customView = tab.getCustomView();
-        //Finding the TextView to make it Visible
-        TextView tabTextView = (TextView) customView.findViewById(R.id.tab_text_id);
-        //Making the Text Visible
-        tabTextView.setVisibility(View.VISIBLE);
+        if (customView != null) {
+            //Finding the TextView to make it Visible
+            TextView tabTextView = customView.findViewById(R.id.tab_text_id);
+            //Making the Text Visible
+            tabTextView.setVisibility(View.VISIBLE);
+        }
 
         //When the user had searched something previously
         if (!TextUtils.isEmpty(mSearchQueryStr)) {
@@ -935,10 +936,12 @@ public class BookSearchActivity
         int oldPosition = tab.getPosition();
         //Retrieving the Custom View of Tab
         View customView = tab.getCustomView();
-        //Finding the TextView to Hide
-        TextView tabTextView = (TextView) customView.findViewById(R.id.tab_text_id);
-        //Hiding the Text
-        tabTextView.setVisibility(View.GONE);
+        if (customView != null) {
+            //Finding the TextView to Hide
+            TextView tabTextView = customView.findViewById(R.id.tab_text_id);
+            //Hiding the Text
+            tabTextView.setVisibility(View.GONE);
+        }
 
         //Saving the value of the position of the first Adapter item, last visible in the tab unselected
         RecyclerViewFragment fragment = getFragmentByPositionFromViewPager(oldPosition);
@@ -969,6 +972,7 @@ public class BookSearchActivity
      * @param args Any arguments supplied by the caller.
      * @return Return a new Loader instance that is ready to start loading.
      */
+    @NonNull
     @Override
     public Loader<List<BookInfo>> onCreateLoader(int id, Bundle args) {
         return new BooksLoader(this, mSearchQueryStr);
@@ -983,7 +987,7 @@ public class BookSearchActivity
      *                  by the Loader.
      */
     @Override
-    public void onLoadFinished(Loader<List<BookInfo>> loader, List<BookInfo> bookInfos) {
+    public void onLoadFinished(@NonNull Loader<List<BookInfo>> loader, List<BookInfo> bookInfos) {
         switch (loader.getId()) {
             case BooksLoader.BOOK_SEARCH_LOADER:
                 if (bookInfos != null && bookInfos.size() > 0) {
@@ -1084,7 +1088,7 @@ public class BookSearchActivity
      * @param loader The Loader that is being reset.
      */
     @Override
-    public void onLoaderReset(Loader<List<BookInfo>> loader) {
+    public void onLoaderReset(@NonNull Loader<List<BookInfo>> loader) {
         switch (loader.getId()) {
             case BooksLoader.BOOK_SEARCH_LOADER:
                 //Clearing the data from the Adapter hosted by the RecyclerViewFragment
@@ -1277,7 +1281,7 @@ public class BookSearchActivity
          *
          * @param activity is the Activity instantiating this Handler
          */
-        public NetworkErrorHandler(BookSearchActivity activity) {
+        NetworkErrorHandler(BookSearchActivity activity) {
             mActivity = new WeakReference<>(activity);
         }
 

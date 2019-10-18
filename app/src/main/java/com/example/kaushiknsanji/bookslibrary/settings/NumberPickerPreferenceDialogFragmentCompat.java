@@ -99,7 +99,7 @@ public class NumberPickerPreferenceDialogFragmentCompat extends PreferenceDialog
         super.onBindDialogView(view);
 
         //Retrieving the NumberPicker from the view
-        mNumberPicker = (NumberPicker) view.findViewById(R.id.pref_number_picker_id);
+        mNumberPicker = view.findViewById(R.id.pref_number_picker_id);
 
         //Throwing an exception when no NumberPicker is found
         if (mNumberPicker == null) {
@@ -108,8 +108,10 @@ public class NumberPickerPreferenceDialogFragmentCompat extends PreferenceDialog
         }
 
         //Setting the Min and Max values for the NumberPicker
-        mNumberPicker.setMaxValue(getArguments().getInt(NUMBER_PICKER_MAX_INT_KEY));
-        mNumberPicker.setMinValue(getArguments().getInt(NUMBER_PICKER_MIN_INT_KEY));
+        if (getArguments() != null) {
+            mNumberPicker.setMaxValue(getArguments().getInt(NUMBER_PICKER_MAX_INT_KEY));
+            mNumberPicker.setMinValue(getArguments().getInt(NUMBER_PICKER_MIN_INT_KEY));
+        }
 
         //Setting the Value of NumberPicker if previously set
         mNumberPicker.setValue(mNumberPickerValue > 0 ? mNumberPickerValue : getNumberPickerPreference().getValue());

@@ -27,6 +27,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Parcelable Model Class for holding the parsed data of the Books
@@ -201,16 +202,16 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the List of Authors
      *
-     * @param authors
+     * @param authors The List of Authors
      */
     public void setAuthors(String[] authors) {
         this.mAuthors = authors;
     }
 
     /**
-     * Setter method for the Publisher
+     * Setter method for the Publisher of the Book
      *
-     * @param publisher
+     * @param publisher The Publisher of the Book
      */
     public void setPublisher(String publisher) {
         this.mPublisher = publisher;
@@ -219,7 +220,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Published Date of the Book
      *
-     * @param publishedDateStr
+     * @param publishedDateStr The Published Date of the Book
      */
     public void setPublishedDateStr(String publishedDateStr) {
         this.mPublishedDateStr = publishedDateStr;
@@ -228,7 +229,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the list of Categories the Book belongs to
      *
-     * @param categories
+     * @param categories The list of Categories the Book belongs to
      */
     public void setCategories(String[] categories) {
         this.mCategories = categories;
@@ -237,7 +238,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the saleablility of the book in the User's region/IP
      *
-     * @param saleability
+     * @param saleability The saleablility of the book in the User's region/IP
      */
     public void setSaleability(String saleability) {
         this.mSaleability = saleability;
@@ -246,7 +247,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Description of the book
      *
-     * @param description
+     * @param description The Description of the book
      */
     public void setDescription(String description) {
         this.mDescription = description;
@@ -255,7 +256,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to Small Image of the Book
      *
-     * @param imageLinkSmall
+     * @param imageLinkSmall The link to Small Image of the Book
      */
     public void setImageLinkSmall(String imageLinkSmall) {
         this.mImageLinkSmall = imageLinkSmall;
@@ -264,7 +265,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to Large Image of the Book
      *
-     * @param imageLinkLarge
+     * @param imageLinkLarge The link to Large Image of the Book
      */
     public void setImageLinkLarge(String imageLinkLarge) {
         this.mImageLinkLarge = imageLinkLarge;
@@ -273,7 +274,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to Extra Large Image of the Book
      *
-     * @param imageLinkExtraLarge
+     * @param imageLinkExtraLarge The link to Extra Large Image of the Book
      */
     public void setImageLinkExtraLarge(String imageLinkExtraLarge) {
         this.mImageLinkExtraLarge = imageLinkExtraLarge;
@@ -282,7 +283,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the accessibility status details of the book
      *
-     * @param accessViewStatus
+     * @param accessViewStatus The accessibility status details of the book
      */
     public void setAccessViewStatus(String accessViewStatus) {
         this.mAccessViewStatus = accessViewStatus;
@@ -306,9 +307,9 @@ public class BookInfo implements Parcelable {
     }
 
     /**
-     * Setter method for Title
+     * Setter method for Title of the Book
      *
-     * @param title
+     * @param title The Title of the Book
      */
     public void setTitle(String title) {
         this.mTitle = title;
@@ -326,7 +327,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for SubTitle of the Book
      *
-     * @param subTitle
+     * @param subTitle The SubTitle of the Book
      */
     public void setSubTitle(String subTitle) {
         this.mSubTitle = subTitle;
@@ -376,7 +377,7 @@ public class BookInfo implements Parcelable {
     public String getPublishedDateInMediumFormat(String fallback) throws ParseException {
         if (!TextUtils.isEmpty(mPublishedDateStr)) {
             //Splitting the date to check for the existence of Year, Month and Date
-            String dateSplits[] = mPublishedDateStr.split("-");
+            String[] dateSplits = mPublishedDateStr.split("-");
 
             int noOfDateParts = dateSplits.length;
 
@@ -385,11 +386,11 @@ public class BookInfo implements Parcelable {
                 case 1: //When only the Year part is present
                     return mPublishedDateStr; //Returning the Year AS-IS
                 case 2: //When only the Year + Month part is present
-                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM")).parse(mPublishedDateStr);
+                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
                     //Returning the published date in the format like 'Jan, 2017'
-                    return (new SimpleDateFormat("MMM, yyyy")).format(yearMonthDate);
+                    return (new SimpleDateFormat("MMM, yyyy", Locale.getDefault())).format(yearMonthDate);
                 case 3: //When Complete date is present
-                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(mPublishedDateStr);
+                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
                     //Returning the published date in the format like 'Jan 01, 2017'
                     return DateFormat.getDateInstance(DateFormat.MEDIUM).format(parsedDate);
                 default:
@@ -415,7 +416,7 @@ public class BookInfo implements Parcelable {
     public String getPublishedDateInLongFormat(String fallback) throws ParseException {
         if (!TextUtils.isEmpty(mPublishedDateStr)) {
             //Splitting the date to check for the existence of Year, Month and Date
-            String dateSplits[] = mPublishedDateStr.split("-");
+            String[] dateSplits = mPublishedDateStr.split("-");
 
             int noOfDateParts = dateSplits.length;
 
@@ -424,11 +425,11 @@ public class BookInfo implements Parcelable {
                 case 1: //When only the Year part is present
                     return mPublishedDateStr; //Returning the Year AS-IS
                 case 2: //When only the Year + Month part is present
-                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM")).parse(mPublishedDateStr);
+                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
                     //Returning the published date in the format like 'January, 2017'
-                    return (new SimpleDateFormat("MMMM, yyyy")).format(yearMonthDate);
+                    return (new SimpleDateFormat("MMMM, yyyy", Locale.getDefault())).format(yearMonthDate);
                 case 3: //When Complete date is present
-                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(mPublishedDateStr);
+                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
                     //Returning the published date in the format like 'January 01, 2017'
                     return DateFormat.getDateInstance(DateFormat.LONG).format(parsedDate);
                 default:
@@ -453,7 +454,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Number of Pages in the Book
      *
-     * @param pageCount
+     * @param pageCount The Number of Pages in the Book
      */
     public void setPageCount(int pageCount) {
         this.mPageCount = pageCount;
@@ -472,7 +473,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method to store whether the Book is a Magazine or a Book
      *
-     * @param bookType
+     * @param bookType The Type of the Book like Magazine or a Book
      */
     public void setBookType(String bookType) {
         this.mBookType = bookType;
@@ -511,7 +512,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Book ratings
      *
-     * @param bookRatings
+     * @param bookRatings The Book's ratings
      */
     public void setBookRatings(float bookRatings) {
         this.mBookRatings = bookRatings;
@@ -529,7 +530,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Count of Ratings the Book has received
      *
-     * @param bookRatingCount
+     * @param bookRatingCount The count of Ratings the Book has received
      */
     public void setBookRatingCount(int bookRatingCount) {
         this.mBookRatingCount = bookRatingCount;
@@ -565,7 +566,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the List Price value of the Book
      *
-     * @param listPrice
+     * @param listPrice The List Price value of the Book
      */
     public void setListPrice(double listPrice) {
         this.mListPrice = listPrice;
@@ -583,7 +584,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the Retail Price value of the Book
      *
-     * @param retailPrice
+     * @param retailPrice The Retail Price value of the Book
      */
     public void setRetailPrice(double retailPrice) {
         this.mRetailPrice = retailPrice;
@@ -649,7 +650,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to Sample epub download of the Book
      *
-     * @param epubLink
+     * @param epubLink The link to Sample epub download of the Book
      */
     public void setEpubLink(String epubLink) {
         this.mEpubLink = epubLink;
@@ -667,7 +668,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to Sample pdf download of the Book
      *
-     * @param pdfLink
+     * @param pdfLink The link to Sample pdf download of the Book
      */
     public void setPdfLink(String pdfLink) {
         this.mPdfLink = pdfLink;
@@ -686,7 +687,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to web preview or info page
      *
-     * @param previewLink
+     * @param previewLink The link to web preview or info page
      */
     public void setPreviewLink(String previewLink) {
         this.mPreviewLink = previewLink;
@@ -736,7 +737,7 @@ public class BookInfo implements Parcelable {
     /**
      * Setter method for the link to buying page
      *
-     * @param buyLink
+     * @param buyLink The link to buying page
      */
     public void setBuyLink(String buyLink) {
         this.mBuyLink = buyLink;

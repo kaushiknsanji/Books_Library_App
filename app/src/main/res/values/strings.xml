@@ -219,6 +219,12 @@
     <!-- Subtitle Text shown for the Publisher section in the Book Details page [CHAR LIMIT=20]-->
     <string name="detail_publisher_section_subtitle">Published by</string>
 
+    <!-- Used for displaying the Publisher Text in the Publisher section of the Book Details page -->
+    <string name="detail_publisher_section_format" translatable="false">
+        <!--Output will be like 'Pottermore Publishing<NEW_LINE>(December 8, 2015)'-->
+        <xliff:g example="Pottermore Publishing" id="publisher_name">%1$s</xliff:g>\n(<xliff:g example="December 8, 2015" id="published_date_string">%2$s</xliff:g>)
+    </string>
+
     <!-- Subtitle Text shown for the Categories section in the Book Details page [CHAR LIMIT=20]-->
     <string name="detail_category_section_subtitle">Under Categories</string>
 
