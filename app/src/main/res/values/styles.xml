@@ -159,10 +159,25 @@
     <!-- Parent style for the Title and Author TextViews in the Book Details page -->
     <style name="BaseDetailTitleAuthorTextStyle">
         <item name="android:textColor">@android:color/black</item>
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:gravity">center</item>
+        <item name="layout_constrainedWidth">true</item>
+        <item name="android:layout_marginLeft">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="android:layout_marginRight">
+            @dimen/detail_title_author_content_side_margin
+        </item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
     </style>
 
     <!-- Child Style for the Title Content in the Book Details page -->
@@ -175,6 +190,7 @@
     <style name="DetailAuthorTextStyle" parent="BaseDetailTitleAuthorTextStyle">
         <item name="android:textSize">@dimen/detail_sub_content_text_size</item>
         <item name="android:maxLines">@integer/detail_author_text_max_lines</item>
+        <item name="android:layout_marginTop">@dimen/detail_content_margin_top</item>
     </style>
 
     <!-- Parent Style for the Content Text in the Book Details page -->
@@ -288,26 +304,6 @@
         <item name="android:layout_height">@dimen/detail_expand_collapse_anchor_size</item>
         <item name="android:visibility">gone</item>
         <item name="srcCompat">@drawable/ic_arrow_down</item>
-    </style>
-
-    <!-- Style used for the NestedScrollView that wraps the Title/Author TextViews
-    in the Book Details page -->
-    <style name="DetailTitleAuthorScrollWrapStyle">
-        <item name="android:layout_width">@dimen/match_constraint_0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fillViewport">true</item>
-        <item name="android:layout_marginLeft">
-            @dimen/detail_title_author_content_side_margin
-        </item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
-            @dimen/detail_title_author_content_side_margin
-        </item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
-            @dimen/detail_title_author_content_side_margin
-        </item>
-        <item name="android:layout_marginRight">
-            @dimen/detail_title_author_content_side_margin
-        </item>
     </style>
 
     <!-- ============================ -->

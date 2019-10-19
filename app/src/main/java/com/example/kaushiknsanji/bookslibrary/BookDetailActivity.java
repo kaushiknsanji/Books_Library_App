@@ -27,7 +27,6 @@ import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -95,10 +94,6 @@ public class BookDetailActivity extends AppCompatActivity
     private ImageView mTitleTextExpandImageView;
     private ImageView mAuthorTextExpandImageView;
 
-    //Storing references to the NestedScrollViews that wraps the Title/Author TextViews
-    private NestedScrollView mTitleTextScrollView;
-    private NestedScrollView mAuthorTextScrollView;
-
     //Storing the Links pointed to by the respective buttons, retrieved from the BookInfo data
     private String mEpubLink;
     private String mPdfLink;
@@ -129,10 +124,8 @@ public class BookDetailActivity extends AppCompatActivity
 
         //Retrieving the View Components: START
         mTitleTextView = findViewById(R.id.detail_title_text_id);
-        mTitleTextScrollView = findViewById(R.id.detail_title_text_scroll_id);
         mTitleTextExpandImageView = findViewById(R.id.detail_title_text_expand_img_id);
         mAuthorTextView = findViewById(R.id.detail_author_text_id);
-        mAuthorTextScrollView = findViewById(R.id.detail_author_text_scroll_id);
         mAuthorTextExpandImageView = findViewById(R.id.detail_author_text_expand_img_id);
         mBookRatingBar = findViewById(R.id.detail_ratingbar_id);
         mRatingCountTextView = findViewById(R.id.detail_rating_count_text_id);
@@ -601,13 +594,13 @@ public class BookDetailActivity extends AppCompatActivity
                 //For the Title TextView
                 //Expand/Collapse the Title TextView when clicked
                 toggleTextViewExpansion(mTitleTextView, getResources().getInteger(R.integer.detail_title_text_max_lines),
-                        mTitleTextExpandImageView, mTitleTextScrollView);
+                        mTitleTextExpandImageView);
                 break;
             case R.id.detail_author_text_id:
                 //For the Author TextView
                 //Expand/Collapse the Author TextView when clicked
                 toggleTextViewExpansion(mAuthorTextView, getResources().getInteger(R.integer.detail_author_text_max_lines),
-                        mAuthorTextExpandImageView, mAuthorTextScrollView);
+                        mAuthorTextExpandImageView);
                 break;
         }
     }
@@ -713,23 +706,22 @@ public class BookDetailActivity extends AppCompatActivity
      * @param textView                  is the TextView of either the Title Text or the Author Text
      * @param originalLineCount         is the Original MaxLine Count set for the TextViews
      * @param textExpandAnchorImageView is the Expand/Collapse ImageView anchor for the TextView passed
-     * @param textScrollView            is the {@link NestedScrollView} which is the parent of the TextView passed
      */
-    private void toggleTextViewExpansion(TextView textView, int originalLineCount, ImageView textExpandAnchorImageView, NestedScrollView textScrollView) {
+    private void toggleTextViewExpansion(TextView textView, int originalLineCount, ImageView textExpandAnchorImageView) {
         //Retrieving the Current Line count of the Text in the TextView
         int totalLineCount = textView.getLineCount();
 
         //Retrieving the Ellipse count for the entire Text
         int totalEllipseCount = getEllipseCountFromTextView(textView, totalLineCount);
 
-        //Retrieving the basic Layout Params of the NestedScrollView
-        ViewGroup.LayoutParams layoutParams = textScrollView.getLayoutParams();
+        //Retrieving the basic Layout Params of the TextView
+        ViewGroup.LayoutParams layoutParams = textView.getLayoutParams();
 
         if (totalEllipseCount == 0) {
             //Resetting to original state when it was previously expanded to show all the lines
             textView.setMaxLines(originalLineCount);
 
-            //Resetting the parent NestedScrollView height to WRAP_CONTENT
+            //Resetting the TextView height to WRAP_CONTENT
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
 
             //Rotating the Image Anchor from 180 to 0
@@ -740,12 +732,12 @@ public class BookDetailActivity extends AppCompatActivity
             //Setting to the expanded state to show all the lines
             textView.setMaxLines(Integer.MAX_VALUE);
 
-            //Retrieving the Max Height set for the parent NestedScrollView
-            int scrollContentMaxHeight = getResources().getDimensionPixelSize(R.dimen.detail_title_author_content_max_height);
+            //Retrieving the Max Height to be set for the TextView
+            int textFixedMaxHeight = getResources().getDimensionPixelSize(R.dimen.detail_title_author_content_max_height);
 
-            //Limiting the Height of the parent NestedScrollView when the content Height is more than the fixed Height
-            if (textView.getMeasuredHeight() > scrollContentMaxHeight) {
-                layoutParams.height = scrollContentMaxHeight; //Limiting to the fixed Height set
+            //Limiting the Height of the TextView when the content Height is more than the fixed Height
+            if (textView.getMeasuredHeight() > textFixedMaxHeight) {
+                layoutParams.height = textFixedMaxHeight; //Limiting to the fixed Height set
             }
 
             //Rotating the Image Anchor from 0 to 180
