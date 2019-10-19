@@ -65,7 +65,8 @@
             <TextView
                 android:id="@+id/list_item_title_text_id"
                 style="@style/BookTileTitleStyle"
-                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_width="wrap_content"
+                app:layout_constraintHorizontal_bias="0"
                 tools:text="Grief is the Thing with Feathers" />
 
             <RatingBar
@@ -200,8 +201,10 @@
             <TextView
                 android:id="@+id/list_item_categories_text_id"
                 style="@style/ConstraintCenterHorizontalStyle"
-                android:layout_width="@dimen/match_constraint_0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
                 android:layout_marginTop="@dimen/list_item_categories_text_margin_top"
                 android:drawableLeft="@drawable/ic_library"
                 android:drawablePadding="@dimen/list_item_drawable_padding"

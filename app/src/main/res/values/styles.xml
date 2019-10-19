@@ -418,10 +418,12 @@
     <!-- Parent Style for the Book Titles that appear in the List/Grid -->
     <style name="BookTileTitleStyle" parent="ConstraintTopCenterHorizontalStyle">
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">2</item>
         <item name="android:textSize">@dimen/list_grid_item_title_text_size</item>
+        <item name="layout_constrainedWidth">true</item>
     </style>
 
     <!-- Style for the List Price Text appearing the Book Tile of List/Grid views -->
