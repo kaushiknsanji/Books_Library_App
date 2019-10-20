@@ -277,12 +277,12 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<RecyclerGridAdapte
      */
     private void doSwapItemData(DiffUtil.DiffResult diffResult, @NonNull List<BookInfo> newBookInfos) {
         Log.d(LOG_TAG, "doSwapItemData: Started");
+        //Informing the adapter about the changes required, so that it triggers the notify accordingly
+        diffResult.dispatchUpdatesTo(this);
+
         //Clearing the Adapter's data to load the new list of BookInfo objects
         mBookInfoList.clear();
         mBookInfoList.addAll(newBookInfos);
-
-        //Informing the adapter about the changes required, so that it triggers the notify accordingly
-        diffResult.dispatchUpdatesTo(this);
 
         //Dispatching the Item Data Swap event to the listener
         mItemDataSwapListener.onItemDataSwapped();
