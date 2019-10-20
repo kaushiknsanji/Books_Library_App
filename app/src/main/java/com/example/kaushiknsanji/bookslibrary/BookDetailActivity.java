@@ -591,13 +591,15 @@ public class BookDetailActivity extends AppCompatActivity
                 }
                 break;
             case R.id.detail_title_text_id:
-                //For the Title TextView
+            case R.id.detail_title_text_expand_img_id:
+                //For the Title TextView and its expand image anchor
                 //Expand/Collapse the Title TextView when clicked
                 toggleTextViewExpansion(mTitleTextView, getResources().getInteger(R.integer.detail_title_text_max_lines),
                         mTitleTextExpandImageView);
                 break;
             case R.id.detail_author_text_id:
-                //For the Author TextView
+            case R.id.detail_author_text_expand_img_id:
+                //For the Author TextView and its expand image anchor
                 //Expand/Collapse the Author TextView when clicked
                 toggleTextViewExpansion(mAuthorTextView, getResources().getInteger(R.integer.detail_author_text_max_lines),
                         mAuthorTextExpandImageView);
@@ -657,8 +659,9 @@ public class BookDetailActivity extends AppCompatActivity
                             //Displaying the expand image anchor for the lengthy Title Text
                             mTitleTextExpandImageView.setVisibility(View.VISIBLE);
 
-                            //Registering the click listener on the Title TextView
+                            //Registering the click listener on the Title TextView and its expand image anchor
                             mTitleTextView.setOnClickListener(this);
+                            mTitleTextExpandImageView.setOnClickListener(this);
                         }
                         break;
                     case R.id.detail_author_text_id:
@@ -666,8 +669,9 @@ public class BookDetailActivity extends AppCompatActivity
                             //Displaying the expand image anchor for the lengthy Author Text
                             mAuthorTextExpandImageView.setVisibility(View.VISIBLE);
 
-                            //Registering the click listener on the Author TextView
+                            //Registering the click listener on the Author TextView and its expand image anchor
                             mAuthorTextView.setOnClickListener(this);
+                            mAuthorTextExpandImageView.setOnClickListener(this);
                         }
                         break;
                 }
