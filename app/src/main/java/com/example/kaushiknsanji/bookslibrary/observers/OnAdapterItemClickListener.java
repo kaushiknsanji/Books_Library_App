@@ -31,9 +31,10 @@ public interface OnAdapterItemClickListener {
     /**
      * Method invoked when an Item on the Adapter is clicked
      *
-     * @param itemBookInfo is the corresponding {@link BookInfo} object of the item view
+     * @param itemBookInfo is the corresponding {@link BookInfo} object of the Item view
      *                     clicked in the Adapter
+     * @param itemPosition is the adapter position of the corresponding Item view in the Adapter
      */
-    void onItemClick(BookInfo itemBookInfo);
+    void onItemClick(BookInfo itemBookInfo, int itemPosition);
 
 }

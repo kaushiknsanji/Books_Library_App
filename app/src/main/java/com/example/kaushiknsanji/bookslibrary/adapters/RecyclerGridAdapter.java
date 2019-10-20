@@ -391,7 +391,7 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<RecyclerGridAdapte
                 //Verifying the validity of the position before proceeding
 
                 //Propagating the call to the Listener with the selected Item's data
-                mItemClickListener.onItemClick(mBookInfoList.get(adapterPosition));
+                mItemClickListener.onItemClick(mBookInfoList.get(adapterPosition), adapterPosition);
             }
         }
     }

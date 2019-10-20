@@ -16,7 +16,6 @@
 
 package com.example.kaushiknsanji.bookslibrary.adapterviews;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -34,7 +33,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.kaushiknsanji.bookslibrary.BookDetailActivity;
 import com.example.kaushiknsanji.bookslibrary.R;
 import com.example.kaushiknsanji.bookslibrary.adapters.RecyclerGridAdapter;
 import com.example.kaushiknsanji.bookslibrary.adapters.RecyclerListAdapter;
@@ -58,8 +56,7 @@ import java.util.List;
  *
  * @author Kaushik N Sanji
  */
-public class RecyclerViewFragment extends Fragment
-        implements OnAdapterItemClickListener {
+public class RecyclerViewFragment extends Fragment {
 
     //Annotation constants that define the possible values for LayoutMode
     public static final int LIST_MODE = 0;
@@ -71,7 +68,7 @@ public class RecyclerViewFragment extends Fragment
     //Stores the reference to the RecyclerView inflated
     private RecyclerView mRecyclerView;
     //Stores the reference to the Listener OnPagerFragmentVerticalScrollListener
-    private OnPagerFragmentVerticalScrollListener mListener;
+    private OnPagerFragmentVerticalScrollListener mScrollListener;
 
     /**
      * Static constructor of the Fragment {@link RecyclerViewFragment}
@@ -101,14 +98,14 @@ public class RecyclerViewFragment extends Fragment
      * @param listener is the instance of the Activity implementing the {@link OnPagerFragmentVerticalScrollListener}
      */
     public void setOnPagerFragmentVerticalScrollListener(OnPagerFragmentVerticalScrollListener listener) {
-        mListener = listener;
+        mScrollListener = listener;
     }
 
     /**
      * Method that unregisters the {@link OnPagerFragmentVerticalScrollListener}
      */
     public void clearOnPagerFragmentVerticalScrollListener() {
-        mListener = null;
+        mScrollListener = null;
     }
 
     /**
@@ -170,9 +167,6 @@ public class RecyclerViewFragment extends Fragment
         //Initializing the Adapter for the Grid view
         RecyclerGridAdapter recyclerGridAdapter = new RecyclerGridAdapter(requireContext(), R.layout.books_grid_item, bookInfoList);
 
-        //Registering the OnAdapterItemClickListener on the Adapter
-        recyclerGridAdapter.setOnAdapterItemClickListener(this);
-
         //Setting the Adapter on the RecyclerView
         mRecyclerView.setAdapter(recyclerGridAdapter);
 
@@ -200,9 +194,6 @@ public class RecyclerViewFragment extends Fragment
 
         //Initializing the Adapter for the List view
         RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(requireContext(), R.layout.books_list_item, bookInfoList);
-
-        //Registering the OnAdapterItemClickListener on the Adapter
-        recyclerListAdapter.setOnAdapterItemClickListener(this);
 
         //Setting the Adapter on the RecyclerView
         mRecyclerView.setAdapter(recyclerListAdapter);
@@ -287,7 +278,7 @@ public class RecyclerViewFragment extends Fragment
      * to register the {@link OnAdapterItemDataSwapListener} on the Fragment position specified
      *
      * @param itemDataSwapListener is the instance of the Activity implementing the {@link OnAdapterItemDataSwapListener}
-     * @param position             is the Fragment position on which this Listener is to be Registered
+     * @param position             is the Fragment Tab position on which this Listener is to be Registered
      */
     public void registerItemDataSwapListener(@Nullable OnAdapterItemDataSwapListener itemDataSwapListener, int position) {
         //Retrieving the RecyclerView's Adapter
@@ -310,11 +301,46 @@ public class RecyclerViewFragment extends Fragment
      * Method exposed for the {@link com.example.kaushiknsanji.bookslibrary.BookSearchActivity}
      * to clear the {@link OnAdapterItemDataSwapListener} previously registered for the Fragment position specified
      *
-     * @param position is the Fragment position on which this Listener is to be Unregistered
+     * @param position is the Fragment Tab position on which this Listener is to be Unregistered
      */
     public void clearItemDataSwapListener(int position) {
         //Propagating the call to #registerItemDataSwapListener with null to unregister
         registerItemDataSwapListener(null, position);
+    }
+
+    /**
+     * Method exposed for the {@link com.example.kaushiknsanji.bookslibrary.BookSearchActivity}
+     * to register the {@link OnAdapterItemClickListener} on the Fragment position specified
+     *
+     * @param itemClickListener is the instance of the Activity implementing the {@link OnAdapterItemClickListener}
+     * @param position          is the Fragment Tab position on which this Listener is to be Registered
+     */
+    public void registerItemClickListener(@Nullable OnAdapterItemClickListener itemClickListener, int position) {
+        //Retrieving the RecyclerView's Adapter
+        RecyclerView.Adapter adapter = mRecyclerView.getAdapter();
+        //Registering the listener on the corresponding adapter based on the Fragment position passed
+        if (position == LIST_MODE) {
+            //When the Fragment position is of the LIST_MODE Fragment
+
+            RecyclerListAdapter listAdapter = (RecyclerListAdapter) adapter;
+            listAdapter.setOnAdapterItemClickListener(itemClickListener);
+        } else if (position == GRID_MODE) {
+            //When the Fragment position is of the GRID_MODE Fragment
+
+            RecyclerGridAdapter gridAdapter = (RecyclerGridAdapter) adapter;
+            gridAdapter.setOnAdapterItemClickListener(itemClickListener);
+        }
+    }
+
+    /**
+     * Method exposed for the {@link com.example.kaushiknsanji.bookslibrary.BookSearchActivity}
+     * to clear the {@link OnAdapterItemClickListener} previously registered for the Fragment position specified
+     *
+     * @param position is the Fragment Tab position on which this Listener is to be Unregistered
+     */
+    public void clearItemClickListener(int position) {
+        //Propagating the call to #registerItemClickListener with null to unregister
+        registerItemClickListener(null, position);
     }
 
     /**
@@ -355,20 +381,6 @@ public class RecyclerViewFragment extends Fragment
         List<BookInfo> bookInfos = new ArrayList<>();
         //Calling the Adapter's method to clear the data
         swapAdapterData(bookInfos);
-    }
-
-    /**
-     * Method invoked when an Item on the Adapter is clicked
-     *
-     * @param itemBookInfo is the corresponding {@link BookInfo} object of the item view
-     *                     clicked in the Adapter
-     */
-    @Override
-    public void onItemClick(BookInfo itemBookInfo) {
-        //Passing the selected Item's data as an Intent to the BookDetailActivity
-        Intent itemIntent = new Intent(getActivity(), BookDetailActivity.class);
-        itemIntent.putExtra(BookDetailActivity.BOOK_INFO_ITEM_STR_KEY, itemBookInfo);
-        startActivity(itemIntent);
     }
 
     //Defining the LayoutMode IntDef annotation with Retention only at SOURCE
@@ -479,7 +491,7 @@ public class RecyclerViewFragment extends Fragment
         @Override
         public void onBottomReached(int verticalScrollAmount) {
             //Propagating the call to the listener OnPagerFragmentVerticalScrollListener
-            mListener.onBottomReached(verticalScrollAmount);
+            mScrollListener.onBottomReached(verticalScrollAmount);
         }
     }
 

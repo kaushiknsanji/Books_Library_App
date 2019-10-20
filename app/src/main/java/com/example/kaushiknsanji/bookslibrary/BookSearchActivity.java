@@ -56,6 +56,7 @@ import com.example.kaushiknsanji.bookslibrary.cache.BitmapImageCache;
 import com.example.kaushiknsanji.bookslibrary.dialogs.NetworkErrorDialogFragment;
 import com.example.kaushiknsanji.bookslibrary.dialogs.PaginationNumberPickerDialogFragment;
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
+import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemClickListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemDataSwapListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnPagerFragmentVerticalScrollListener;
 import com.example.kaushiknsanji.bookslibrary.providers.RecentBookSearchProvider;
@@ -81,7 +82,7 @@ public class BookSearchActivity
         LoaderManager.LoaderCallbacks<List<BookInfo>>,
         OnAdapterItemDataSwapListener, OnPagerFragmentVerticalScrollListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
-        OnClickListener {
+        OnAdapterItemClickListener, OnClickListener {
 
     //Constant used for logs
     private static final String LOG_TAG = BookSearchActivity.class.getSimpleName();
@@ -731,11 +732,13 @@ public class BookSearchActivity
             //(AdapterViews for the ViewPager will be available only at this point during the initial launch)
 
             //Retrieving the current ViewPager position
-            int position = mViewPager.getCurrentItem();
+            int tabPosition = mViewPager.getCurrentItem();
             //Retrieving the current RecyclerViewFragment
-            RecyclerViewFragment fragment = getFragmentByPositionFromViewPager(position);
+            RecyclerViewFragment fragment = getFragmentByPositionFromViewPager(tabPosition);
             //Registering the OnAdapterItemDataSwapListener
-            fragment.registerItemDataSwapListener(this, position);
+            fragment.registerItemDataSwapListener(this, tabPosition);
+            //Registering the OnAdapterItemClickListener
+            fragment.registerItemClickListener(this, tabPosition);
             //Registering the OnPagerFragmentVerticalScrollListener
             fragment.setOnPagerFragmentVerticalScrollListener(this);
         }
@@ -912,6 +915,8 @@ public class BookSearchActivity
             RecyclerViewFragment fragment = getFragmentByPositionFromViewPager(newPosition);
             //Registering the OnAdapterItemDataSwapListener for the current tab
             fragment.registerItemDataSwapListener(this, newPosition);
+            //Registering the OnAdapterItemClickListener for the current tab
+            fragment.registerItemClickListener(this, newPosition);
             //Registering the OnPagerFragmentVerticalScrollListener for the current tab
             fragment.setOnPagerFragmentVerticalScrollListener(this);
 
@@ -949,6 +954,8 @@ public class BookSearchActivity
 
         //Unregistering the OnAdapterItemDataSwapListener on this tab unselected
         fragment.clearItemDataSwapListener(oldPosition);
+        //Unregistering the OnAdapterItemClickListener on this tab unselected
+        fragment.clearItemClickListener(oldPosition);
         //Unregistering the OnPagerFragmentVerticalScrollListener on this tab unselected
         fragment.clearOnPagerFragmentVerticalScrollListener();
     }
@@ -1264,6 +1271,24 @@ public class BookSearchActivity
             dialogFragment.show(fragmentManager, NetworkErrorDialogFragment.DIALOG_FRAGMENT_TAG);
         }
 
+    }
+
+    /**
+     * Method invoked when an Item on the Adapter is clicked
+     *
+     * @param itemBookInfo is the corresponding {@link BookInfo} object of the Item view
+     *                     clicked in the Adapter
+     * @param itemPosition is the adapter position of the corresponding Item view in the Adapter
+     */
+    @Override
+    public void onItemClick(BookInfo itemBookInfo, int itemPosition) {
+        //Passing the selected Item's data as an Intent to the BookDetailActivity
+        Intent itemIntent = new Intent(this, BookDetailActivity.class);
+        itemIntent.putExtra(BookDetailActivity.BOOK_INFO_ITEM_STR_KEY, itemBookInfo);
+        startActivity(itemIntent);
+
+        //Save the Adapter Item View position
+        mVisibleItemViewPosition = itemPosition;
     }
 
     /**

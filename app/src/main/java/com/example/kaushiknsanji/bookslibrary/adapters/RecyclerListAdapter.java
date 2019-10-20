@@ -422,7 +422,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
                 //Verifying the validity of the position before proceeding
 
                 //Propagating the call to the Listener with the selected Item's data
-                mItemClickListener.onItemClick(mBookInfoList.get(adapterPosition));
+                mItemClickListener.onItemClick(mBookInfoList.get(adapterPosition), adapterPosition);
             }
         }
     }
