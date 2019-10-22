@@ -449,6 +449,9 @@ public class BookSearchActivity
 
             //Clearing any pending callbacks/messages sent to the Network Error Handler
             mNetworkErrorHandler.removeCallbacksAndMessages(null);
+
+            //Clearing the Bitmap Memory Cache when the activity is finishing
+            BitmapImageCache.clearCache();
         }
 
     }
