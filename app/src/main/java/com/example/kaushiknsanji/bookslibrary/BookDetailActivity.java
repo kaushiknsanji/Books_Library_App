@@ -208,17 +208,9 @@ public class BookDetailActivity extends AppCompatActivity
         generateBookImageIntent(itemBookInfo.getImageLinkForBookImageInfo());
         //Updating the Pages Information
         updatePagesInfo(itemBookInfo.getPageCount(), itemBookInfo.getBookType());
-
-        //Updating the Publisher Text: START
-        String publishedDateStr = "";
-        try {
-            publishedDateStr = itemBookInfo.getPublishedDateInLongFormat(getString(R.string.no_published_date_default_text));
-        } catch (ParseException e) {
-            Log.e(LOG_TAG, "Error occurred while parsing and formatting the Published date", e);
-        }
-        updatePublisher(itemBookInfo.getPublisher(getString(R.string.no_publisher_found_default_text)), publishedDateStr);
-        //Updating the Publisher Text: END
-
+        //Updating the Publisher Text
+        updatePublisher(itemBookInfo.getPublisher(getString(R.string.no_publisher_found_default_text)),
+                itemBookInfo.getPublishedDateInLongFormat(getString(R.string.no_published_date_default_text)));
         //Updating the Category Text
         updateCategory(itemBookInfo.getCategories(getString(R.string.no_categories_found_default_text)));
         //Updating the Description Text

@@ -17,6 +17,7 @@
 package com.example.kaushiknsanji.bookslibrary.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -44,9 +45,23 @@ import com.example.kaushiknsanji.bookslibrary.utils.TextAppearanceUtility;
 import com.example.kaushiknsanji.bookslibrary.workers.BooksDiffLoader;
 import com.example.kaushiknsanji.bookslibrary.workers.ImageDownloaderFragment;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_AUTHORS_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_CATEGORIES_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_DISCOUNTED_BOOL_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_FOR_SALE_BOOL_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_IMAGE_LINK_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_LIST_PRICE_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_PAGE_COUNT_INT_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_PUBLISHED_DATE_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_PUBLISHER_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_RATING_COUNT_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_RATING_FLOAT_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_RETAIL_PRICE_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_TITLE_STR_KEY;
+import static com.example.kaushiknsanji.bookslibrary.utils.BooksDiffUtility.PAYLOAD_BOOK_TYPE_STR_KEY;
 
 /**
  * Adapter Class of the RecyclerView whose layout 'R.layout.books_list_item' is inflated by
@@ -97,7 +112,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         mBookInfoList = bookInfos;
 
         //Saving an instance of the font face for the Book Title
-        mTitleTextTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/garamond_bold.ttf");
+        mTitleTextTypeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/garamond_bold.ttf");
     }
 
     /**
@@ -144,7 +159,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Inflating the item Layout view
         //Passing False as we are attaching the View ourselves
-        View itemView = LayoutInflater.from(getContext()).inflate(mLayoutRes, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(mLayoutRes, parent, false);
 
         //Instantiating the ViewHolder to initialize the reference to the view components in the item layout
         //and returning the same
@@ -156,109 +171,110 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
      * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
      * position.
      *
-     * @param viewHolder The ViewHolder which should be updated to represent the contents of the
+     * @param holder The ViewHolder which should be updated to represent the contents of the
      *                   item at the given position in the data set.
      * @param position   The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Retrieving the BookInfo object at the current item position
         BookInfo bookInfo = mBookInfoList.get(position);
 
-        //Retrieving the Context
-        Context context = getContext();
+        //Binding the item view with the data at the position
+        holder.bind(position, bookInfo);
+    }
 
-        //Populating the data onto the Template View using the BookInfo object: START
-
-        //Updating the Book Image if link is present
-        String imageURLStr = bookInfo.getImageLinkForItemInfo();
-        if (!TextUtils.isEmpty(imageURLStr)) {
-            //Loading the Image when link is present
-            ImageDownloaderFragment
-                    .newInstance(((FragmentActivity) getContext()).getSupportFragmentManager(), position)
-                    .executeAndUpdate(viewHolder.bookImageView,
-                            imageURLStr,
-                            position);
+    /**
+     * Called by RecyclerView to display the data at the specified position. This method
+     * should update the contents of the {@link ViewHolder#itemView} to reflect the item at
+     * the given position.
+     *
+     * @param holder   The ViewHolder which should be updated to represent the contents of the
+     *                 item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     * @param payloads A non-null list of merged payloads. Can be empty list if requires full
+     */
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            //Calling to Super when there is no payload
+            super.onBindViewHolder(holder, position, payloads);
         } else {
-            //Resetting to the default Book image when link is absent
-            viewHolder.bookImageView.setImageResource(R.drawable.ic_book);
-        }
+            //When Payloads are present
 
-        //Updating the Title
-        viewHolder.titleTextView.setText(bookInfo.getTitle());
-        //Setting the Title font
-        viewHolder.titleTextView.setTypeface(mTitleTextTypeface);
+            //Retrieving the Bundle from the payload
+            Bundle bundle = (Bundle) payloads.get(0);
 
-        //Updating the Authors
-        viewHolder.authorTextView.setText(bookInfo.getAuthors(context.getString(R.string.no_authors_found_default_text)));
+            //Getting the Resources instance
+            Resources resources = holder.itemView.getResources();
 
-        //Updating the Publisher
-        viewHolder.publisherTextView.setText(bookInfo.getPublisher(context.getString(R.string.no_publisher_found_default_text)));
-
-        //Updating the Published Date : START
-        String publishedDateStr = "";
-        try {
-            publishedDateStr = bookInfo.getPublishedDateInMediumFormat(context.getString(R.string.no_published_date_default_text));
-        } catch (ParseException e) {
-            Log.e(LOG_TAG, "Error occurred while parsing and formatting the Published date", e);
-        } finally {
-            viewHolder.publishedDateTextView.setText(publishedDateStr);
-        }
-        //Updating the Published Date : END
-
-        //Updating the Count of Pages and the Book Type
-        int pageCount = bookInfo.getPageCount();
-        String bookTypeStr = bookInfo.getBookType();
-        viewHolder.pagesTextView.setText(context.getString(R.string.pages_book_type, pageCount, bookTypeStr));
-
-        //Updating the Categories
-        viewHolder.categoriesTextView.setText(bookInfo.getCategories(context.getString(R.string.no_categories_found_default_text)));
-
-        //Updating the Book's Ratings
-        viewHolder.bookRatingBarView.setRating(bookInfo.getBookRatings());
-
-        //Updating the Count of Ratings
-        viewHolder.ratingCountTextView.setText(bookInfo.getBookRatingCount());
-
-        //Updating the Price of the Book : START
-        //Ensuring that the view components are visible
-        if (viewHolder.listPriceTextView.getVisibility() == View.GONE) {
-            viewHolder.listPriceTextView.setVisibility(View.VISIBLE);
-        }
-        if (viewHolder.retailPriceTextView.getVisibility() == View.GONE) {
-            viewHolder.retailPriceTextView.setVisibility(View.VISIBLE);
-        }
-
-        if (bookInfo.isForSale()) {
-            //When the book is FOR SALE in the user's locale, then the prices will be available
-            if (bookInfo.isDiscounted()) {
-                //When the price is discounted
-
-                //Setting the List Price with the Strikethrough Text
-                TextAppearanceUtility.setStrikethroughText(viewHolder.listPriceTextView, bookInfo.getListPrice());
-                //Setting the Retail Price
-                viewHolder.retailPriceTextView.setText(bookInfo.getRetailPrice());
-            } else {
-                //When both the List price and Retail price are same
-
-                //Hiding the List price field as there is no discount to be shown
-                viewHolder.listPriceTextView.setVisibility(View.GONE);
-
-                //Setting the Retail Price
-                viewHolder.retailPriceTextView.setText(bookInfo.getRetailPrice());
+            for (String keyStr : bundle.keySet()) {
+                switch (keyStr) {
+                    case PAYLOAD_BOOK_IMAGE_LINK_STR_KEY:
+                        Log.d(LOG_TAG, "onBindViewHolder: Payload - image: " + bundle.getString(keyStr));
+                        Log.d(LOG_TAG, "onBindViewHolder: Payload - position: " + position);
+                        //Updating the Image
+                        holder.updateBookImage(bundle.getString(keyStr), position);
+                        break;
+                    case PAYLOAD_BOOK_TITLE_STR_KEY:
+                        //Updating the Title
+                        holder.updateBookTitle(bundle.getString(keyStr));
+                        break;
+                    case PAYLOAD_BOOK_AUTHORS_STR_KEY:
+                        //Updating the Authors
+                        String authors = bundle.getString(keyStr);
+                        holder.updateBookAuthors(
+                                TextUtils.isEmpty(authors) ? resources.getString(R.string.no_authors_found_default_text) : authors
+                        );
+                        break;
+                    case PAYLOAD_BOOK_PUBLISHER_STR_KEY:
+                        //Updating the Publisher
+                        String publisher = bundle.getString(keyStr);
+                        holder.updateBookPublisher(
+                                TextUtils.isEmpty(publisher) ? resources.getString(R.string.no_publisher_found_default_text) : publisher
+                        );
+                        break;
+                    case PAYLOAD_BOOK_PUBLISHED_DATE_STR_KEY:
+                        //Updating the Published Date
+                        String publishedDate = bundle.getString(keyStr);
+                        holder.updateBookPublishedDate(
+                                TextUtils.isEmpty(publishedDate) ? resources.getString(R.string.no_published_date_default_text) : publishedDate
+                        );
+                        break;
+                    case PAYLOAD_BOOK_PAGE_COUNT_INT_KEY:
+                        //Updating the Count of Pages and the Book Type
+                        holder.updateBookPageCountType(
+                                bundle.getInt(keyStr),
+                                bundle.getString(PAYLOAD_BOOK_TYPE_STR_KEY)
+                        );
+                        break;
+                    case PAYLOAD_BOOK_CATEGORIES_STR_KEY:
+                        //Updating the Categories
+                        String categories = bundle.getString(keyStr);
+                        holder.updateBookCategories(
+                                TextUtils.isEmpty(categories) ? resources.getString(R.string.no_categories_found_default_text) : categories
+                        );
+                        break;
+                    case PAYLOAD_BOOK_RATING_FLOAT_KEY:
+                        //Updating the Book's Ratings
+                        holder.updateBookRatings(bundle.getFloat(keyStr));
+                        break;
+                    case PAYLOAD_BOOK_RATING_COUNT_STR_KEY:
+                        //Updating the Count of Ratings
+                        holder.updateBookRatingCount(bundle.getString(keyStr));
+                        break;
+                    case PAYLOAD_BOOK_FOR_SALE_BOOL_KEY:
+                        //Updating the Price of the Book
+                        holder.updateBookPrice(
+                                bundle.getBoolean(keyStr),
+                                bundle.getBoolean(PAYLOAD_BOOK_DISCOUNTED_BOOL_KEY),
+                                bundle.getString(PAYLOAD_BOOK_LIST_PRICE_STR_KEY),
+                                bundle.getString(PAYLOAD_BOOK_RETAIL_PRICE_STR_KEY)
+                        );
+                        break;
+                }
             }
-        } else {
-            //Updating with a default message when the book is NOT FOR SALE
-
-            //Hiding the Retail Price field as the book is NOT FOR SALE
-            viewHolder.retailPriceTextView.setVisibility(View.GONE);
-
-            //Setting the List Price field with the default message
-            viewHolder.listPriceTextView.setText(context.getString(R.string.not_for_sale_price_text));
         }
-        //Updating the Price of the Book : END
-
-        //Populating the data onto the Template View using the BookInfo object: END
     }
 
     /**
@@ -425,5 +441,185 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
                 mItemClickListener.onItemClick(mBookInfoList.get(adapterPosition), adapterPosition);
             }
         }
+
+        /**
+         * Method that binds the views with the data at the position {@code bookInfo}
+         *
+         * @param position The position of the Item in the list
+         * @param bookInfo The {@link BookInfo} data of the Book item at the {@code position}
+         */
+        void bind(int position, BookInfo bookInfo) {
+            Log.d(LOG_TAG, "bind: position " + position);
+            //Retrieving the Resources instance
+            Resources resources = itemView.getResources();
+
+            //Updating the Book Image if link is present
+            updateBookImage(bookInfo.getImageLinkForItemInfo(), position);
+
+            //Updating the Title
+            updateBookTitle(bookInfo.getTitle());
+
+            //Updating the Authors
+            updateBookAuthors(bookInfo.getAuthors(resources.getString(R.string.no_authors_found_default_text)));
+
+            //Updating the Publisher
+            updateBookPublisher(bookInfo.getPublisher(resources.getString(R.string.no_publisher_found_default_text)));
+
+            //Updating the Published Date
+            updateBookPublishedDate(bookInfo.getPublishedDateInMediumFormat(resources.getString(R.string.no_published_date_default_text)));
+
+            //Updating the Count of Pages and the Book Type
+            updateBookPageCountType(bookInfo.getPageCount(), bookInfo.getBookType());
+
+            //Updating the Categories
+            updateBookCategories(bookInfo.getCategories(resources.getString(R.string.no_categories_found_default_text)));
+
+            //Updating the Book's Ratings
+            updateBookRatings(bookInfo.getBookRatings());
+
+            //Updating the Count of Ratings
+            updateBookRatingCount(bookInfo.getBookRatingCount());
+
+            //Updating the Price of the Book
+            updateBookPrice(bookInfo.isForSale(), bookInfo.isDiscounted(), bookInfo.getListPrice(), bookInfo.getRetailPrice());
+        }
+
+        /**
+         * Method that updates the Book Image if link is present.
+         *
+         * @param imageLinkForItemInfo The Link for the Image to download the Bitmap from
+         * @param position             The position of the Book Item in the list
+         */
+        void updateBookImage(String imageLinkForItemInfo, int position) {
+            Log.d(LOG_TAG, "updateBookImage: Link: " + imageLinkForItemInfo + " position: " + position);
+            ImageDownloaderFragment
+                    .newInstance(((FragmentActivity) bookImageView.getContext()).getSupportFragmentManager(), position)
+                    .executeAndUpdate(bookImageView,
+                            imageLinkForItemInfo,
+                            position);
+        }
+
+        /**
+         * Method that updates the Book Title.
+         *
+         * @param title The Title of the Book
+         */
+        void updateBookTitle(String title) {
+            //Setting the Title
+            titleTextView.setText(title);
+            //Setting the Title font
+            titleTextView.setTypeface(mTitleTextTypeface);
+        }
+
+        /**
+         * Method that updates the Book's Authors.
+         *
+         * @param authors The String list of Book's Authors
+         */
+        void updateBookAuthors(String authors) {
+            authorTextView.setText(authors);
+        }
+
+        /**
+         * Method that updates the publisher of the Book.
+         *
+         * @param publisher The Publisher of the Book
+         */
+        void updateBookPublisher(String publisher) {
+            publisherTextView.setText(publisher);
+        }
+
+        /**
+         * Method that updates the Published Date of the Book.
+         *
+         * @param publishedDateStr The Published Date of the Book
+         */
+        void updateBookPublishedDate(String publishedDateStr) {
+            publishedDateTextView.setText(publishedDateStr);
+        }
+
+        /**
+         * Method that updates the Number of Pages and the Type of Book.
+         *
+         * @param pageCount The Number of Pages of the Book
+         * @param bookType  The Type of Book which says whether the Book is a Magazine or a Book
+         */
+        void updateBookPageCountType(int pageCount, String bookType) {
+            pagesTextView.setText(itemView.getResources().getString(R.string.pages_book_type, pageCount, bookType));
+        }
+
+        /**
+         * Method that updates the Categories of the Book.
+         *
+         * @param categories The String list of Categories of the Book
+         */
+        void updateBookCategories(String categories) {
+            categoriesTextView.setText(categories);
+        }
+
+        /**
+         * Method that updates the Book's Ratings.
+         *
+         * @param bookRatings The Float value of the Book's ratings
+         */
+        void updateBookRatings(float bookRatings) {
+            bookRatingBarView.setRating(bookRatings);
+        }
+
+        /**
+         * Method that updates the Count of Ratings the Book has received.
+         *
+         * @param bookRatingCount String value of the Count of Ratings the Book has received
+         */
+        void updateBookRatingCount(String bookRatingCount) {
+            ratingCountTextView.setText(bookRatingCount);
+        }
+
+        /**
+         * Method that updates the Price of the Book and its saleability.
+         *
+         * @param isForSale    Boolean that says whether the Book is For Sale or not in the User's Locale
+         * @param isDiscounted Boolean that says whether the Book price is discounted or not
+         * @param listPrice    String value of the List Price of the Book
+         * @param retailPrice  String value of the Retail Price of the Book
+         */
+        void updateBookPrice(boolean isForSale, boolean isDiscounted, String listPrice, String retailPrice) {
+            //Ensuring that the view components are visible
+            if (listPriceTextView.getVisibility() == View.GONE) {
+                listPriceTextView.setVisibility(View.VISIBLE);
+            }
+            if (retailPriceTextView.getVisibility() == View.GONE) {
+                retailPriceTextView.setVisibility(View.VISIBLE);
+            }
+
+            if (isForSale) {
+                //When the book is FOR SALE in the user's locale, then the prices will be available
+                if (isDiscounted) {
+                    //When the price is discounted
+
+                    //Setting the List Price with the Strikethrough Text
+                    TextAppearanceUtility.setStrikethroughText(listPriceTextView, listPrice);
+                    //Setting the Retail Price
+                    retailPriceTextView.setText(retailPrice);
+                } else {
+                    //When both the List price and Retail price are same
+
+                    //Hiding the List price field as there is no discount to be shown
+                    listPriceTextView.setVisibility(View.GONE);
+
+                    //Setting the Retail Price
+                    retailPriceTextView.setText(retailPrice);
+                }
+            } else {
+                //Updating with a default message when the book is NOT FOR SALE
+
+                //Hiding the Retail Price field as the book is NOT FOR SALE
+                retailPriceTextView.setVisibility(View.GONE);
+
+                //Setting the List Price field with the default message
+                listPriceTextView.setText(itemView.getResources().getString(R.string.not_for_sale_price_text));
+            }
+        }
+
     }
 }

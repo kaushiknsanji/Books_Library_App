@@ -368,35 +368,49 @@ public class BookInfo implements Parcelable {
      * Method that prepares and returns the Published date of the Book (in Medium format)
      *
      * @param fallback is the default fallback string that will be returned when no date is available
-     *                 throws {@link ParseException}
      * @return String containing the Published date in the format
      * <br/> 'MMM dd, yyyy' when complete date information is available
      * <br/> 'MMM, yyyy' when only the month & year information is available
      * <br/> 'yyyy' when only the year information is available
      */
-    public String getPublishedDateInMediumFormat(String fallback) throws ParseException {
+    public String getPublishedDateInMediumFormat(String fallback) {
         if (!TextUtils.isEmpty(mPublishedDateStr)) {
             //Splitting the date to check for the existence of Year, Month and Date
             String[] dateSplits = mPublishedDateStr.split("-");
-
             int noOfDateParts = dateSplits.length;
 
-            //Returning the formatted date based on what is present in the date received
-            switch (noOfDateParts) {
-                case 1: //When only the Year part is present
-                    return mPublishedDateStr; //Returning the Year AS-IS
-                case 2: //When only the Year + Month part is present
-                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
-                    //Returning the published date in the format like 'Jan, 2017'
-                    return (new SimpleDateFormat("MMM, yyyy", Locale.getDefault())).format(yearMonthDate);
-                case 3: //When Complete date is present
-                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
-                    //Returning the published date in the format like 'Jan 01, 2017'
-                    return DateFormat.getDateInstance(DateFormat.MEDIUM).format(parsedDate);
-                default:
-                    //Returning default fallback string when no date is available
-                    return fallback;
+            //Stores the formatted date
+            String formattedDateStr;
+
+            try {
+                //Saving the formatted date based on what is present in the date received
+                switch (noOfDateParts) {
+                    case 1: //When only the Year part is present
+                        formattedDateStr = mPublishedDateStr; //Saving the Year AS-IS
+                        break;
+                    case 2: //When only the Year + Month part is present
+                        Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
+                        //Saving the published date in the format like 'Jan, 2017'
+                        formattedDateStr = (new SimpleDateFormat("MMM, yyyy", Locale.getDefault())).format(yearMonthDate);
+                        break;
+                    case 3: //When Complete date is present
+                        Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
+                        //Saving the published date in the format like 'Jan 01, 2017'
+                        formattedDateStr = DateFormat.getDateInstance(DateFormat.MEDIUM).format(parsedDate);
+                        break;
+                    default:
+                        //Saving default fallback string when no date is available
+                        formattedDateStr = fallback;
+                        break;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                //Saving default fallback string on error
+                formattedDateStr = fallback;
             }
+
+            //Returning the formatted date
+            return formattedDateStr;
         }
 
         //Returning default fallback string when no date is available
@@ -407,35 +421,49 @@ public class BookInfo implements Parcelable {
      * Method that prepares and returns the Published date of the Book (in Long format)
      *
      * @param fallback is the default fallback string that will be returned when no date is available
-     *                 throws {@link ParseException}
      * @return String containing the Published date in the format
      * <br/> 'MMMM dd, yyyy' when complete date information is available
      * <br/> 'MMMM, yyyy' when only the month & year information is available
      * <br/> 'yyyy' when only the year information is available
      */
-    public String getPublishedDateInLongFormat(String fallback) throws ParseException {
+    public String getPublishedDateInLongFormat(String fallback) {
         if (!TextUtils.isEmpty(mPublishedDateStr)) {
             //Splitting the date to check for the existence of Year, Month and Date
             String[] dateSplits = mPublishedDateStr.split("-");
-
             int noOfDateParts = dateSplits.length;
 
-            //Returning the formatted date based on what is present in the date received
-            switch (noOfDateParts) {
-                case 1: //When only the Year part is present
-                    return mPublishedDateStr; //Returning the Year AS-IS
-                case 2: //When only the Year + Month part is present
-                    Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
-                    //Returning the published date in the format like 'January, 2017'
-                    return (new SimpleDateFormat("MMMM, yyyy", Locale.getDefault())).format(yearMonthDate);
-                case 3: //When Complete date is present
-                    Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
-                    //Returning the published date in the format like 'January 01, 2017'
-                    return DateFormat.getDateInstance(DateFormat.LONG).format(parsedDate);
-                default:
-                    //Returning default fallback string when no date is available
-                    return fallback;
+            //Stores the formatted date
+            String formattedDateStr;
+
+            try {
+                //Saving the formatted date based on what is present in the date received
+                switch (noOfDateParts) {
+                    case 1: //When only the Year part is present
+                        formattedDateStr = mPublishedDateStr; //Saving the Year AS-IS
+                        break;
+                    case 2: //When only the Year + Month part is present
+                        Date yearMonthDate = (new SimpleDateFormat("yyyy-MM", Locale.getDefault())).parse(mPublishedDateStr);
+                        //Saving the published date in the format like 'January, 2017'
+                        formattedDateStr = (new SimpleDateFormat("MMMM, yyyy", Locale.getDefault())).format(yearMonthDate);
+                        break;
+                    case 3: //When Complete date is present
+                        Date parsedDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())).parse(mPublishedDateStr);
+                        //Saving the published date in the format like 'January 01, 2017'
+                        formattedDateStr = DateFormat.getDateInstance(DateFormat.LONG).format(parsedDate);
+                        break;
+                    default:
+                        //Saving default fallback string when no date is available
+                        formattedDateStr = fallback;
+                        break;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                //Saving default fallback string on error
+                formattedDateStr = fallback;
             }
+
+            //Returning the formatted date
+            return formattedDateStr;
         }
 
         //Returning default fallback string when no date is available

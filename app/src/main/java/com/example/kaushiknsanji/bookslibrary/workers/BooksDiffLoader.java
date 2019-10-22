@@ -77,7 +77,7 @@ public class BooksDiffLoader extends AsyncTaskLoader<DiffUtil.DiffResult> {
         //Instantiating the DiffUtil for difference computation
         BooksDiffUtility booksDiffUtility = new BooksDiffUtility(mOldBookInfoList, mNewBookInfoList);
         //Computing the Difference and returning the result
-        return DiffUtil.calculateDiff(booksDiffUtility);
+        return DiffUtil.calculateDiff(booksDiffUtility, false);
     }
 
     /**
