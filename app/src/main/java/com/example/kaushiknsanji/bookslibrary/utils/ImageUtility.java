@@ -22,8 +22,6 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.kaushiknsanji.bookslibrary.cache.BitmapImageCache;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -96,11 +94,6 @@ public class ImageUtility {
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Error occurred while closing the Image Input Stream\n", e);
                 }
-            }
-
-            //Adding the Bitmap to Memory Cache if generated
-            if (bitmap != null) {
-                BitmapImageCache.addBitmapToCache(imageURLStr, bitmap);
             }
         }
 

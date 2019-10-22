@@ -17,14 +17,18 @@
 package com.example.kaushiknsanji.bookslibrary.workers;
 
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.example.kaushiknsanji.bookslibrary.R;
@@ -83,44 +87,122 @@ public class ImageDownloaderFragment extends Fragment
      * if necessary
      *
      * @param imageView   The ImageView Component on which the Image needs to be updated
-     * @param imageURLStr String containing the Image URL whose Image needs to be downloaded and updated
+     * @param imageURLStr String containing the Image URL whose Image needs to be downloaded and updated. Can be {@code null}.
      * @param loaderId    Integer identifier used while creating this Fragment
      */
-    public void executeAndUpdate(ImageView imageView, String imageURLStr, int loaderId) {
+    public void executeAndUpdate(ImageView imageView, @Nullable String imageURLStr, int loaderId) {
+        //Delegating to other overloaded method with the derived instance for LoaderManager
+        executeAndUpdate(imageView, imageURLStr, loaderId, obtainLoaderManager(imageView));
+    }
+
+    /**
+     * Method that loads the Image from Memory Cache or downloads the Image from the URL passed
+     * if necessary
+     *
+     * @param imageView   The ImageView Component on which the Image needs to be updated
+     * @param imageURLStr String containing the Image URL whose Image needs to be downloaded and updated. Can be {@code null}.
+     * @param loaderId    Integer identifier used while creating this Fragment
+     * @param loaderManager Instance of {@link LoaderManager} to use for downloading the image
+     */
+    public void executeAndUpdate(ImageView imageView, @Nullable String imageURLStr, int loaderId, LoaderManager loaderManager) {
         //Saving the parameters passed
         mImageView = imageView;
         mImageURLStr = imageURLStr;
 
-        //Looking up for the Image in Memory Cache for the given URL
-        Bitmap bitmap = BitmapImageCache.getBitmapFromCache(mImageURLStr);
-        if (bitmap != null) {
-            //When Bitmap image was present in Memory Cache, update the ImageView
-            mImageView.setImageBitmap(bitmap);
-        } else {
-            //Resetting the ImageView to the default Book Image for lazy loading
-            mImageView.setImageResource(R.drawable.ic_book);
-
-            //Starting the download when Bitmap image is not available from Memory Cache: START
-            LoaderManager loaderManager = ((FragmentActivity) mImageView.getContext()).getSupportLoaderManager();
-            boolean isNewImageURLStr = false; //Boolean to check if we need to restart the loader
-            Loader<Bitmap> loader = loaderManager.getLoader(loaderId); //Getting the loader at the loaderId
-            if (loader instanceof ImageDownloader) {
-                //Validating the loader and casting to ImageDownloader
-                ImageDownloader imageDownloader = (ImageDownloader) loader;
-                //Checking for inequality of the Image URL with the one from the loader
-                isNewImageURLStr = !mImageURLStr.equals(imageDownloader.getImageURLStr());
-            }
-
-            if (isNewImageURLStr) {
-                //Restarting the Loader when the ImageURL is new
-                loaderManager.restartLoader(loaderId, null, this);
-            } else {
-                //Invoking the Loader AS-IS if the ImageURL is the same
-                //or if the Loader is not yet registered with the loaderId passed
-                loaderManager.initLoader(loaderId, null, this);
-            }
-            //Starting the download when Bitmap image is not available from Memory Cache: END
+        if (loaderManager == null) {
+            //When we do not have the LoaderManager instance for downloading the Image
+            //throw a Runtime Exception
+            throw new IllegalStateException("LoaderManager is not attached.");
         }
+
+        //Retrieving the loader at the loaderId if any
+        ImageDownloader imageDownloader = getImageDownloader(loaderId, loaderManager);
+
+        //Resetting the ImageView to the default Book Image for lazy loading
+        mImageView.setImageResource(R.drawable.ic_book);
+
+        //Boolean to check if we need to restart the loader
+        boolean isNewImageURLStr = false;
+        if (imageDownloader != null) {
+            //When we have a previously registered loader
+
+            //Setting the Loader to be restarted when the Image URL passed is
+            //not the same as that of the loader
+            isNewImageURLStr = !TextUtils.equals(mImageURLStr, imageDownloader.getImageURLStr());
+        }
+
+        if (isNewImageURLStr) {
+            //Restarting the Loader when the ImageURL is new
+            loaderManager.restartLoader(loaderId, null, this);
+        } else {
+            //Invoking the Loader AS-IS if the ImageURL is the same
+            //or if the Loader is not yet registered with the loaderId passed
+            loaderManager.initLoader(loaderId, null, this);
+        }
+
+    }
+
+    /**
+     * Method that returns the instance of the {@link ImageDownloader} for the
+     * Loader Id {@code loaderId} passed.
+     *
+     * @param loaderId      The Id of the Loader whose Loader instance needs to be looked up
+     * @param loaderManager Instance of {@link LoaderManager}
+     * @return Instance of {@link ImageDownloader} if found; else {@code null}
+     */
+    @Nullable
+    private ImageDownloader getImageDownloader(int loaderId, LoaderManager loaderManager) {
+        //Getting the loader at the loaderId
+        Loader<Bitmap> loader = loaderManager.getLoader(loaderId);
+        if (loader instanceof ImageDownloader) {
+            //Returning the ImageDownloader instance
+            return (ImageDownloader) loader;
+        } else {
+            //Returning NULL when not found
+            return null;
+        }
+    }
+
+    /**
+     * Method that retrieves the {@link FragmentActivity} instance required
+     * for obtaining the {@link LoaderManager} instance.
+     *
+     * @param context The {@link Context} to retrieve the Activity from.
+     * @return Instance of the {@link FragmentActivity} is any; else {@code null}
+     */
+    @Nullable
+    private FragmentActivity obtainActivity(@Nullable Context context) {
+        if (context == null) {
+            //Return Null when Null
+            return null;
+        } else if (context instanceof FragmentActivity) {
+            //Return the FragmentActivity instance when Context is of type FragmentActivity
+            return (FragmentActivity) context;
+        } else if (context instanceof ContextWrapper) {
+            //Recall with the Base Context when Context is of type ContextWrapper
+            return obtainActivity(((ContextWrapper) context).getBaseContext());
+        }
+        //Returning Null when we could not derive the Activity instance from the given Context
+        return null;
+    }
+
+    /**
+     * Method that retrieves the {@link LoaderManager} instance for the given view {@code imageView}
+     *
+     * @param imageView The {@link ImageView} to retrieve the {@link LoaderManager} from.
+     * @return Instance of {@link LoaderManager} when the {@link FragmentActivity} was derivable
+     * from {@code imageView}; else {@code null}
+     */
+    @Nullable
+    private LoaderManager obtainLoaderManager(ImageView imageView) {
+        //Obtaining the Activity from the ImageView
+        FragmentActivity activity = obtainActivity(imageView.getContext());
+        if (activity != null) {
+            //When we have the Activity, return the LoaderManager instance
+            return activity.getSupportLoaderManager();
+        }
+        //Returning Null when Activity could not be derived from ImageView
+        return null;
     }
 
     /**

@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -56,19 +55,13 @@ public class BookImageActivity extends AppCompatActivity {
 
         //Loading the Image to be shown from the Intent received
         Intent bookImageIntent = getIntent();
-        String imageLinkForBookImageInfo = bookImageIntent.getStringExtra(BOOK_INFO_ITEM_IMAGE_STR_KEY);
-        if (!TextUtils.isEmpty(imageLinkForBookImageInfo)) {
-            //Loading the Image when link is present
-            ImageDownloaderFragment
-                    .newInstance(getSupportFragmentManager(), bookImageView.getId())
-                    .executeAndUpdate(bookImageView,
-                            imageLinkForBookImageInfo,
-                            bookImageView.getId());
-        } else {
-            //Resetting to the default Book image when link is absent
-            //(This case can only occur if there is a problem with network connectivity)
-            bookImageView.setImageResource(R.drawable.ic_book);
-        }
+
+        //Loading the Image when link is present
+        ImageDownloaderFragment
+                .newInstance(getSupportFragmentManager(), bookImageView.getId())
+                .executeAndUpdate(bookImageView,
+                        bookImageIntent.getStringExtra(BOOK_INFO_ITEM_IMAGE_STR_KEY),
+                        bookImageView.getId());
 
     }
 

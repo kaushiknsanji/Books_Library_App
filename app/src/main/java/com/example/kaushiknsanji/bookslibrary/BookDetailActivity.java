@@ -30,7 +30,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +44,6 @@ import android.widget.Toast;
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
 import com.example.kaushiknsanji.bookslibrary.utils.TextAppearanceUtility;
 import com.example.kaushiknsanji.bookslibrary.workers.ImageDownloaderFragment;
-
-import java.text.ParseException;
 
 /**
  * Activity class that displays the {@link BookInfo} Item data selected in the List/Grid View.
@@ -417,17 +414,12 @@ public class BookDetailActivity extends AppCompatActivity
      *                               retrieved from the Item's {@link BookInfo} Object
      */
     private void updateBookImage(String imageLinkForDetailInfo) {
-        if (!TextUtils.isEmpty(imageLinkForDetailInfo)) {
-            //Loading the Image when link is present
-            ImageDownloaderFragment
-                    .newInstance(this.getSupportFragmentManager(), mBookImageView.getId())
-                    .executeAndUpdate(mBookImageView,
-                            imageLinkForDetailInfo,
-                            mBookImageView.getId());
-        } else {
-            //Resetting to the default Book image when link is absent
-            mBookImageView.setImageResource(R.drawable.ic_book);
-        }
+        //Loading the Image when link is present
+        ImageDownloaderFragment
+                .newInstance(this.getSupportFragmentManager(), mBookImageView.getId())
+                .executeAndUpdate(mBookImageView,
+                        imageLinkForDetailInfo,
+                        mBookImageView.getId());
     }
 
     /**
