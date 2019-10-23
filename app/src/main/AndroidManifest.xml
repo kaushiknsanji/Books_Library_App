@@ -15,7 +15,9 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kaushiknsanji.bookslibrary">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.kaushiknsanji.bookslibrary"
+    android:installLocation="auto">
 
     <!-- Permission for access to Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -34,12 +36,10 @@
         <activity
             android:name=".BookSearchActivity"
             android:launchMode="singleTop">
-
             <!-- Launch Mode is SingleTop as this is also a Searchable Activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <!-- Defining the Searchable Configuration of the Searchable Activity -->
@@ -52,7 +52,8 @@
         <activity
             android:name=".settings.SearchSettingsActivity"
             android:label="@string/search_settings_title_str"
-            android:parentActivityName=".BookSearchActivity">
+            android:parentActivityName=".BookSearchActivity"
+            tools:targetApi="jelly_bean">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -67,7 +68,8 @@
             android:name=".BookDetailActivity"
             android:label="@string/book_detail_title_str"
             android:launchMode="singleTop"
-            android:parentActivityName=".BookSearchActivity">
+            android:parentActivityName=".BookSearchActivity"
+            tools:targetApi="jelly_bean">
 
             <!-- Launch Mode is SingleTop to retain the Intent data sent by its Parent -->
             <intent-filter>
@@ -84,7 +86,8 @@
         <activity
             android:name=".BookImageActivity"
             android:label="@string/book_image_title_str"
-            android:parentActivityName=".BookDetailActivity">
+            android:parentActivityName=".BookDetailActivity"
+            tools:targetApi="jelly_bean">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -98,7 +101,8 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/about_title_str"
-            android:parentActivityName=".BookSearchActivity">
+            android:parentActivityName=".BookSearchActivity"
+            tools:targetApi="jelly_bean">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -107,6 +111,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BookSearchActivity" />
         </activity>
+
+        <!-- Launcher Activity as alias to BookSearchActivity -->
+        <activity-alias
+            android:name=".LauncherActivity"
+            android:targetActivity=".BookSearchActivity" />
 
         <!-- Provider for the Recent Search Suggestions -->
         <provider
