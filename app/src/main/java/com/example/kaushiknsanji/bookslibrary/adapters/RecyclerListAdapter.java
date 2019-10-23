@@ -29,7 +29,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ import com.example.kaushiknsanji.bookslibrary.R;
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemClickListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemDataSwapListener;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 import com.example.kaushiknsanji.bookslibrary.utils.TextAppearanceUtility;
 import com.example.kaushiknsanji.bookslibrary.workers.BooksDiffLoader;
 import com.example.kaushiknsanji.bookslibrary.workers.ImageDownloaderFragment;
@@ -211,8 +211,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
             for (String keyStr : bundle.keySet()) {
                 switch (keyStr) {
                     case PAYLOAD_BOOK_IMAGE_LINK_STR_KEY:
-                        Log.d(LOG_TAG, "onBindViewHolder: Payload - image: " + bundle.getString(keyStr));
-                        Log.d(LOG_TAG, "onBindViewHolder: Payload - position: " + position);
                         //Updating the Image
                         holder.updateBookImage(bundle.getString(keyStr), position);
                         break;
@@ -315,7 +313,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
      * @param newBookInfos is the new list of {@link BookInfo} objects which is the Dataset of the Adapter
      */
     private void doSwapItemData(DiffUtil.DiffResult diffResult, @NonNull List<BookInfo> newBookInfos) {
-        Log.d(LOG_TAG, "doSwapItemData: Started");
+        Logger.d(LOG_TAG, "doSwapItemData: Started");
         //Informing the adapter about the changes required, so that it triggers the notify accordingly
         diffResult.dispatchUpdatesTo(this);
 
@@ -449,7 +447,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
          * @param bookInfo The {@link BookInfo} data of the Book item at the {@code position}
          */
         void bind(int position, BookInfo bookInfo) {
-            Log.d(LOG_TAG, "bind: position " + position);
             //Retrieving the Resources instance
             Resources resources = itemView.getResources();
 
@@ -491,7 +488,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
          * @param position             The position of the Book Item in the list
          */
         void updateBookImage(String imageLinkForItemInfo, int position) {
-            Log.d(LOG_TAG, "updateBookImage: Link: " + imageLinkForItemInfo + " position: " + position);
             ImageDownloaderFragment
                     .newInstance(((FragmentActivity) bookImageView.getContext()).getSupportFragmentManager(), position)
                     .executeAndUpdate(bookImageView,

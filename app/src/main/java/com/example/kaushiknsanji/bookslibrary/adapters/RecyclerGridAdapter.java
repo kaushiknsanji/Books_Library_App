@@ -29,7 +29,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ import com.example.kaushiknsanji.bookslibrary.R;
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemClickListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemDataSwapListener;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 import com.example.kaushiknsanji.bookslibrary.utils.TextAppearanceUtility;
 import com.example.kaushiknsanji.bookslibrary.workers.BooksDiffLoader;
 import com.example.kaushiknsanji.bookslibrary.workers.ImageDownloaderFragment;
@@ -280,7 +280,7 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<RecyclerGridAdapte
      * @param newBookInfos is the new list of {@link BookInfo} objects which is the Dataset of the Adapter
      */
     private void doSwapItemData(DiffUtil.DiffResult diffResult, @NonNull List<BookInfo> newBookInfos) {
-        Log.d(LOG_TAG, "doSwapItemData: Started");
+        Logger.d(LOG_TAG, "doSwapItemData: Started");
         //Informing the adapter about the changes required, so that it triggers the notify accordingly
         diffResult.dispatchUpdatesTo(this);
 

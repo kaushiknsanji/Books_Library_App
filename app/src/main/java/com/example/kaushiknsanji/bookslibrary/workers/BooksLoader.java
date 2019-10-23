@@ -22,12 +22,12 @@ import android.net.Uri;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.kaushiknsanji.bookslibrary.R;
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
 import com.example.kaushiknsanji.bookslibrary.utils.BookClientPaginationUtility;
 import com.example.kaushiknsanji.bookslibrary.utils.BookClientUtility;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 import com.example.kaushiknsanji.bookslibrary.utils.NetworkUtility;
 import com.example.kaushiknsanji.bookslibrary.utils.PreferencesObserverUtility;
 
@@ -90,7 +90,7 @@ public class BooksLoader extends AsyncTaskLoader<List<BookInfo>> {
             //Preparing the URL for the Search Query
             URL searchURL = createURL(BookClientUtility.VOL_BASE_URL, mSearchQueryStr,
                     PreferencesObserverUtility.getPreferenceKeysToExclude(context));
-            Log.d(LOG_TAG, "loadInBackground: searchURL " + searchURL);
+            Logger.d(LOG_TAG, "loadInBackground: searchURL " + searchURL);
 
             //Executing the Search and extracting the Book volumes returned
             List<BookInfo> bookInfos = BookClientUtility.searchAndExtractVolumes(searchURL);
@@ -128,7 +128,7 @@ public class BooksLoader extends AsyncTaskLoader<List<BookInfo>> {
                             lastPageIndex); //updating the 'endIndex'
                     prefEditor.apply(); //Applying the changes
 
-                    Log.d(LOG_TAG, "loadInBackground: lastPageIndex updated to " + lastPageIndex);
+                    Logger.d(LOG_TAG, "loadInBackground: lastPageIndex updated to " + lastPageIndex);
                 }
 
             }
@@ -333,7 +333,7 @@ public class BooksLoader extends AsyncTaskLoader<List<BookInfo>> {
         try {
             urlObject = new URL(uriBuilder.toString());
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error occurred while forming the URL\n", e);
+            Logger.e(LOG_TAG, "Error occurred while forming the URL\n", e);
         }
 
         //Returning the URL Object formed

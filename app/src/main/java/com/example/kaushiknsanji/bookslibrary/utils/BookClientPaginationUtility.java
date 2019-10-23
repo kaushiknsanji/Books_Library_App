@@ -16,8 +16,6 @@
 
 package com.example.kaushiknsanji.bookslibrary.utils;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +78,7 @@ public class BookClientPaginationUtility {
         try {
             jsonResponse = BookClientUtility.makeHttpGetRequest(urlObject);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while closing the URL Stream\n", e);
+            Logger.e(LOG_TAG, "Error occurred while closing the URL Stream\n", e);
         }
 
         //If the response received is null or empty, then return the value of lastPageIndex
@@ -136,7 +134,7 @@ public class BookClientPaginationUtility {
             }
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Error occurred while parsing the JSON Response\n", e);
+            Logger.e(LOG_TAG, "Error occurred while parsing the JSON Response\n", e);
         }
 
         //Returning the evaluated lastPageIndex for the search query

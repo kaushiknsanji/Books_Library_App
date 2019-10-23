@@ -20,7 +20,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -76,11 +75,11 @@ public class ImageUtility {
                 bitmap = getSampledBitmapImage(imageInputStream);
             } else {
                 //When the response is not OK(200), then log the error code
-                Log.e(LOG_TAG, "HTTP Request to Image URL failed with the code " + urlConnection.getResponseCode());
+                Logger.e(LOG_TAG, "HTTP Request to Image URL failed with the code " + urlConnection.getResponseCode());
             }
 
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while opening connection to the Image URL\n", e);
+            Logger.e(LOG_TAG, "Error occurred while opening connection to the Image URL\n", e);
         } finally {
             if (urlConnection != null) {
                 //Disconnecting in the end if the connection was established
@@ -92,7 +91,7 @@ public class ImageUtility {
                 try {
                     imageInputStream.close();
                 } catch (IOException e) {
-                    Log.e(LOG_TAG, "Error occurred while closing the Image Input Stream\n", e);
+                    Logger.e(LOG_TAG, "Error occurred while closing the Image Input Stream\n", e);
                 }
             }
         }
@@ -227,7 +226,7 @@ public class ImageUtility {
             imageByteArray = byteArrayOutputStream.toByteArray();
 
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while reading the Image Stream\n", e);
+            Logger.e(LOG_TAG, "Error occurred while reading the Image Stream\n", e);
             return null; //Returning Null on Error
 
         } finally {
@@ -235,14 +234,14 @@ public class ImageUtility {
             try {
                 byteArrayOutputStream.close();
             } catch (IOException e) {
-                Log.e(LOG_TAG, "Error occurred while closing the ByteArrayOutputStream after writing the image to a Byte array\n", e);
+                Logger.e(LOG_TAG, "Error occurred while closing the ByteArrayOutputStream after writing the image to a Byte array\n", e);
             }
 
             //Closing the BufferedInputStream
             try {
                 bufferedImageInputStream.close();
             } catch (IOException e) {
-                Log.e(LOG_TAG, "Error occurred while closing the BufferedInputStream of the Image InputStream\n", e);
+                Logger.e(LOG_TAG, "Error occurred while closing the BufferedInputStream of the Image InputStream\n", e);
             }
         }
 
@@ -269,7 +268,7 @@ public class ImageUtility {
         try {
             imageURL = new URL(imageURLStr);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error occurred while creating the URL from Image URL String\n", e);
+            Logger.e(LOG_TAG, "Error occurred while creating the URL from Image URL String\n", e);
         }
 
         //Returning the URL formed

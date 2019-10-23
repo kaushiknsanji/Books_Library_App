@@ -28,7 +28,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +40,7 @@ import com.example.kaushiknsanji.bookslibrary.observers.BaseRecyclerViewScrollLi
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemClickListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemDataSwapListener;
 import com.example.kaushiknsanji.bookslibrary.observers.OnPagerFragmentVerticalScrollListener;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -349,7 +349,7 @@ public class RecyclerViewFragment extends Fragment {
      * @param bookInfos List of {@link BookInfo} objects to be loaded into the Adapter
      */
     public void loadNewData(List<BookInfo> bookInfos) {
-        Log.d(LOG_TAG, "loadNewData: Started");
+        Logger.d(LOG_TAG, "loadNewData: Started");
         //Calling the Adapter's method to Load the new data
         swapAdapterData(bookInfos);
     }
@@ -363,11 +363,11 @@ public class RecyclerViewFragment extends Fragment {
         RecyclerView.Adapter adapter = mRecyclerView.getAdapter();
         //Calling the respective method from the Adapter to load & display the new data accordingly
         if (adapter instanceof RecyclerListAdapter) {
-            Log.d(LOG_TAG, "swapAdapterData: Started for List");
+            Logger.d(LOG_TAG, "swapAdapterData: Started for List");
             RecyclerListAdapter listAdapter = (RecyclerListAdapter) adapter;
             listAdapter.swapItemData(bookInfos);
         } else if (adapter instanceof RecyclerGridAdapter) {
-            Log.d(LOG_TAG, "swapAdapterData: Started for Grid");
+            Logger.d(LOG_TAG, "swapAdapterData: Started for Grid");
             RecyclerGridAdapter gridAdapter = (RecyclerGridAdapter) adapter;
             gridAdapter.swapItemData(bookInfos);
         }

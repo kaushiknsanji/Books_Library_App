@@ -38,7 +38,6 @@ import android.support.v7.widget.SearchView;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +60,7 @@ import com.example.kaushiknsanji.bookslibrary.observers.OnAdapterItemDataSwapLis
 import com.example.kaushiknsanji.bookslibrary.observers.OnPagerFragmentVerticalScrollListener;
 import com.example.kaushiknsanji.bookslibrary.providers.RecentBookSearchProvider;
 import com.example.kaushiknsanji.bookslibrary.settings.SearchSettingsActivity;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 import com.example.kaushiknsanji.bookslibrary.utils.PreferencesObserverUtility;
 import com.example.kaushiknsanji.bookslibrary.utils.TextAppearanceUtility;
 import com.example.kaushiknsanji.bookslibrary.workers.BooksLoader;
@@ -137,7 +137,7 @@ public class BookSearchActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "onCreate: Started");
+        Logger.d(LOG_TAG, "onCreate: Started");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -422,7 +422,7 @@ public class BookSearchActivity
     //Called by the Activity when it is prepared to be shown
     @Override
     protected void onResume() {
-        Log.d(LOG_TAG, "onResume: Started");
+        Logger.d(LOG_TAG, "onResume: Started");
         super.onResume();
 
         //Registering the Listener on TabLayout
@@ -584,8 +584,8 @@ public class BookSearchActivity
         int endIndex = mPreferences.getInt(getString(R.string.pref_page_to_display_max_value_key),
                 startIndex);
 
-        Log.d(LOG_TAG, "updatePaginationButtonsState: startIndex " + startIndex);
-        Log.d(LOG_TAG, "updatePaginationButtonsState: endIndex " + endIndex);
+        Logger.d(LOG_TAG, "updatePaginationButtonsState: startIndex " + startIndex);
+        Logger.d(LOG_TAG, "updatePaginationButtonsState: endIndex " + endIndex);
 
         if (startIndex == endIndex && startIndex != 1) {
             //When the last page is reached
@@ -599,7 +599,7 @@ public class BookSearchActivity
             mPagePreviousButton.setEnabled(true);
             mPageMoreButton.setEnabled(true);
 
-            Log.d(LOG_TAG, "updatePaginationButtonsState: last buttons disabled");
+            Logger.d(LOG_TAG, "updatePaginationButtonsState: last buttons disabled");
 
 
         }
@@ -613,7 +613,7 @@ public class BookSearchActivity
             mPagePreviousButton.setEnabled(false);
             mPageMoreButton.setEnabled(false);
 
-            Log.d(LOG_TAG, "updatePaginationButtonsState: all buttons disabled");
+            Logger.d(LOG_TAG, "updatePaginationButtonsState: all buttons disabled");
 
 
         } else if (startIndex != endIndex && startIndex == 1) {
@@ -628,7 +628,7 @@ public class BookSearchActivity
             mPageLastButton.setEnabled(true);
             mPageNextButton.setEnabled(true);
 
-            Log.d(LOG_TAG, "updatePaginationButtonsState: first buttons disabled");
+            Logger.d(LOG_TAG, "updatePaginationButtonsState: first buttons disabled");
 
 
         } else if (startIndex != endIndex) {
@@ -639,7 +639,7 @@ public class BookSearchActivity
             mPageLastButton.setEnabled(true);
             mPageNextButton.setEnabled(true);
 
-            Log.d(LOG_TAG, "updatePaginationButtonsState: all buttons enabled");
+            Logger.d(LOG_TAG, "updatePaginationButtonsState: all buttons enabled");
 
         }
 
@@ -702,7 +702,7 @@ public class BookSearchActivity
     //and initializes the SearchView for Assisted Search
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(LOG_TAG, "onCreateOptionsMenu: Started");
+        Logger.d(LOG_TAG, "onCreateOptionsMenu: Started");
 
         //Inflating the Menu options from menu_main.xml
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -892,7 +892,7 @@ public class BookSearchActivity
      */
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        Log.d(LOG_TAG, "onTabSelected: Started");
+        Logger.d(LOG_TAG, "onTabSelected: Started");
 
         //Fix added to correct the Position pointed by the ViewPager: START
         //(Directly touching the tab instead of swiping can result in this)
@@ -926,7 +926,7 @@ public class BookSearchActivity
             //Displaying the Progress Bar
             toggleProgressBarVisibility(View.VISIBLE);
 
-            Log.d(LOG_TAG, "onTabSelected: reloading loader");
+            Logger.d(LOG_TAG, "onTabSelected: reloading loader");
             //Reloading the result of the Search previously executed
             getSupportLoaderManager().initLoader(BooksLoader.BOOK_SEARCH_LOADER, null, this);
         }
@@ -1004,7 +1004,7 @@ public class BookSearchActivity
                     //Loading the data to the RecyclerViewFragment when present
                     RecyclerViewFragment fragment = getCurrentFragmentFromViewPager();
                     fragment.loadNewData(bookInfos);
-                    Log.d(LOG_TAG, "onLoadFinished: data loaded by - " + fragment);
+                    Logger.d(LOG_TAG, "onLoadFinished: data loaded by - " + fragment);
                 } else {
                     //When the data returned is NULL or Empty
                     BooksLoader booksLoader = (BooksLoader) loader;
@@ -1044,7 +1044,7 @@ public class BookSearchActivity
                                 startIndex);
 
                         if (startIndex == 1 && endIndex == startIndex && lastViewedPageIndex == startIndex) {
-                            Log.d(LOG_TAG, "onLoadFinished: No data, All index is currently at " + startIndex);
+                            Logger.d(LOG_TAG, "onLoadFinished: No data, All index is currently at " + startIndex);
                             //When all page index says 1, it means no result has been generated for the new query executed
 
                             //Displaying the No Page Result in such cases
@@ -1073,7 +1073,7 @@ public class BookSearchActivity
                                 Toast.makeText(this, getString(R.string.restoring_page_msg, lastViewedPageIndex, startIndex), Toast.LENGTH_SHORT).show();
                             }
 
-                            Log.d(LOG_TAG, "onLoadFinished: Restoring page " + lastViewedPageIndex + " from " + startIndex);
+                            Logger.d(LOG_TAG, "onLoadFinished: Restoring page " + lastViewedPageIndex + " from " + startIndex);
 
                             //Opening the Editor to restore the value of last viewed page index to 'Page to Display' setting
                             SharedPreferences.Editor prefEditor = mPreferences.edit();
@@ -1161,7 +1161,7 @@ public class BookSearchActivity
      */
     @Override
     public void onBottomReached(int verticalScrollAmount) {
-        Log.d(LOG_TAG, "onBottomReached: verticalScrollAmount: " + verticalScrollAmount);
+        Logger.d(LOG_TAG, "onBottomReached: verticalScrollAmount: " + verticalScrollAmount);
         View paginationPanelView = findViewById(R.id.pagination_panel_id);
         if (verticalScrollAmount > 0) {
             //Displaying the Pagination Panel when the scroll

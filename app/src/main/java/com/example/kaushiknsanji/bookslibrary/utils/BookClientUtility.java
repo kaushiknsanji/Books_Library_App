@@ -16,8 +16,6 @@
 
 package com.example.kaushiknsanji.bookslibrary.utils;
 
-import android.util.Log;
-
 import com.example.kaushiknsanji.bookslibrary.models.BookInfo;
 
 import org.json.JSONArray;
@@ -65,7 +63,7 @@ public class BookClientUtility {
         try {
             jsonResponse = makeHttpGetRequest(urlObject);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while closing the URL Stream\n", e);
+            Logger.e(LOG_TAG, "Error occurred while closing the URL Stream\n", e);
         }
 
         //If the response received is null or empty, then return as NULL
@@ -243,7 +241,7 @@ public class BookClientUtility {
             }
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Error occurred while parsing the JSON Response\n", e);
+            Logger.e(LOG_TAG, "Error occurred while parsing the JSON Response\n", e);
         }
 
         //Returning the list of {@link BookInfo} objects parsed
@@ -277,11 +275,11 @@ public class BookClientUtility {
                 jsonResponse = readStream(urlConnectionInputStream);
             } else {
                 //When the response is not OK(200), then log the error code
-                Log.e(LOG_TAG, "HTTP GET Request failed with the code " + urlConnection.getResponseCode());
+                Logger.e(LOG_TAG, "HTTP GET Request failed with the code " + urlConnection.getResponseCode());
             }
 
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while opening connection to URL\n", e);
+            Logger.e(LOG_TAG, "Error occurred while opening connection to URL\n", e);
         } finally {
 
             if (urlConnection != null) {
@@ -319,7 +317,7 @@ public class BookClientUtility {
                 responseBuilder.append(readStr);
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error occurred while reading the response stream\n", e);
+            Logger.e(LOG_TAG, "Error occurred while reading the response stream\n", e);
             //resetting the StringBuilder to empty string
             responseBuilder.delete(0, responseBuilder.length());
         }

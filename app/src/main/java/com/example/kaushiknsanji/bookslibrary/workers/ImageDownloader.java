@@ -21,10 +21,10 @@ import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.kaushiknsanji.bookslibrary.cache.BitmapImageCache;
 import com.example.kaushiknsanji.bookslibrary.utils.ImageUtility;
+import com.example.kaushiknsanji.bookslibrary.utils.Logger;
 import com.example.kaushiknsanji.bookslibrary.utils.NetworkUtility;
 
 /**
@@ -92,7 +92,7 @@ public class ImageDownloader extends AsyncTaskLoader<Bitmap> {
                     }
                 }
             } catch (Exception e) {
-                Log.e(LOG_TAG, "loadInBackground: Failed while downloading the bitmap for the URL "
+                Logger.e(LOG_TAG, "loadInBackground: Failed while downloading the bitmap for the URL "
                         + mImageURLStr, e);
             }
         }
