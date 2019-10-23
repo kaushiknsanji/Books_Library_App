@@ -15,7 +15,9 @@
   -->
 
 <resources>
-    <!-- Used in the Book Detail Activity for landscape orientation only -->
+    <!-- ============================ -->
+    <!-- FOR THE BOOK DETAIL ACTIVITY -->
+    <!-- ============================ -->
     <dimen name="detail_book_image_margin_top">12dp</dimen>
     <dimen name="detail_info_content_margin_left">12dp</dimen>
 </resources>

@@ -83,6 +83,9 @@
     <dimen name="detail_buttons_text_size">15sp</dimen>
     <dimen name="detail_buy_button_padding">6dp</dimen>
     <dimen name="detail_expand_collapse_anchor_size">24dp</dimen>
+    <!-- Used for landscape orientation only -->
+    <dimen name="detail_book_image_margin_top">0dp</dimen>
+    <dimen name="detail_info_content_margin_left">0dp</dimen>
 
     <!-- ========================= -->
     <!-- FOR THE LIST & GRID VIEWS -->
