@@ -39,7 +39,9 @@
         android:text="@string/network_error_title_text"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/no_wifi_image_id"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <ImageView
         android:id="@+id/no_wifi_image_id"
@@ -50,6 +52,7 @@
         app:layout_constraintRight_toLeftOf="@+id/no_internet_image_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/network_error_title_text_id"
+        app:layout_constraintBottom_toTopOf="@+id/network_error_scroll_text_id"
         app:srcCompat="@drawable/ic_no_wifi_signal" />
 
     <ImageView
@@ -62,13 +65,17 @@
         app:layout_constraintTop_toBottomOf="@+id/network_error_title_text_id"
         app:srcCompat="@drawable/ic_signal_no_internet" />
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/network_error_scroll_text_id"
         style="@style/ConstraintCenterHorizontalStyle"
         android:layout_width="@dimen/match_constraint_0dp"
         android:layout_height="wrap_content"
+        android:fadeScrollbars="false"
         android:layout_marginTop="@dimen/network_error_scroll_text_margin_top"
         android:fillViewport="true"
+        android:scrollbars="vertical"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/network_error_settings_btn_id"
         app:layout_constraintTop_toBottomOf="@+id/no_wifi_image_id">
 
         <TextView
@@ -85,7 +92,7 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/network_error_text_size" />
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <Button
         android:id="@+id/network_error_cancel_btn_id"
@@ -93,18 +100,16 @@
         android:layout_marginEnd="@dimen/network_error_cancel_btn_margin_right"
         android:layout_marginRight="@dimen/network_error_cancel_btn_margin_right"
         android:text="@string/network_error_cancel_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/network_error_settings_btn_id"
         app:layout_constraintEnd_toStartOf="@+id/network_error_settings_btn_id"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/network_error_settings_btn_id"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/network_error_scroll_text_id" />
+        app:layout_constraintTop_toTopOf="@+id/network_error_settings_btn_id" />
 
     <Button
         android:id="@+id/network_error_settings_btn_id"
         style="@style/NetworkErrorButtonsStyle"
+        android:layout_marginTop="@dimen/network_error_buttons_margin_top"
+        android:layout_marginBottom="@dimen/network_error_buttons_margin_bottom"
         android:layout_marginEnd="@dimen/network_error_settings_btn_margin_right"
         android:layout_marginLeft="@dimen/network_error_settings_btn_margin_left"
         android:layout_marginRight="@dimen/network_error_settings_btn_margin_right"
@@ -112,9 +117,7 @@
         android:text="@string/network_error_settings_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/network_error_cancel_btn_id"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@id/network_error_cancel_btn_id"
-        app:layout_constraintTop_toBottomOf="@id/network_error_scroll_text_id" />
+        app:layout_constraintTop_toBottomOf="@+id/network_error_scroll_text_id" />
 
 </android.support.constraint.ConstraintLayout>
