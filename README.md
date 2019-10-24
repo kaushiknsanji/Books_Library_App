@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/kaushiknsanji/Books_Library_App)  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kaushiknsanji/Books_Library_App)  ![GitHub repo size](https://img.shields.io/github/repo-size/kaushiknsanji/Books_Library_App)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/kaushiknsanji/Books_Library_App)  ![GitHub All Releases](https://img.shields.io/github/downloads/kaushiknsanji/Books_Library_App/total) ![GitHub search hit counter](https://img.shields.io/github/search/kaushiknsanji/Books_Library_App/Book%20Listing%20App) ![Minimum API level](https://img.shields.io/badge/API-15+-yellow)
 
-This App has been developed as part of the **Udacity Android Basics Nanodegree Course** for the Exercise Project **"Book Listing App"**. App connects to the [Google Books API](https://developers.google.com/books/) to retrieve the list of Books for the search done and then displays them in a BookShelf format.
+This App has been developed as part of the **Udacity Android Basics Nanodegree Course** for the Exercise Project **"Book Listing App"**. App connects to the [Google Books API](https://developers.google.com/books/) to retrieve the list of Books for the topic searched and then displays them in a decorative BookShelf format.
 
 ---
 
@@ -37,13 +37,14 @@ Android device running with Android OS 4.0.4 (API Level 15) or above. Best exper
 
 * Assisted Search Implementation with `SearchView`.
 * Used `RecyclerView` in place of `ListView` and `GridView` for its advantages in performance and easy placeholders for custom item decoration.
-* Custom `RecyclerView.ItemDecoration` for decorating each of the items in List/Grid with the Book shelf decoration.
-* Explored `FragmentStatePagerAdapter` that displays the Fragments \(retaining their state\) for the `ViewPager`.
+* Custom [RecyclerView.ItemDecoration](https://github.com/kaushiknsanji/Books_Library_App/blob/0c15b06877ca29523a588b67f30431f4acfaed37/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapterviews/RecyclerViewFragment.java#L362-L445) for decorating each of the items in List/Grid with the Book shelf decoration.
+* Explored [FragmentStatePagerAdapter](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/adapters/DisplayPagerAdapter.java) that displays the Fragments \(retaining their state\) for the `ViewPager`.
 * Implemented `android.support.v7.preference.Preference` Preferences for the Settings.
-* No external libraries are used for communicating with the REST API and also for loading the images. `AsyncTaskLoader` has been used for downloading the data and images in the background thread.
+* No external libraries are used for communicating with the REST API and also for loading the images. `AsyncTaskLoader` has been used for downloading the data and images in the background thread. Images are downloaded using a Headless [Fragment](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/workers/ImageDownloader.java).
+* Developed [BitmapImageCache](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/cache/BitmapImageCache.java) utility that uses `android.util.LruCache` to cache the recent Bitmap Images downloaded. 
 * Most layouts are designed using `ConstraintLayout` to flatten the layout hierachy as far as possible.
 * Indeterminate progress bar is implemented with animation-list / AnimationDrawable.
-* Spannables for decorating `TextViews` - [TextAppearanceUtility](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/utils/TextAppearanceUtility.java) with strikethrough, image within text, selective text coloring and relative text resize.
+* [TextAppearanceUtility](/app/src/main/java/com/example/kaushiknsanji/bookslibrary/utils/TextAppearanceUtility.java) for decorating `TextViews` using Spannables, for strikethrough, image within text, selective text coloring and relative text resize.
 * Custom Fonts for `TextViews`.
 * `CardView` for displaying the information of a Book.
 
@@ -232,7 +233,7 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 	* Added Click Listeners to Expand/Collapse Image Anchors shown by `BookDetailActivity` - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/0cdcd0c81aef463c23f431908eced4c15b60d1be)).
 	* Moved registration of Adapter Item Click listener to the `BookSearchActivity` (from `RecyclerViewFragment`) so that we can save the position of the Item clicked, when launching the `BookDetailActivity`, which prevents the scroll to top when navigating back from the BookDetailActivity - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/4ca2979c08e1c64b84541d4a9b4799b93f8b7875)).
 	* Modified the dispatch order of Diff updates to the Adapter by dispatching the updates to the Adapter first and then clearing the Adapter's old data to load the new list - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/46ef6abe92ec7ae23c6a49ddecedd29c5bfb5d48)).
-	* "Handling of Null Image links", and "Reading and Writing Bitmaps to Memory cache" is now taken care by the `ImageDownloader` AsyncTaskLoader - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/30f8dcc3ad655240d13da8b2b3faa54e39f83224)).
+	* "Handling of Null Image links", and "Reading from and Writing Bitmaps to Memory cache" is now taken care by the `ImageDownloader` AsyncTaskLoader - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/30f8dcc3ad655240d13da8b2b3faa54e39f83224)).
 	* Modified DiffUtil to issue Payload only for the required changes, and the Adapters to bind the data changes from the Payload - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/d5adfe55ec41b79c27fc8e34d58ede1c3e3a379a)).
 	* Bitmap Memory Cache is cleared on App Exit as well - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/a01331b418d28c27fb3e9cf5025264e6b5a948ab)).
 	* Enabled logging for debuggable build types only, through the use of custom [Logger](https://github.com/kaushiknsanji/Books_Library_App/blob/release_v1.0/app/src/main/java/com/example/kaushiknsanji/bookslibrary/utils/Logger.java) which is a wrapper to the `android.util.Log` - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/3489e5a479e08064e155f29f2659b3cf59038ba1)).
@@ -245,7 +246,7 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 
 * [Wood Wallpaper](http://mojhoroskop.club/wood-floor-wallpaper/wood-floor-wallpaper-wood-wallpapers-backgrounds-for-free-download/).
 * <a href="https://365psd.com/psd/book-shelf-54083" title="Book Shelf" target="_blank">Book Shelf</a> from <a href="https://365psd.com/" target="_blank">365PSD.com</a>.
-* [Black dividers by Vecteezy](https://www.vecteezy.com/vector-art/107220-black-dividers-and-border-vectors).
+* [Borders by Vecteezy](https://www.vecteezy.com/vector-art/107220-black-dividers-and-border-vectors).
 * App Icon available from Google. Original source is unknown.
 
 ---
