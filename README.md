@@ -2,7 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/kaushiknsanji/Books_Library_App) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kaushiknsanji/Books_Library_App) ![GitHub repo size](https://img.shields.io/github/repo-size/kaushiknsanji/Books_Library_App) ![GitHub Releases](https://img.shields.io/github/downloads/kaushiknsanji/Books_Library_App/v1.0/total)
 
-This is the Release version 1.0 of the **Books Library** App.
+This is the Release version 1.0 of the **Books Library** App. This release fixes the [performance issue](https://github.com/kaushiknsanji/Books_Library_App/issues/4) identified, to a considerable extent.
 
 ## Changes done in this Release
 
