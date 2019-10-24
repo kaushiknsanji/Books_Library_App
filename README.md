@@ -219,6 +219,37 @@ This can be viewed by going into the menu item **"About"** in the overflow menu 
 
 ---
 
+## Branches in this Repository
+
+* **[udacity](https://github.com/kaushiknsanji/Books_Library_App/tree/udacity)**
+	* Contains the code submitted for review.
+	* Added Copyright info.
+	* Updated Gradle version, made related changes and applied valid lint corrections.
+	* Regenerated App Icons.
+* **[release_v1.0](https://github.com/kaushiknsanji/Books_Library_App/tree/release_v1.0)**
+	* Used `ConstrainedWidth` to enforce `WRAP_CONTENT` constraints for Item Views shown by `BookSearchActivity` ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/da3ef414f2604b57147413936466c00d6715f68b)) and certain other views shown by `BookDetailActivity`([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/afb88281cd21723ca2d0c9475d8d7dd2352354d2)).
+	* Removed unnecessary NestedScrollViews for Expandable TextViews shown by `BookDetailActivity`. Also, used NestedScrollView instead of ScrollView for the scrollable content following the Book Title and Author in the Portrait mode - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/afb88281cd21723ca2d0c9475d8d7dd2352354d2)).
+	* Added Click Listeners to Expand/Collapse Image Anchors shown by `BookDetailActivity` - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/0cdcd0c81aef463c23f431908eced4c15b60d1be)).
+	* Moved registration of Adapter Item Click listener to the `BookSearchActivity` (from `RecyclerViewFragment`) so that we can save the position of the Item clicked, when launching the `BookDetailActivity`, which prevents the scroll to top when navigating back from the BookDetailActivity - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/4ca2979c08e1c64b84541d4a9b4799b93f8b7875)).
+	* Modified the dispatch order of Diff updates to the Adapter by dispatching the updates to the Adapter first and then clearing the Adapter's old data to load the new list - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/46ef6abe92ec7ae23c6a49ddecedd29c5bfb5d48)).
+	* "Handling of Null Image links", and "Reading and Writing Bitmaps to Memory cache" is now taken care by the `ImageDownloader` AsyncTaskLoader - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/30f8dcc3ad655240d13da8b2b3faa54e39f83224)).
+	* Modified DiffUtil to issue Payload only for the required changes, and the Adapters to bind the data changes from the Payload - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/d5adfe55ec41b79c27fc8e34d58ede1c3e3a379a)).
+	* Bitmap Memory Cache is cleared on App Exit as well - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/a01331b418d28c27fb3e9cf5025264e6b5a948ab)).
+	* Enabled logging for debuggable build types only, through the use of custom [Logger](https://github.com/kaushiknsanji/Books_Library_App/blob/release_v1.0/app/src/main/java/com/example/kaushiknsanji/bookslibrary/utils/Logger.java) which is a wrapper to the `android.util.Log` - ([commit](https://github.com/kaushiknsanji/Books_Library_App/commit/3489e5a479e08064e155f29f2659b3cf59038ba1)).
+	* Fixed the layout clipping of [Page NumberPicker Dialog](https://github.com/kaushiknsanji/Books_Library_App/commit/5cc33d1c4b6c630f64f6d4714672045ccb1d3399) and [NetworkError Dialog](https://github.com/kaushiknsanji/Books_Library_App/commit/5377b870230982cffdd12497b3ce330a5b9d5e9f).
+	* Fixes the [performance issue](https://github.com/kaushiknsanji/Books_Library_App/issues/4) identified, to a considerable extent.
+
+---
+
+## Icon and Image credits
+
+* [Wood Wallpaper](http://mojhoroskop.club/wood-floor-wallpaper/wood-floor-wallpaper-wood-wallpapers-backgrounds-for-free-download/).
+* <a href="https://365psd.com/psd/book-shelf-54083" title="Book Shelf" target="_blank">Book Shelf</a> from <a href="https://365psd.com/" target="_blank">365PSD.com</a>.
+* [Black dividers by Vecteezy](https://www.vecteezy.com/vector-art/107220-black-dividers-and-border-vectors).
+* App Icon available from Google. Original source is unknown.
+
+---
+
 ## Review from the Reviewer (Udacity)
 
 ![Review_Book_Listing_App](https://user-images.githubusercontent.com/26028981/66827627-b7c29580-ef6c-11e9-9ff5-462488f109fa.PNG)
